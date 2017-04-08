@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jasonyan2015.github.io/"/>
-  <updated>2017-01-26T02:36:55.722Z</updated>
+  <updated>2017-04-08T15:14:44.968Z</updated>
   <id>https://jasonyan2015.github.io/</id>
   
   <author>
@@ -16,219 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="https://jasonyan2015.github.io/2017/04/04/CMD%E8%A7%84%E8%8C%83/"/>
-    <id>https://jasonyan2015.github.io/2017/04/04/CMD规范/</id>
-    <published>2017-04-04T07:08:59.329Z</published>
-    <updated>2017-01-26T02:36:55.722Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><p>Common Module Definition——通用模块定义</p>
-<p>就像AMD有个RequireJS,CMD有个浏览器的实现SeaJS。SeaJS要解决的问题和RequireJS一样，只不过在模块定义方式和模块加载（可以说运行、解析）时机上有所不同。</p>
-<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>Sea.js 推崇一个模块一个文件，遵循统一的写法</p>
-<h5 id="define"><a href="#define" class="headerlink" title="define"></a>define</h5><p>define(id?, deps?, factory)</p>
-<p>因为CMD推崇一个文件一个模块，所以经常就用文件名作为模块id；CMD推崇依赖就近，所以一般不在define的参数中写依赖，而是在factory中写。</p>
-<p>factory有三个参数：</p>
-<blockquote>
-<p>function(require, exports, module){}</p>
-</blockquote>
-<ol>
-<li>require—— 方法，接受 <em>模块标识</em>作为唯一参数，用来获取其他模块提供的接口。</li>
-<li>exports——对象，用来向外提供模块接口。</li>
-<li>module<br>module ——对象，存储了与当前模块相关联的一些属性和方法。</li>
-</ol>
-<p>demo</p>
-<pre><code>// 定义模块  myModule.js
-define(function(require, exports, module) {
-  var $ = require(&apos;jquery.js&apos;)
-  $(&apos;div&apos;).addClass(&apos;active&apos;);
-});
-
-// 加载模块
-seajs.use([&apos;myModule.js&apos;], function(my){
-    //function content
-});
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;CMD&quot;&gt;&lt;a href=&quot;#CMD&quot; class=&quot;headerlink&quot; title=&quot;CMD&quot;&gt;&lt;/a&gt;CMD&lt;/h2&gt;&lt;p&gt;Common Module Definition——通用模块定义&lt;/p&gt;
-&lt;p&gt;就像AMD有个RequireJS,CMD有个浏览器的
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://jasonyan2015.github.io/2017/04/04/AMD%E8%A7%84%E8%8C%83/"/>
-    <id>https://jasonyan2015.github.io/2017/04/04/AMD规范/</id>
-    <published>2017-04-04T07:08:59.321Z</published>
-    <updated>2017-01-26T17:42:35.228Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h2><p>Asynchronous Module Definition——异步模块定义</p>
-<p>它是一个在浏览器端模块化开发的规范。由于不是Javascript原生支持，使用AMD规范进行页面开发需要用到对应的库函数——<strong>RequireJS</strong></p>
-<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1485016792251&amp;di=e0445002cd2ccabd9c130a8e12d4d1d2&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.uedsc.com%2Fwp-content%2Fuploads%2F2015%2F08%2Frequirejs.jpg" alt="RequireJS图标"></p>
-<h4 id="RequireJS主要解决两个问题"><a href="#RequireJS主要解决两个问题" class="headerlink" title="RequireJS主要解决两个问题"></a>RequireJS主要解决两个问题</h4><ol>
-<li>多个js文件之间可能存在依赖关系时需要被依赖文件先备加载到浏览器</li>
-<li>js文件加载时，加载文件越多，页面失去响应时间越久</li>
-</ol>
-<h4 id="语法简介"><a href="#语法简介" class="headerlink" title="语法简介"></a>语法简介</h4><p><em>定义模块</em>——define([id], [dependencies], factory);</p>
-<p>它是全局变量，用于定义模块。</p>
-<ul>
-<li>id：可选，用于定义模块标识。若没有提供该参数，则标识为脚本文件名</li>
-<li>dependencies：可选，所依赖的模块</li>
-<li>factory：模块初始化要执行的函数或对象。若为函数，则只被执行一次，若为对象，则此对象应为模块的输出值。</li>
-</ul>
-<p><em>加载模块</em>——require([dependencies], callback);</p>
-<ul>
-<li>dependencies：数组，表示所依赖的模块</li>
-<li>callback：回调函数，当前面指定的模块都加载成功后，它将被调用。加载的模块会以参数形式传入该函数，从而在回调函数内部就可以使用这些模块。</li>
-</ul>
-<blockquote>
-<p>补充：require()函数在加载依赖的函数时是异步加载的，这样浏览器就不会失去响应，它指定的回调函数只有在前面的模块都加载成功后才会运行。由此解决依赖性问题。</p>
-</blockquote>
-<h3 id="使用RequireJS"><a href="#使用RequireJS" class="headerlink" title="使用RequireJS"></a>使用RequireJS</h3><h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p><a href="http://www.requirejs.cn/docs/download.html" target="_blank" rel="external">下载链接</a></p>
-<h4 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h4><p>假定现在项目中所有js文件都放在一个”scripts”目录下，并添加上require.js。</p>
-<pre><code>* 项目目录/
-  * project.html
-  * scripts/
-     * main.js
-     * *require.js*
-     * helper/
-         * util.js
-</code></pre><p>为了充分利用require.js建议只在HTML中引入require.js，然后通过它来请求加载其他的scripts：</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;My Sample Project&lt;/title&gt;
-        &lt;!-- data-main attribute tells require.js to load scripts/main.js after require.js loads. --&gt;
-        &lt;script data-main=&quot;scripts/main&quot; src=&quot;scripts/require.js&quot;&gt;&lt;/script&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h1&gt;My Sample Project&lt;/h1&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre><ul>
-<li>data-main属性：require.js使用它来启动脚本加载过程。</li>
-</ul>
-<blockquote>
-<p>RequireJS以一个相对于baseUrl的地址来加载所有的代码。而baseUrl有三种方式可以设置。</p>
-<ol>
-<li>使用上述data-main属性，可设置baseUrl为该属性相一致的目录。上例中为scripts文件夹</li>
-<li>使用RequireJS 的config手动设置。比如在main.js头部添加<pre><code> require.config({
-    paths: {
-            jsFileName: &apos;FileAddress&apos;
-    }
-});
-</code></pre></li>
-<li>如果没有显式指定上述二者，则默认为包含RequireJS的那个HTML页面所属目录。</li>
-</ol>
-</blockquote>
-<p>然后在main.js中使用require()来加载所有需要运行的scripts。</p>
-<pre><code>require([&quot;helper/util&quot;], function(util) {
-    //This function is called when scripts/helper/util.js is loaded.
-    //If util.js calls define(), then this function is not fired until
-    //util&apos;s dependencies have loaded, and the util argument will hold
-    //the module value for &quot;helper/util&quot;.
-});
-</code></pre><h4 id="加载文件"><a href="#加载文件" class="headerlink" title="加载文件"></a>加载文件</h4><p>以加载一个jQuery库为例。之前都是加载本地js模块，若是需要加载来自本地服务器、其他网站或CDN的js，那么可以用如下方式：</p>
-<pre><code>require.config({
-    paths : {
-        &quot;jquery&quot; : [&quot;http://libs.baidu.com/jquery/2.0.3/jquery&quot;]   
-    }
-})
-require([&quot;jquery&quot;,&quot;js/a&quot;],function($){
-    $(function(){
-        alert(&quot;load finished&quot;);  
-    })
-})
-</code></pre><p>require.config用来配置模块加载位置。简单点说就是给模块起一个更短更好记的名字，比如将百度的jquery库地址标记为jquery，这样在require时只需要写[“jquery”]就可以加载该js。当然，本地的js也可以这样配置。</p>
-<p>通过paths的配置会使我们的模块名字更精炼，paths还有一个重要的功能，就是可以配置多个路径，如果远程cdn库没有加载成功，可以加载本地的库，如：</p>
-<pre><code>require.config({
-    paths : {
-        &quot;jquery&quot; : [&quot;http://libs.baidu.com/jquery/2.0.3/jquery&quot;, &quot;js/jquery&quot;],
-        &quot;a&quot; : &quot;js/a&quot;   
-    }
-})
-require([&quot;jquery&quot;,&quot;a&quot;],function($){
-    $(function(){
-        alert(&quot;load finished&quot;);  
-    })
-})
-</code></pre><p>这样配置后，当百度的jquery没有加载成功后，会加载本地js目录下的jquery。</p>
-<ol>
-<li>在使用requirejs时，加载模块时不用写.js后缀的，当然也是不能写后缀</li>
-<li>上面例子中的callback函数中发现有$参数，这个就是依赖的jquery模块的输出变量，如果你依赖多个模块，可以依次写入多个参数来使用。</li>
-</ol>
-<p>事实上，一般把require.config配置放到data-main中配置，这样就可以使每一个页面都使用这个配置，然后页面中就可以直接使用require来加载所有的短模块名。</p>
-<p><em>main.js</em></p>
-<pre><code>require.config({
-    paths : {
-        &quot;jquery&quot; : [&quot;http://libs.baidu.com/jquery/2.0.3/jquery&quot;, &quot;js/jquery&quot;],
-        &quot;a&quot; : &quot;js/a&quot;   
-    }
-})
-</code></pre><p><em>project.html</em></p>
-<pre><code>&lt;script data-main=&quot;js/main&quot; src=&quot;js/require.js&quot;&gt;&lt;/script&gt;
-</code></pre><h5 id="加载第三方模块"><a href="#加载第三方模块" class="headerlink" title="加载第三方模块"></a>加载第三方模块</h5><p>通过require加载的模块一般都需要符合AMD规范即使用define来申明模块，但是部分时候需要加载非AMD规范的js，这时候就需要用到另一个功能——shim</p>
-<p>主要用在两个地方</p>
-<ol>
-<li><p>非AMD模块输出，将非标准的AMD模块”垫”成可用的模块，例如：老版本的jquery，并没有继承AMD规范，所以不能直接require[“jquery”],这时候就需要shim。比如我要是用underscore类库，但是他并没有实现AMD规范，那么可以这样配置：</p>
-<pre><code>require.config({
-    shim: {
-        &quot;underscore&quot; : {
-            exports : &quot;_&quot;;
-        }
-    }
-})
-</code></pre><p> 这样配置后，就可以在其他模块中引用underscore模块：</p>
-<pre><code>require([&quot;underscore&quot;], function(_){
-    _.each([1,2,3], alert);
-})
-</code></pre></li>
-<li><p>插件形式的非AMD模块。我们经常会用到jquery插件，而这些插件基本都不符合AMD规范，比如jquery.form插件，这时候就需要将form插件shim到jquery中：</p>
-<pre><code>require.config({
-    shim: {
-        &quot;underscore&quot; : {
-            exports : &quot;_&quot;;
-        },
-        &quot;jquery.form&quot; : {
-            deps : [&quot;jquery&quot;]
-        }
-    }
-})
-</code></pre><p> 这样配置之后我们就可以使用加载插件后的jquery了</p>
-<pre><code>require.config([&quot;jquery&quot;, &quot;jquery.form&quot;], function($){
-    $(function(){
-        $(&quot;#form&quot;).ajaxSubmit({...});
-    })
-})
-</code></pre></li>
-</ol>
-<hr>
-<p><a href="http://www.runoob.com/w3cnote/requirejs-tutorial-1.html" target="_blank" rel="external">RequireJS简单教程</a></p>
-<p><a href="http://www.requirejs.cn/" target="_blank" rel="external">RequireJS中文网</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;AMD&quot;&gt;&lt;a href=&quot;#AMD&quot; class=&quot;headerlink&quot; title=&quot;AMD&quot;&gt;&lt;/a&gt;AMD&lt;/h2&gt;&lt;p&gt;Asynchronous Module Definition——异步模块定义&lt;/p&gt;
-&lt;p&gt;它是一个在浏览器端模块化开发的规范。由于
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
+    <title>自定义浏览器滚动条</title>
     <link href="https://jasonyan2015.github.io/2017/04/04/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1/"/>
     <id>https://jasonyan2015.github.io/2017/04/04/自定义浏览器滚动条/</id>
     <published>2017-04-04T07:08:59.294Z</published>
-    <updated>2017-04-08T13:30:04.816Z</updated>
+    <updated>2017-04-08T15:14:44.968Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="浏览器滚动条定义"><a href="#浏览器滚动条定义" class="headerlink" title="浏览器滚动条定义"></a>浏览器滚动条定义</h1><hr>
+    <content type="html"><![CDATA[<hr>
 <h2 id="IE浏览器"><a href="#IE浏览器" class="headerlink" title="IE浏览器"></a>IE浏览器</h2><table>
 <thead>
 <tr>
@@ -335,8 +129,12 @@ require([&quot;jquery&quot;,&quot;a&quot;],function($){
     
     <summary type="html">
     
-      &lt;h1 id=&quot;浏览器滚动条定义&quot;&gt;&lt;a href=&quot;#浏览器滚动条定义&quot; class=&quot;headerlink&quot; title=&quot;浏览器滚动条定义&quot;&gt;&lt;/a&gt;浏览器滚动条定义&lt;/h1&gt;&lt;hr&gt;
-&lt;h2 id=&quot;IE浏览器&quot;&gt;&lt;a href=&quot;#IE浏览器&quot; class=&quot;heade
+      &lt;hr&gt;
+&lt;h2 id=&quot;IE浏览器&quot;&gt;&lt;a href=&quot;#IE浏览器&quot; class=&quot;headerlink&quot; title=&quot;IE浏览器&quot;&gt;&lt;/a&gt;IE浏览器&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;滚动条样式&lt;/th&gt;
+&lt;th style=&quot;text-alig
     
     </summary>
     
@@ -344,14 +142,14 @@ require([&quot;jquery&quot;,&quot;a&quot;],function($){
   </entry>
   
   <entry>
-    <title></title>
+    <title>Js的隐式类型转换</title>
     <link href="https://jasonyan2015.github.io/2017/04/04/js%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98/"/>
     <id>https://jasonyan2015.github.io/2017/04/04/js隐式类型转换问题/</id>
     <published>2017-04-04T07:08:59.292Z</published>
-    <updated>2017-04-04T01:35:54.024Z</updated>
+    <updated>2017-04-08T15:11:36.265Z</updated>
     
     <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><h5 id="腾讯笔试题"><a href="#腾讯笔试题" class="headerlink" title="腾讯笔试题"></a>腾讯笔试题</h5><p>顺便吐槽一句……</p>
-<p>腾讯考的选择题相对其他网易阿里360什么的要更专业前端一些，他们几个都更广泛考一些计算机组成，堆栈，二分什么乱七八糟的计算机基础知识，腾讯选择题全考的网络相关的，但是考的也太网络基础了…..交换机，IPV6相比IPV4的优点，UDP协议头，FTP协议…..咱们安安心心考个HTTP不好么…..</p>
+<p>腾讯考的选择题相对其他网易阿里360什么的要更专业前端一些，他们几个都更广泛考一些计算机组成，堆栈，二分什么乱七八糟的计算机基础知识，腾讯选择题全考的网络相关的，但是考的也太网络基础了…..交换机，IPV6相比IPV4的优点，UDP协议头，FTP协议…..咱们安安心心考个HTTP不好么…..我还没懂这么多呢[哭]</p>
 <h5 id="好了正式的"><a href="#好了正式的" class="headerlink" title="好了正式的"></a>好了正式的</h5><p>起因是在腾讯2017实习生笔试，选择题考了一道关于</p>
 <pre><code>if(0&lt;100&lt;0) console.log(&apos;0&lt;100&lt;0&apos;);
 if(0&lt;100&lt;(0+4)) console.log(&apos;0&lt;100&lt;(0+4)&apos;)
@@ -417,42 +215,13 @@ true + 0 === (0 + 1)    //true
   </entry>
   
   <entry>
-    <title></title>
-    <link href="https://jasonyan2015.github.io/2017/04/04/iframe%E9%AB%98%E5%BA%A6%E8%B0%83%E6%95%B4/"/>
-    <id>https://jasonyan2015.github.io/2017/04/04/iframe高度调整/</id>
-    <published>2017-04-04T07:08:59.255Z</published>
-    <updated>2017-04-08T13:30:25.919Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="使用window-innerHeight"><a href="#使用window-innerHeight" class="headerlink" title="使用window.innerHeight"></a>使用window.innerHeight</h2><p>此时获取的innerHeight为iframe的高度（本身应是body的显示高度即浏览器窗口的显示高度，但由于iframe嵌入body，且高度自适应于common-left的高度，因此只要设置了common-left的高度,获取的值就是common-left的高度）</p>
-<p>但是在已有界面上打开控制台调试时的初始情况下，已有原本高度为869px，所以改参数重新发布没有这个初始值不知道会怎么样</p>
-<h2 id="使用window-outerHeight"><a href="#使用window-outerHeight" class="headerlink" title="使用window.outerHeight"></a>使用window.outerHeight</h2><p>此时获取的window.outerHeight是整个屏幕<em>（本地900px）</em>减去任务栏<em>（本地30px）</em>的高度</p>
-<blockquote>
-<p>需要再减去浏览器地址栏标题栏工具栏<em>（本地90px）</em>，TAPD上方标题导航<em>(104px)</em></p>
-</blockquote>
-<hr>
-<p>调试代码记录<br> <button onclick="document.getElementById('asd').style.height = (window.innerHeight - 154) + 'px';">按钮</button> </p>
-<hr>
-<p>p.s. 各级窗口高度图</p>
-<p><img src="http://oo3e61qcc.bkt.clouddn.com/heightAPI.png" alt="各级窗口高度图"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;使用window-innerHeight&quot;&gt;&lt;a href=&quot;#使用window-innerHeight&quot; class=&quot;headerlink&quot; title=&quot;使用window.innerHeight&quot;&gt;&lt;/a&gt;使用window.innerHeight&lt;/h2&gt;&lt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
+    <title>HTML5新特性</title>
     <link href="https://jasonyan2015.github.io/2017/04/04/HTML5%E6%96%B0%E7%89%B9%E6%80%A7%E7%AC%94%E8%AE%B0/"/>
     <id>https://jasonyan2015.github.io/2017/04/04/HTML5新特性笔记/</id>
     <published>2017-04-04T07:08:59.194Z</published>
-    <updated>2017-04-08T13:06:40.255Z</updated>
+    <updated>2017-04-08T15:15:49.466Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h1><h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><ul>
+    <content type="html"><![CDATA[<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
 <li>用于绘画的 canvas 元素</li>
 <li>用于媒介回放的 video 和 audio 元素</li>
 <li>对本地离线存储的更好的支持</li>
@@ -1696,7 +1465,10 @@ true + 0 === (0 + 1)    //true
     
     <summary type="html">
     
-      &lt;h1 id=&quot;HTML5&quot;&gt;&lt;a href=&quot;#HTML5&quot; class=&quot;headerlink&quot; title=&quot;HTML5&quot;&gt;&lt;/a&gt;HTML5&lt;/h1&gt;&lt;h3 id=&quot;新特性&quot;&gt;&lt;a href=&quot;#新特性&quot; class=&quot;headerlink&quot; title=&quot;新特性&quot;&gt;&lt;/
+      &lt;h3 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;用于绘画的 canvas 元素&lt;/li&gt;
+&lt;li&gt;用于媒介回放的 video 和 audio 元素&lt;/li&gt;
+&lt;li&gt;对本地离线
     
     </summary>
     
@@ -1704,13 +1476,13 @@ true + 0 === (0 + 1)    //true
   </entry>
   
   <entry>
-    <title></title>
+    <title>js跨域问题</title>
     <link href="https://jasonyan2015.github.io/2017/04/04/js%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/"/>
     <id>https://jasonyan2015.github.io/2017/04/04/js跨域问题/</id>
     <published>2017-04-04T02:15:55.878Z</published>
-    <updated>2017-04-08T03:36:29.019Z</updated>
+    <updated>2017-04-08T15:14:41.586Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Js跨域"><a href="#Js跨域" class="headerlink" title="Js跨域"></a>Js跨域</h2><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h5 id="同源包括三个相同"><a href="#同源包括三个相同" class="headerlink" title="同源包括三个相同"></a>同源包括三个相同</h5><ul>
+    <content type="html"><![CDATA[<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h5 id="同源包括三个相同"><a href="#同源包括三个相同" class="headerlink" title="同源包括三个相同"></a>同源包括三个相同</h5><ul>
 <li>协议（protocol）相同</li>
 <li>域名（domain/host）相同</li>
 <li>端口（port）相同</li>
@@ -1988,7 +1760,7 @@ Sec-WebSocket-Protocol: chat
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Js跨域&quot;&gt;&lt;a href=&quot;#Js跨域&quot; class=&quot;headerlink&quot; title=&quot;Js跨域&quot;&gt;&lt;/a&gt;Js跨域&lt;/h2&gt;&lt;h3 id=&quot;同源策略&quot;&gt;&lt;a href=&quot;#同源策略&quot; class=&quot;headerlink&quot; title=&quot;同源策略&quot;&gt;&lt;/a
+      &lt;h3 id=&quot;同源策略&quot;&gt;&lt;a href=&quot;#同源策略&quot; class=&quot;headerlink&quot; title=&quot;同源策略&quot;&gt;&lt;/a&gt;同源策略&lt;/h3&gt;&lt;h5 id=&quot;同源包括三个相同&quot;&gt;&lt;a href=&quot;#同源包括三个相同&quot; class=&quot;headerlink&quot; title=&quot;同
     
     </summary>
     
