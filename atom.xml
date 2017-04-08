@@ -450,7 +450,7 @@ true + 0 === (0 + 1)    //true
     <link href="https://jasonyan2015.github.io/2017/04/04/HTML5%E6%96%B0%E7%89%B9%E6%80%A7%E7%AC%94%E8%AE%B0/"/>
     <id>https://jasonyan2015.github.io/2017/04/04/HTML5新特性笔记/</id>
     <published>2017-04-04T07:08:59.194Z</published>
-    <updated>2017-02-28T14:36:58.376Z</updated>
+    <updated>2017-04-08T13:06:40.255Z</updated>
     
     <content type="html"><![CDATA[<h1 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h1><h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><ul>
 <li>用于绘画的 canvas 元素</li>
@@ -590,6 +590,7 @@ true + 0 === (0 + 1)    //true
 <tr>
 <td></td>
 <td>width</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1025,6 +1026,7 @@ true + 0 === (0 + 1)    //true
 </tr>
 <tr>
 <td>toDataURL()</td>
+<td></td>
 </tr>
 </tbody>
 </table>
