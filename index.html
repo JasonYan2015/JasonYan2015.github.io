@@ -1,8 +1,2642 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Ajun的前端学习笔记"><title>Ajun | 听说悟净已经植发治好了秃头，有了论及婚嫁的女友。</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Ajun</h1><a id="logo" href="/.">Ajun</a><p class="description">听说悟净已经植发治好了秃头，有了论及婚嫁的女友。</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2017/04/04/自定义浏览器滚动条/">自定义浏览器滚动条</a></h1><div class="post-meta">2017-04-04</div><div class="post-content"><hr>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ajun" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Ajun的前端学习笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ajun">
+<meta property="og:url" content="https://jasonyan2015.github.io/index.html">
+<meta property="og:site_name" content="Ajun">
+<meta property="og:description" content="Ajun的前端学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ajun">
+<meta name="twitter:description" content="Ajun的前端学习笔记">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jasonyan2015.github.io/"/>
+
+
+
+
+
+  <title> Ajun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ajun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">听说悟净已经植发治好了秃头，有了论及婚嫁的女友。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jasonyan2015.github.io/2017/04/04/自定义浏览器滚动条/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ajun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ajun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/04/自定义浏览器滚动条/" itemprop="url">
+                  自定义浏览器滚动条
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T15:08:59+08:00">
+                2017-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
 <h2 id="IE浏览器"><a href="#IE浏览器" class="headerlink" title="IE浏览器"></a>IE浏览器</h2><table>
 <thead>
 <tr>
-<th>滚动条样式</th></div><p class="readmore"><a href="/2017/04/04/自定义浏览器滚动条/">阅读更多</a></p></div><div class="post"><h1 class="post-title"><a href="/2017/04/04/js隐式类型转换问题/">Js的隐式类型转换</a></h1><div class="post-meta">2017-04-04</div><div class="post-content"><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><h5 id="腾讯笔试题"><a href="#腾讯笔试题" class="headerlink" title="腾讯笔试题"></a>腾讯笔试题</h5><p>顺便吐槽一句……</p></div><p class="readmore"><a href="/2017/04/04/js隐式类型转换问题/">阅读更多</a></p></div><div class="post"><h1 class="post-title"><a href="/2017/04/04/HTML5新特性笔记/">HTML5新特性</a></h1><div class="post-meta">2017-04-04</div><div class="post-content"><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<th>滚动条样式</th>
+<th style="text-align:center">支持浏览器版本</th>
+<th style="text-align:center">可否继承</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scrollbar-3dlight-color</td>
+<td style="text-align:center">IE5.5+</td>
+<td style="text-align:center">y</td>
+<td style="text-align:center">设置滚动框的和滚动条箭头左上边缘的颜色</td>
+</tr>
+<tr>
+<td>scrollbar-highlight-color</td>
+<td style="text-align:center">IE5.5+</td>
+<td style="text-align:center">y</td>
+<td style="text-align:center">设置滚动框的和滚动条箭头左上边缘的颜色</td>
+</tr>
+<tr>
+<td>scrollbar-face-color</td>
+<td style="text-align:center">IE5.5+</td>
+<td style="text-align:center">y</td>
+<td style="text-align:center">设置滚动框和滚动条箭头的颜色</td>
+</tr>
+<tr>
+<td>scrollbar-arrow-color</td>
+<td style="text-align:center">IE5.5+</td>
+<td style="text-align:center">y</td>
+<td style="text-align:center">设置滚动条箭头的颜色</td>
+</tr>
+<tr>
+<td>scrollbar-shadow-color</td>
+<td style="text-align:center">IE5.5+</td>
+<td style="text-align:center">y</td>
+<td style="text-align:center">设置滚动框的和滚动条箭头右下边缘的颜色</td>
+</tr>
+<tr>
+<td>scrollbar-dark-shadow-color</td>
+<td style="text-align:center">IE5.5+</td>
+<td style="text-align:center">y</td>
+<td style="text-align:center">设置滚动条槽的颜色</td>
+</tr>
+<tr>
+<td>scrollbar-base-color</td>
+<td style="text-align:center">IE5.5+</td>
+<td style="text-align:center">y</td>
+<td style="text-align:center">设置滚动条主要构成部分的颜色</td>
+</tr>
+<tr>
+<td>scrollbar-track-color</td>
+<td style="text-align:center">IE5.5+</td>
+<td style="text-align:center">y</td>
+<td style="text-align:center">设置滚动条轨迹组成部分的颜色</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://oo3e61qcc.bkt.clouddn.com/IEscrollbar.gif" alt="ie滚动条说明"></p>
+<h2 id="webkit内核浏览器"><a href="#webkit内核浏览器" class="headerlink" title="webkit内核浏览器"></a>webkit内核浏览器</h2><pre><code>    CSS
+::-webkit-scrollbar              { /* 1 */ }
+::-webkit-scrollbar-button       { /* 2 */ }
+::-webkit-scrollbar-track        { /* 3 */ }
+::-webkit-scrollbar-track-piece  { /* 4 */ }
+::-webkit-scrollbar-thumb        { /* 5 */ }
+::-webkit-scrollbar-corner       { /* 6 */ }
+::-webkit-resizer                { /* 7 */ }
+</code></pre><p><img src="http://oo3e61qcc.bkt.clouddn.com/webkitScrollbar.png" alt="webkit内核浏览器"></p>
+<ul>
+<li>::-webkit-scrollbar            滚动条整体部分，其中的属性有width,height,background,border    （就和一个块级元素一样）等。</li>
+<li>::-webkit-scrollbar-button          滚动条两端的按钮。可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果。</li>
+<li>::-webkit-scrollbar-track         外层轨道。可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果。</li>
+<li>::-webkit-scrollbar-track-piece        内层轨道，滚动条中间部分（除去）。</li>
+<li>::-webkit-scrollbar-thumb               滚动条里面可以拖动的那部分</li>
+<li>::-webkit-scrollbar-corner               边角</li>
+<li>::-webkit-resizer                       定义右下角拖动块的样式</li>
+</ul>
+<blockquote>
+<p>注意：对以上各个部分定义width,height时。有如下功能：若是水平滚动条，则width属性不起作用，height属性用来控制滚动条相应部分竖直方向高度；若是竖直滚动条，则height属性不起作用，width属性用来控制相应部分的宽度。</p>
+</blockquote>
+<hr>
+<hr>
+<p>p.s.拓展</p>
+<p>通过以上，我们几乎就可以来重写网站的滚动条了，但是webkit提供的还有更多的伪类，可以定制更丰富滚动条样式。本文以下内容参考：<a href="https://www.webkit.org/blog/363/styling-scrollbars/" target="_blank" rel="external">https://www.webkit.org/blog/363/styling-scrollbars/</a></p>
+<ul>
+<li>:horizontal     horizontal  伪类，主要应用于选择水平方向滚动条。</li>
+<li>:vertical    vertical伪类主要是应用于选择竖直方向滚动条</li>
+<li>:decrement    decrement伪类应用于按钮和内层轨道(track piece)。它用来指示按钮或者内层轨道是否会减小视窗的位置(比如，垂直滚动条的上面，水平滚动条的左边。)</li>
+<li>:increment     increment伪类与和decrement类似，用来指示按钮或内层轨道是否会增大视窗的位置(比如，垂直滚动条的下面和水平滚动条的右边。)</li>
+<li>:start    start伪类也应用于按钮和滑块。它用来定义对象是否放到滑块的前面。</li>
+<li>:end     类似于start伪类，标识对象是否放到滑块的后面。</li>
+<li>:double-button    该伪类可以用于按钮和内层轨道。用于判断一个按钮是不是放在滚动条同一端的一对按钮中的一个。对于内层轨道来说，它表示内层轨道是否紧靠一对按钮。</li>
+<li>:single-button    类似于double-button伪类。对按钮来说，它用于判断一个按钮是否自己独立的在滚动条的一段。对内层轨道来说，它表示内层轨道是否紧靠一个single-button。</li>
+<li>:no-button    用于内层轨道，表示内层轨道是否要滚动到滚动条的终端，比如，滚动条两端没有按钮的时候。</li>
+<li>:corner-present    用于所有滚动条轨道，指示滚动条圆角是否显示。</li>
+<li>:window-inactive    用于所有的滚动条轨道，指示应用滚动条的某个页面容器(元素)是否当前被激活。(在webkit最近的版本中，该伪类也可以用于::selection伪元素。webkit团队有计划扩展它并推动成为一个标准的伪类)<blockquote>
+<p>另外，:enabled、:disabled、:hover、和:active等伪类同样在滚动条中适用。</p>
+</blockquote>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jasonyan2015.github.io/2017/04/04/js隐式类型转换问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ajun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ajun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/04/js隐式类型转换问题/" itemprop="url">
+                  Js的隐式类型转换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T15:08:59+08:00">
+                2017-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><h5 id="腾讯笔试题"><a href="#腾讯笔试题" class="headerlink" title="腾讯笔试题"></a>腾讯笔试题</h5><p>顺便吐槽一句……</p>
+<p>腾讯考的选择题相对其他网易阿里360什么的要更专业前端一些，他们几个都更广泛考一些计算机组成，堆栈，二分什么乱七八糟的计算机基础知识，腾讯选择题全考的网络相关的，但是考的也太网络基础了…..交换机，IPV6相比IPV4的优点，UDP协议头，FTP协议…..咱们安安心心考个HTTP不好么…..我还没懂这么多呢[哭]</p>
+<h5 id="好了正式的"><a href="#好了正式的" class="headerlink" title="好了正式的"></a>好了正式的</h5><p>起因是在腾讯2017实习生笔试，选择题考了一道关于</p>
+<pre><code>if(0&lt;100&lt;0) console.log(&apos;0&lt;100&lt;0&apos;);
+if(0&lt;100&lt;(0+4)) console.log(&apos;0&lt;100&lt;(0+4)&apos;)
+</code></pre><h2 id="Js的隐式类型转换"><a href="#Js的隐式类型转换" class="headerlink" title="Js的隐式类型转换"></a>Js的隐式类型转换</h2><p>JS是弱类型编程语言，这点我一直印象深刻，因为刚学JS的时候发现声明变量不用乱七八糟的去动脑区分 <code>int</code>,<code>long int</code>,<code>short int</code>,<code>double</code>等等，只要一个<code>var</code>！没错！统统不要，只要一个<code>var</code>是不是hin贴心！！！</p>
+<p>但是弱类型也带来了一些副作用，比如在代码中存在一些隐式类型转换，可能会让输入输出结果与编程者的期望不太一样。就像这道考题。</p>
+<p>考完去chrome控制台验证了一下，输出结果应该是<code>0&lt;100&lt;(0+4)</code>，也就是说，<code>0&lt;100&lt;0+4</code>在if逻辑中判断为<code>true</code>。（神tm的判断……）</p>
+<p>这就是隐式类型转换存在的缘故。因为括号内容<code>(0+4)</code>的存在，导致了括号中的表达式参与的判断被隐式转换成了number类型，因此，<code>0&lt;100</code>正常逻辑判断为<code>true</code>后，判断<code>true&lt;(0+4)</code>时被转换成了<code>0&lt;(0+4)</code>，所以最后被判断为<code>true</code>。</p>
+<p>以下为控制台验证过程，’//‘后为返回结果</p>
+<pre><code>true &lt; 1                //false
+true &lt; 2                //true
+true - 1                //0
+true &lt; (0 + 0)            //false
+true &lt; (0 + 4)             //true
+true === (0 + 1)        //false
+true == (0 + 1)            //true
+true + 0 === (0 + 1)    //true
+</code></pre><p>P.S.今天做赛码的笔试题的时候学到一个零几年就有但现在基本没人用的跑马灯标签：<br><code>&lt;marquee&gt;</code></p>
+<p>其实我感觉功能还挺酷炫的。不仅可以移动文字，也可以移动图片，表格等。</p>
+<p>语法：<code>&lt;marquee direction=&quot;&quot; behavior=&quot;&quot; scrollamount=&quot;&quot; &gt;...&lt;/marquee&gt;</code>(在标记之间添加要进行滚动的内容)</p>
+<p>重要属性：</p>
+<ul>
+<li>滚动方向direction（包括4个值：up、 down、 left和 right）</li>
+<li>滚动方式behavior（scroll:循环滚动，默认效果； slide:只滚动一次就停止； alternate:来回交替进行滚动）</li>
+<li>滚动速度scrollamount（滚动速度是设置每次滚动时移动的长度，以像素为单位）</li>
+<li>滚动延迟scrolldelay（设置滚动的时间间隔，单位是毫秒）</li>
+<li>滚动循环loop（默认值是-1，滚动会不断的循环下去）</li>
+<li>滚动范围width、height</li>
+<li>滚动背景颜色bgcolor</li>
+<li>空白空间hspace、vspace</li>
+</ul>
+<p>例子跑起来</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;test&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;marquee direction=&quot;up&quot; scroll=&quot;alternate&quot; loop=&quot;-1&quot; scrollamount=&quot;10&quot;&gt;这是一个marquee标签，似乎是零几年就存在的一个标签，但是现在好像没听说过&lt;/marquee&gt;
+    &lt;marquee direction=&quot;left&quot; scroll=&quot;alternate&quot; loop=&quot;-1&quot; scrollamount=&quot;10&quot;&gt;&lt;img src=&quot;https://ss0.baidu.com/73t1bjeh1BF3odCf/it/u=156557612,1695936325&amp;fm=85&amp;s=695818D27C46B819D23D44D50300C062&quot;&gt;&lt;/marquee&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>那么问题来了，这么酷炫的标签为什么现在没人用了呢？</p>
+<p>因为他被W3C标准抛弃了！</p>
+<p>主要原因可以看一下参考链接。一句话就是：用归用，标准归标准。</p>
+<blockquote>
+<p>顺便插个嘴，这玩意儿浏览器支持还挺好的（毕竟那么早的标签了）</p>
+</blockquote>
+<p>参考链接：</p>
+<ul>
+<li><a href="http://www.chinablackhat.com/kf/201410/6610.html" target="_blank" rel="external">Marquee为什么不符合WEB标准？</a></li>
+<li><a href="http://www.cnblogs.com/zzuIvy/p/marqueeTest_1.html" target="_blank" rel="external">HTML标签marquee实现滚动效果</a></li>
+<li><a href="http://www.cnblogs.com/hustskyking/p/marquee-in-javascript.html" target="_blank" rel="external">一个不陌生的JS效果-marquee的代替实现方法</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jasonyan2015.github.io/2017/04/04/HTML5新特性笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ajun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ajun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/04/HTML5新特性笔记/" itemprop="url">
+                  HTML5新特性
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T15:08:59+08:00">
+                2017-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
 <li>用于绘画的 canvas 元素</li>
 <li>用于媒介回放的 video 和 audio 元素</li>
-<li>对本地离线存储的更好的支持</li></div><p class="readmore"><a href="/2017/04/04/HTML5新特性笔记/">阅读更多</a></p></div><div class="post"><h1 class="post-title"><a href="/2017/04/04/js跨域问题/">js跨域问题</a></h1><div class="post-meta">2017-04-04</div><div class="post-content"><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h5 id="同源包括三个相同"><a href="#同源包括三个相同" class="headerlink" title="同源包括三个相同"></a>同源包括三个相同</h5><ul></div><p class="readmore"><a href="/2017/04/04/js跨域问题/">阅读更多</a></p></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="https://jasonyan2015.github.io"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/自定义浏览器滚动条/">自定义浏览器滚动条</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/js隐式类型转换问题/">Js的隐式类型转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/HTML5新特性笔记/">HTML5新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/js跨域问题/">js跨域问题</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">Ajun.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<li>对本地离线存储的更好的支持</li>
+<li>新的特殊内容元素，比如 article、footer、header、nav、section</li>
+<li>新的表单控件，比如 calendar、date、time、email、url、search</li>
+</ul>
+<h2 id="video标签"><a href="#video标签" class="headerlink" title="video标签"></a>video标签</h2><pre><code>&lt;video width=&quot;320&quot; height=&quot;240&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot; loop=&quot;loop&quot;&gt;
+      &lt;source src=&quot;movie.ogg&quot; type=&quot;video/ogg&quot;&gt;
+      &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;
+</code></pre><ul>
+<li>width：定义播放器宽度</li>
+<li>height： 设置视频播放器的高度</li>
+<li>controls：如果出现该属性，则向用户显示控件，播放按钮，音量，进度条，下载按钮等</li>
+<li>autoplay： 如果出现该属性，则视频在就绪后马上播放。</li>
+<li>loop：如果出现该属性，则当媒介文件完成播放后再次开始播放</li>
+<li>preload：如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 “autoplay”，则忽略该属性</li>
+<li>src：要播放的视频的 URL，也可以像上例中写在source标签里</li>
+</ul>
+<p>video 元素允许多个 source 元素。source 元素可以链接不同的视频文件。浏览器将使用第一个可识别的格式。</p>
+<p><code>&lt;video&gt;</code> 与<code>&lt;/video&gt;</code> 之间插入的内容是供不支持 video 元素的浏览器显示的：</p>
+<h4 id="支持格式"><a href="#支持格式" class="headerlink" title="支持格式"></a>支持格式</h4><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>IE</th>
+<th>Firefox</th>
+<th>Opera</th>
+<th>Chrome</th>
+<th>Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ogg</td>
+<td>No</td>
+<td>3.5+</td>
+<td>10.5+</td>
+<td>5.0+</td>
+<td>No</td>
+</tr>
+<tr>
+<td>MPEG 4</td>
+<td>9.0+</td>
+<td>No</td>
+<td>No</td>
+<td>5.0+</td>
+<td>3.0+</td>
+</tr>
+<tr>
+<td>WebM</td>
+<td>No</td>
+<td>4.0+</td>
+<td>10.6+</td>
+<td>6.0+</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Ogg = 带有 Theora 视频编码和 Vorbis 音频编码的 Ogg 文件</li>
+<li>MPEG4 = 带有 H.264 视频编码和 AAC 音频编码的 MPEG 4 文件</li>
+<li>WebM = 带有 VP8 视频编码和 Vorbis 音频编码的 WebM 文件</li>
+</ul>
+<h4 id="方法，属性和事件"><a href="#方法，属性和事件" class="headerlink" title="方法，属性和事件"></a>方法，属性和事件</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>属性</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>play()</td>
+<td>currentSrc</td>
+<td>play</td>
+</tr>
+<tr>
+<td>pause()</td>
+<td>currentTime</td>
+<td>pause</td>
+</tr>
+<tr>
+<td>load()</td>
+<td>videoWidth</td>
+<td>progress</td>
+</tr>
+<tr>
+<td>canPlayType</td>
+<td>videoHeight</td>
+<td>error</td>
+</tr>
+<tr>
+<td></td>
+<td>duration</td>
+<td>timeupdate</td>
+</tr>
+<tr>
+<td></td>
+<td>ended</td>
+<td>ended</td>
+</tr>
+<tr>
+<td></td>
+<td>error</td>
+<td>abort</td>
+</tr>
+<tr>
+<td></td>
+<td>paused</td>
+<td>empty</td>
+</tr>
+<tr>
+<td></td>
+<td>muted</td>
+<td>emptied</td>
+</tr>
+<tr>
+<td></td>
+<td>seeking</td>
+<td>waiting</td>
+</tr>
+<tr>
+<td></td>
+<td>volume</td>
+<td>loadedmetadata</td>
+</tr>
+<tr>
+<td></td>
+<td>height</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>width</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>在所有属性中，只有 videoWidth 和 videoHeight 属性是立即可用的。在视频的元数据已加载后，其他属性才可用。</p>
+</blockquote>
+<h2 id="audio标签"><a href="#audio标签" class="headerlink" title="audio标签"></a>audio标签</h2><pre><code>&lt;audio src=&quot;song.ogg&quot; controls=&quot;controls&quot;&gt;
+    Your browser does not support the audio tag.
+&lt;/audio&gt;
+</code></pre><ul>
+<li>autoplay：如果出现该属性，则音频在就绪后马上播放。</li>
+<li>controls：如果出现该属性，则向用户显示控件，比如播放按钮。</li>
+<li>loop：如果出现该属性，则每当音频结束时重新开始播放。</li>
+<li>preload：如果出现该属性，则音频在页面加载时进行加载，并预备播放。如果使用 “autoplay”，则忽略该属性。</li>
+<li>src：要播放的音频的 URL。</li>
+</ul>
+<p>audio 元素允许多个 source 元素。source 元素可以链接不同的音频文件。浏览器将使用第一个可识别的格式。</p>
+<p><code>&lt;audio&gt;</code> 与 <code>&lt;/audio&gt;</code> 之间插入的内容是供不支持 audio 元素的浏览器显示的。</p>
+<h4 id="支持格式-1"><a href="#支持格式-1" class="headerlink" title="支持格式"></a>支持格式</h4><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>IE9</th>
+<th>Firefox3.5</th>
+<th>Opera10.5</th>
+<th>Chrome3.0</th>
+<th>Safari3.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ogg Vorbis</td>
+<td></td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>MP3</td>
+<td>YES</td>
+<td></td>
+<td></td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Wav</td>
+<td></td>
+<td>YES</td>
+<td>YES</td>
+<td></td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
+<h2 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h2><pre><code>&lt;canvas id=&quot;myCanvas&quot;&gt;&lt;/canvas&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var canvas=document.getElementById(&apos;myCanvas&apos;);
+    var ctx=canvas.getContext(&apos;2d&apos;);
+    ctx.fillStyle=&apos;#FF0000&apos;;
+    ctx.fillRect(0,0,80,100);
+&lt;/script&gt;
+</code></pre><h5 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><p>Internet Explorer 8 以及更早的版本不支持 <code>&lt;canvas&gt;</code>标签。其他浏览器不识别但是会使用衬线体来直接显示其内所有内容。</p>
+<h5 id="标签定义和用法"><a href="#标签定义和用法" class="headerlink" title="标签定义和用法"></a>标签定义和用法</h5><p><code>&lt;canvas&gt;</code> 标签定义图形，比如图表和其他图像。但是它只提供图形容器，必须使用javascript来绘制图形。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>height</td>
+<td>pixels</td>
+<td>设置 canvas 的高度。</td>
+</tr>
+<tr>
+<td>width</td>
+<td>pixels</td>
+<td>设置 canvas 的宽度。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="使用javascript绘制"><a href="#使用javascript绘制" class="headerlink" title="使用javascript绘制"></a>使用javascript绘制</h4><p><a href="http://www.w3school.com.cn/tags/html_ref_canvas.asp" target="_blank" rel="external">W3School参考链接</a></p>
+<h5 id="颜色、样式和阴影"><a href="#颜色、样式和阴影" class="headerlink" title="颜色、样式和阴影"></a>颜色、样式和阴影</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fillStyle</td>
+<td>设置或返回用于填充绘画的颜色、渐变或模式</td>
+</tr>
+<tr>
+<td>strokeStyle</td>
+<td>设置或返回用于笔触的颜色、渐变或模式</td>
+</tr>
+<tr>
+<td>shadowColor</td>
+<td>设置或返回用于阴影的颜色</td>
+</tr>
+<tr>
+<td>shadowBlur</td>
+<td>设置或返回用于阴影的模糊级别</td>
+</tr>
+<tr>
+<td>shadowOffsetX</td>
+<td>设置或返回阴影距形状的水平距离</td>
+</tr>
+<tr>
+<td>shadowOffsetY</td>
+<td>设置或返回阴影距形状的垂直距离</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>createLinearGradient()</td>
+<td>创建线性渐变（用在画布内容上）</td>
+</tr>
+<tr>
+<td>createPattern()</td>
+<td>在指定的方向上重复指定的元素</td>
+</tr>
+<tr>
+<td>createRadialGradient()</td>
+<td>创建放射状/环形的渐变（用在画布内容上）</td>
+</tr>
+<tr>
+<td>addColorStop()</td>
+<td>规定渐变对象中的颜色和停止位置</td>
+</tr>
+</tbody>
+</table>
+<h5 id="线条样式"><a href="#线条样式" class="headerlink" title="线条样式"></a>线条样式</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lineCap</td>
+<td>设置或返回线条的结束端点样式</td>
+</tr>
+<tr>
+<td>lineJoin</td>
+<td>设置或返回两条线相交时，所创建的拐角类型</td>
+</tr>
+<tr>
+<td>lineWidth</td>
+<td>设置或返回当前的线条宽度</td>
+</tr>
+<tr>
+<td>miterLimit</td>
+<td>设置或返回最大斜接长度</td>
+</tr>
+</tbody>
+</table>
+<h5 id="矩形"><a href="#矩形" class="headerlink" title="矩形"></a>矩形</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rect()</td>
+<td>创建矩形</td>
+</tr>
+<tr>
+<td>fillRect()</td>
+<td>绘制“被填充”的矩形</td>
+</tr>
+<tr>
+<td>strokeRect()</td>
+<td>绘制矩形（无填充）</td>
+</tr>
+<tr>
+<td>clearRect()</td>
+<td>在给定的矩形内清除指定的像素</td>
+</tr>
+</tbody>
+</table>
+<h5 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fill()</td>
+<td>填充当前绘图（路径）</td>
+</tr>
+<tr>
+<td>stroke()</td>
+<td>绘制已定义的路径</td>
+</tr>
+<tr>
+<td>beginPath()</td>
+<td>起始一条路径，或重置当前路径</td>
+</tr>
+<tr>
+<td>moveTo()</td>
+<td>把路径移动到画布中的指定点，不创建线条</td>
+</tr>
+<tr>
+<td>closePath()</td>
+<td>创建从当前点回到起始点的路径</td>
+</tr>
+<tr>
+<td>lineTo()</td>
+<td>添加一个新点，然后在画布中创建从该点到最后指定点的线条</td>
+</tr>
+<tr>
+<td>clip()</td>
+<td>从原始画布剪切任意形状和尺寸的区域</td>
+</tr>
+<tr>
+<td>quadraticCurveTo()</td>
+<td>创建二次贝塞尔曲线</td>
+</tr>
+<tr>
+<td>bezierCurveTo()</td>
+<td>创建三次方贝塞尔曲线</td>
+</tr>
+<tr>
+<td>arc()</td>
+<td>创建弧/曲线（用于创建圆形或部分圆）</td>
+</tr>
+<tr>
+<td>arcTo()</td>
+<td>创建两切线之间的弧/曲线</td>
+</tr>
+<tr>
+<td>isPointInPath()</td>
+<td>如果指定的点位于当前路径中，则返回 true，否则返回 false</td>
+</tr>
+</tbody>
+</table>
+<h5 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scale()</td>
+<td>缩放当前绘图至更大或更小</td>
+</tr>
+<tr>
+<td>rotate()</td>
+<td>旋转当前绘图</td>
+</tr>
+<tr>
+<td>translate()</td>
+<td>重新映射画布上的 (0,0) 位置</td>
+</tr>
+<tr>
+<td>transform()</td>
+<td>替换绘图的当前转换矩阵</td>
+</tr>
+<tr>
+<td>setTransform()</td>
+<td>将当前转换重置为单位矩阵。然后运行 transform()</td>
+</tr>
+</tbody>
+</table>
+<h5 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>font</td>
+<td>设置或返回文本内容的当前字体属性</td>
+</tr>
+<tr>
+<td>textAlign</td>
+<td>设置或返回文本内容的当前对齐方式</td>
+</tr>
+<tr>
+<td>textBaseline</td>
+<td>设置或返回在绘制文本时使用的当前文本基线</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fillText()</td>
+<td>在画布上绘制“被填充的”文本</td>
+</tr>
+<tr>
+<td>strokeText()</td>
+<td>在画布上绘制文本（无填充）</td>
+</tr>
+<tr>
+<td>measureText()</td>
+<td>返回包含指定文本宽度的对象</td>
+</tr>
+</tbody>
+</table>
+<h5 id="图像绘制"><a href="#图像绘制" class="headerlink" title="图像绘制"></a>图像绘制</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>drawImage()</td>
+<td>向画布上绘制图像、画布或视频</td>
+</tr>
+</tbody>
+</table>
+<h5 id="像素操作"><a href="#像素操作" class="headerlink" title="像素操作"></a>像素操作</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>返回 ImageData 对象的宽度</td>
+</tr>
+<tr>
+<td>height</td>
+<td>返回 ImageData 对象的高度</td>
+</tr>
+<tr>
+<td>data</td>
+<td>返回一个对象，其包含指定的 ImageData 对象的图像数据</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>createImageData()</td>
+<td>创建新的、空白的 ImageData 对象</td>
+</tr>
+<tr>
+<td>getImageData()</td>
+<td>返回 ImageData 对象，该对象为画布上指定的矩形复制像素数据</td>
+</tr>
+<tr>
+<td>putImageData()</td>
+<td>把图像数据（从指定的 ImageData 对象）放回画布上</td>
+</tr>
+</tbody>
+</table>
+<p>#####　合成</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>globalAlpha</td>
+<td>设置或返回绘图的当前 alpha 或透明值</td>
+</tr>
+<tr>
+<td>globalCompositeOperation</td>
+<td>设置或返回新图像如何绘制到已有的图像上</td>
+</tr>
+</tbody>
+</table>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>save()</td>
+<td>保存当前环境的状态</td>
+</tr>
+<tr>
+<td>restore()</td>
+<td>返回之前保存过的路径状态和属性</td>
+</tr>
+<tr>
+<td>createEvent()</td>
+<td></td>
+</tr>
+<tr>
+<td>getContext()</td>
+<td></td>
+</tr>
+<tr>
+<td>toDataURL()</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong><code>&lt;canvas&gt;</code> 标记和 SVG 以及 VML 之间的差异</strong><br><code>&lt;canvas&gt;</code>有一个基于 JavaScript 的绘图 API，而 SVG 和 VML 使用一个 XML 文档来描述绘图。<br>这两种方式在功能上是等同的，任何一种都可以用另一种来模拟。从表面上看，它们很不相同，可是，每一种都有强项和弱点。例如，SVG 绘图很容易编辑，只要从其描述中移除元素就行。<br>要从同一图形的一个 <code>&lt;canvas&gt;</code> 标记中移除元素，往往需要擦掉绘图重新绘制它。</p>
+</blockquote>
+<h2 id="拖放"><a href="#拖放" class="headerlink" title="拖放"></a>拖放</h2><pre><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+    #div1, #div2, #div3, #div4{
+        float:left; 
+        width:100px;
+        height:100px;
+        margin:10px;
+        padding:10px;
+        border:1px solid #aaaaaa;
+    }
+    *{
+        transition:all 0.5s;
+    }
+    #dragDiv{
+        background-color: #369;
+        width:100px;
+        height:100px;
+    }
+    #mouseLocation{
+        clear: both;
+        width: 265px;
+        margin-left: 10px;
+        text-align: center;
+    }
+    #crossDiv{
+        clear: both;
+        display: inline-block;
+        height: 200px;
+        width: 10px;
+        background-color: #333;
+    }
+    #dragElement{
+        float: left;
+        width: 120px;
+        height: 120px;
+        background-color: #369;
+        margin-left: -99999px;
+        opacity: 1;
+    }
+    #dragElement:click{
+        width: 150px;
+        height: 150px;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;div1&quot; ondrop=&quot;drop(event)&quot; ondragover=&quot;allowDrop(event)&quot; ondragleave=&quot;dragLeave(event)&quot;&gt;
+    &lt;div id=&quot;dragDiv&quot; draggable=&quot;true&quot; ondragstart=&quot;drag(event)&quot; ondrag=&quot;draging(event)&quot; &gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;div2&quot; ondrop=&quot;drop(event)&quot; ondragover=&quot;allowDrop(event)&quot; ondragleave=&quot;dragLeave(event)&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;mouseLocation&quot;&gt;X坐标：0，Y坐标：0&lt;/div&gt;
+&lt;div id=&quot;dragElement&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;div3&quot; ondrop=&quot;drop(event)&quot; ondragover=&quot;allowDrop(event)&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;div4&quot; ondrop=&quot;drop(event)&quot; ondragover=&quot;allowDrop(event)&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var mouseLocation = document.getElementById(&quot;mouseLocation&quot;);
+    var dragElement = document.getElementById(&quot;dragElement&quot;);
+
+    function draging(ev) {
+        mouseLocation.innerHTML = &quot;X坐标：&quot; + ev.clientX + &quot;，Y坐标：&quot; + ev.clientY;
+    }
+
+    function allowDrop(ev){
+        ev.preventDefault();
+        mouseLocation.style.backgroundColor = &quot;#333&quot;;
+        mouseLocation.style.color = &quot;#fff&quot;;
+        ev.dataTransfer.dropEffect = &quot;copy&quot;;
+    }
+
+    function dragLeave(ev) {
+        mouseLocation.style.backgroundColor = &quot;#fff&quot;;
+        mouseLocation.style.color = &quot;#000&quot;;
+    }
+
+    function drag(ev){
+        ev.dataTransfer.setData(&quot;Text&quot;,ev.target.id);
+        ev.dataTransfer.setDragImage(dragElement, 60, 60);
+        ev.dataTransfer.effectAllowed = &quot;copy&quot;;
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData(&quot;Text&quot;);
+        ev.target.appendChild(document.getElementById(data));
+    }
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>整个过程可解析为如下过程：</p>
+<ol>
+<li><p><strong>设置元素为可拖放</strong>——draggable 属性</p>
+<pre><code>`&lt;img draggable=&quot;true&quot; /&gt;`
+</code></pre></li>
+<li><p><strong>拖动什么</strong> ——ondragstart 和 setData()<br><br>在上面的例子中，ondragstart 属性调用了一个函数，drag(event)，它规定了被拖动的数据。dataTransfer.setData() 方法设置被拖数据的数据类型和值。</p>
+</li>
+</ol>
+<blockquote>
+<p><a href="http://www.tuicool.com/articles/j6Zbam" target="_blank" rel="external">参考链接</a></p>
+</blockquote>
+<pre><code>    function drag(ev) {
+        ev.dataTransfer.setData(&quot;Text&quot;,ev.target.id);
+    }
+
+在这个例子中，数据类型是 &quot;Text&quot;，值是可拖动元素的 id (&quot;drag1&quot;)。
+</code></pre><ol>
+<li><p><strong>拖动过程中</strong>——ondrag<br><br>拖动过程中，在被拖拉的节点上持续触发。</p>
+</li>
+<li><p><strong>放到何处</strong> ——ondragover和getData()<br><br>ondragover 事件规定在何处放置被拖动的数据。<br>默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式。<br>这要通过调用 ondragover 事件的 event.preventDefault() 方法。</p>
+<pre><code>event.preventDefault()
+</code></pre></li>
+<li><p><strong>进行放置</strong> ——ondrop<br><br>当放置被拖数据时，会发生 drop 事件。在上面的例子中，ondrop 属性调用了一个函数，drop(event)。</p>
+<pre><code>function drop(ev) {
+    ev.preventDefault();
+    var data=ev.dataTransfer.getData(&quot;Text&quot;);
+    ev.target.appendChild(document.getElementById(data));
+}
+</code></pre></li>
+</ol>
+<blockquote>
+<p>代码解释：</p>
+<ul>
+<li>调用 preventDefault() 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）</li>
+<li>通过 dataTransfer.getData(“Text”) 方法获得被拖的数据。该方法将返回在 setData() 方法中设置为相同类型的任何数据。</li>
+<li>被拖数据是被拖元素的 id (“drag1”)</li>
+<li>把被拖元素追加到放置元素（目标元素）中</li>
+</ul>
+</blockquote>
+<p>其他事件和方法：</p>
+<ul>
+<li><strong>dragend事件</strong>：<br>拖拉结束时（释放鼠标键或按下escape键）在被拖拉的节点上触发，该事件的target属性是被拖拉的节点。它与dragStart事件，在同一个节点上触发。不管拖拉是否跨窗口，或者中途被取消，dragend事件总是会触发的。</li>
+<li><strong>dragenter事件</strong>：拖拉进入当前节点时，在当前节点上触发，该事件的target属性是当前节点。通常应该在这个事件的监听函数中，指定是否允许在当前节点放下（drop）拖拉的数据。如果当前节点没有该事件的监听函数，或者监听函数不执行任何操作，就意味着不允许在当前节点放下数据。在视觉上显示拖拉进入当前节点，也是在这个事件的监听函数中设置。</li>
+<li><strong>dragover事件</strong>：拖拉到当前节点上方时，在当前节点上持续触发，该事件的target属性是当前节点。该事件与dragenter事件基本类似，默认会重置当前的拖拉事件的效果（DataTransfer对象的dropEffect属性）为none，即不允许放下被拖拉的节点，所以如果允许在当前节点drop数据，通常会使用preventDefault方法，取消重置拖拉效果为none。</li>
+<li><strong>event.dataTransfer.setDragImage(element,x,y)方法</strong>：设置拖放操作的自定义图标。其中element设置自定义图标，x设置图标与鼠标在水平方向上的距离，y设置图标与鼠标在垂直方向上的距离。</li>
+</ul>
+<p>####H5拖拽常用功能</p>
+<blockquote>
+<p>HTML5文件拖拽预览Demo</p>
+</blockquote>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+ &lt;head&gt; 
+  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt; 
+  &lt;title&gt;HTML5文件拖拽预览Demo&lt;/title&gt; 
+  &lt;style type=&quot;text/css&quot;&gt;
+      h1 {
+        padding: 0px;
+        margin: 0px;
+    }
+    div#show {
+        border: 1px solid #ccc;
+        width: 400px;
+        height: 300px;
+        display: -moz-box;
+        display: -webkit-box;
+        -moz-box-align: center;
+        -webkit-box-align: center;
+        -moz-box-pack: center;
+        -webkit-box-pack: center;
+        resize: both;
+        overflow: auto;
+    }
+    div[id^=show]:hover {
+        border: 1px solid #333;
+    }
+    div#main {
+        width: 100%;
+    }
+    div#successLabel {
+        color: Red;
+    }
+    div#content {
+        display: none;
+    }    
+&lt;/style&gt; 
+  &lt;script type=&quot;text/javascript&quot;&gt;
+      function init() {
+        var dest = document.getElementById(&quot;show&quot;);
+        dest.addEventListener(&quot;dragover&quot;,
+            function(ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+            },
+        false);
+        dest.addEventListener(&quot;dragend&quot;,
+            function(ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+            },
+        false);
+        dest.addEventListener(&quot;drop&quot;,
+            function(ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+                console.log(ev.dataTransfer) var file = ev.dataTransfer.files[0];
+                var reader = new FileReader();
+                if (file.type.substr(0, 5) == &quot;image&quot;) {
+                    reader.onload = function(event) {
+                        dest.style.background = &apos;url(&apos; + event.target.result + &apos;) no-repeat center&apos;;
+                        dest.innerHTML = &quot;&quot;;
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type.substr(0, 4) == &quot;text&quot;) {
+                    reader.readAsText(file);
+                    reader.onload = function(f) {
+                        dest.innerHTML = &quot;&lt;pre&gt;&quot; + this.result + &quot;&lt;/pre&gt;&quot;;
+                        dest.style.background = &quot;white&quot;;
+                    }
+                } else {
+                    dest.innerHTML = &quot;暂不支持此类文件的预览&quot;;
+                    dest.style.background = &quot;white&quot;;
+                }
+            },
+           false);
+    } 
+    //设置页面属性，不执行默认处理（拒绝被拖放）
+    // document.ondragover = function(e) {
+    //     e.preventDefault();
+    // };
+    // document.ondrop = function(e) {
+    //     e.preventDefault();
+    // }
+    // window.onload = init;
+
+  &lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt; 
+  &lt;h1&gt;HTML5文件拖拽预览Demo&lt;/h1&gt; 
+  &lt;div id=&quot;show&quot;&gt;
+    文件预览区，仅限图片和txt文件 
+  &lt;/div&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="Web存储"><a href="#Web存储" class="headerlink" title="Web存储"></a>Web存储</h2><p>HTML5 提供了两种在客户端存储数据的新方法：</p>
+<ul>
+<li>localStorage - 没有时间限制的数据存储</li>
+<li>sessionStorage - 针对一个 session 的数据存储</li>
+</ul>
+<p>之前，这些都是由 cookie 完成的。但是 cookie 不适合大量数据的存储，因为它们由每个对服务器的请求来传递，这使得 cookie 速度很慢而且效率也不高。</p>
+<p>在 HTML5 中，数据不是由每个服务器请求传递的，而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能。<br>对于不同的网站，数据存储于不同的区域，并且一个网站只能访问其自身的数据。<br>HTML5 使用 JavaScript 来存储和访问数据。</p>
+<h4 id="localStorage方法"><a href="#localStorage方法" class="headerlink" title="localStorage方法"></a>localStorage方法</h4><p>localStorage 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。</p>
+<p>这个例子创建并访问了 localStorage：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    localStorage.lastname=&quot;Smith&quot;;
+    document.write(localStorage.lastname);
+&lt;/script&gt;
+</code></pre><p>下面的例子对用户访问页面的次数进行计数：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    if (localStorage.pagecount) {
+          localStorage.pagecount=Number(localStorage.pagecount) +1;
+    }
+    else {
+         localStorage.pagecount=1;
+    }
+    document.write(&quot;Visits &quot;+ localStorage.pagecount + &quot; time(s).&quot;);
+&lt;/script&gt;
+</code></pre><h4 id="sessionStorage方法"><a href="#sessionStorage方法" class="headerlink" title="sessionStorage方法"></a>sessionStorage方法</h4><p>sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。</p>
+<p>创建并访问一个 sessionStorage：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    sessionStorage.lastname=&quot;Smith&quot;;
+    document.write(sessionStorage.lastname);
+&lt;/script&gt;
+</code></pre><p>应用——统计用户在当前 session 中访问页面的次数进行计数：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    if (sessionStorage.pagecount) {
+          sessionStorage.pagecount=Number(sessionStorage.pagecount) +1;
+    }
+    else {
+         sessionStorage.pagecount=1;
+    }
+    document.write(&quot;Visits &quot;+sessionStorage.pagecount+&quot; time(s) this session.&quot;);
+&lt;/script&gt;
+</code></pre><h2 id="H5标签"><a href="#H5标签" class="headerlink" title="H5标签"></a>H5标签</h2><h3 id="nav标签"><a href="#nav标签" class="headerlink" title="nav标签"></a>nav标签</h3><pre><code>&lt;nav&gt;
+    &lt;a href=&quot;index.asp&quot;&gt;Home&lt;/a&gt;
+    &lt;a href=&quot;html5_meter.asp&quot;&gt;Previous&lt;/a&gt;
+    &lt;a href=&quot;html5_noscript.asp&quot;&gt;Next&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre><h5 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;nav&gt;</code>定义导航链接的部分。</p>
+<blockquote>
+<p>如果文档中有“前后”按钮，则应该把它放到 <code>&lt;nav&gt;</code> 元素中。</p>
+</blockquote>
+<h3 id="section标签"><a href="#section标签" class="headerlink" title="section标签"></a>section标签</h3><pre><code>&lt;section&gt;
+  &lt;h1&gt;PRC&lt;/h1&gt;
+  &lt;p&gt;The People&apos;s Republic of China was born in 1949...&lt;/p&gt;
+&lt;/section&gt;
+</code></pre><h5 id="定义和用法-1"><a href="#定义和用法-1" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;section&gt;</code> 标签定义文档中的节（section、区段）。比如章节、页眉、页脚或文档中的其他部分。</p>
+<h3 id="header标签"><a href="#header标签" class="headerlink" title="header标签"></a>header标签</h3><pre><code>&lt;header&gt;
+    &lt;h1&gt;Welcome to my homepage&lt;/h1&gt;
+    &lt;p&gt;My name is Donald Duck&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;p&gt;The rest of my home page...&lt;/p&gt;
+</code></pre><h5 id="定义和用法-2"><a href="#定义和用法-2" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;header&gt;</code>定义 section 或 page 的页眉（介绍信息）。</p>
+<h3 id="footer标签"><a href="#footer标签" class="headerlink" title="footer标签"></a>footer标签</h3><pre><code>&lt;footer&gt;
+      &lt;p&gt;Posted by: Ajun&lt;/p&gt;
+      &lt;p&gt;Contact information: &lt;a href=&quot;mailto:774271383@qq.com&quot;&gt;774271383@qq.com&lt;/a&gt;.&lt;/p&gt;
+&lt;/footer&gt;
+</code></pre><h5 id="定义和用法-3"><a href="#定义和用法-3" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;footer&gt;</code> 标签定义文档或节的页脚。</p>
+<p>页脚通常包含文档的作者、版权信息、使用条款链接、联系信息等等。<br>一个文档中可以使用多个 <code>&lt;footer&gt;</code> 元素。</p>
+<blockquote>
+<p><code>&lt;footer&gt;</code> 元素内的联系信息应该位于 <code>&lt;address&gt;</code> 标签中。</p>
+</blockquote>
+<h3 id="output标签"><a href="#output标签" class="headerlink" title="output标签"></a>output标签</h3><pre><code>&lt;form oninput=&quot;x.value=parseInt(a.value)+parseInt(b.value)&quot;&gt;0
+       &lt;input type=&quot;range&quot; id=&quot;a&quot; value=&quot;50&quot;&gt;100+&lt;input type=&quot;number&quot; id=&quot;b&quot; value=&quot;50&quot;&gt;
+       =&lt;output name=&quot;x&quot; for=&quot;a b&quot;&gt;100&lt;/output&gt;
+&lt;/form&gt; 
+</code></pre><h5 id="定义和用法-4"><a href="#定义和用法-4" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;output&gt;</code>定义不同类型的输出，比如脚本的输出。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for</td>
+<td>element_id</td>
+<td>定义输出域相关的一个或多个元素。</td>
+</tr>
+<tr>
+<td>form</td>
+<td>form_id</td>
+<td>定义输入字段所属的一个或多个表单。</td>
+</tr>
+<tr>
+<td>name</td>
+<td>name</td>
+<td>定义对象的唯一名称。（表单提交时使用）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="progress标签"><a href="#progress标签" class="headerlink" title="progress标签"></a>progress标签</h3><pre><code>&lt;progress value=&quot;22&quot; max=&quot;100&quot;&gt;&lt;/progress&gt; 
+</code></pre><h5 id="浏览器支持-1"><a href="#浏览器支持-1" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><p>Internet Explorer 9 以及更早的版本不支持 <code>&lt;progress&gt;</code> 标签。</p>
+<h5 id="定义和用法-5"><a href="#定义和用法-5" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;progress&gt;</code> 标签标示任务的进度（进程）。</p>
+<blockquote>
+<p>结合<code>&lt;progress&gt;</code>标签与 JavaScript 一同使用，来显示任务的进度。<br>注意不适合用来表示度量衡（例如，磁盘空间使用情况或查询结果）。如需表示度量衡，请使用 <code>&lt;meter&gt;</code> 标签代替。</p>
+</blockquote>
+<h3 id="article标签"><a href="#article标签" class="headerlink" title="article标签"></a>article标签</h3><pre><code>&lt;article&gt;
+      &lt;h1&gt;Internet Explorer 9&lt;/h1&gt;
+      &lt;p&gt;Windows Internet Explorer 9（简称 IE9）于2011年3月14日发布。&lt;/p&gt;
+&lt;/article&gt;
+</code></pre><h5 id="定义和用法-6"><a href="#定义和用法-6" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;article&gt;</code> 标签规定独立的自包含内容。一篇文章应有其自身的意义，应该有可能独立于站点的其余部分对其进行分发。</p>
+<p><code>&lt;article&gt;</code> 元素的潜在来源：</p>
+<ul>
+<li>论坛帖子</li>
+<li>报纸文章</li>
+<li>博客条目</li>
+<li>用户评论</li>
+</ul>
+<h3 id="aside标签"><a href="#aside标签" class="headerlink" title="aside标签"></a>aside标签</h3><pre><code>&lt;p&gt;Me and my family visited The Epcot center this summer.&lt;/p&gt;
+&lt;aside&gt;
+    &lt;h4&gt;Epcot Center&lt;/h4&gt;
+    The Epcot Center is a theme park in Disney World, Florida.
+&lt;/aside&gt;
+</code></pre><h5 id="定义和用法-7"><a href="#定义和用法-7" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;aside&gt;</code>标签定义其所处内容之外的内容。aside的内容应该与附近的内容相关。</p>
+<h3 id="bdi标签"><a href="#bdi标签" class="headerlink" title="bdi标签"></a>bdi标签</h3><pre><code>&lt;ul&gt;
+    &lt;li&gt;Username &lt;bdi&gt;Bill&lt;/bdi&gt;:80 points&lt;/li&gt;
+    &lt;li&gt;Username &lt;bdi&gt;Steve&lt;/bdi&gt;: 78 points&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h5 id="定义和用法-8"><a href="#定义和用法-8" class="headerlink" title="定义和用法"></a>定义和用法</h5><p>bdi 指的是 bidi 隔离。</p>
+<p><code>&lt;bdi&gt;</code> 标签允许您设置一段文本，使其脱离其父元素的文本方向设置。在发布用户评论或其他您无法完全控制的内容时，该标签很有用。</p>
+<h3 id="command标签"><a href="#command标签" class="headerlink" title="command标签"></a>command标签</h3><pre><code>&lt;menu&gt;
+    &lt;command onclick=&quot;alert(&apos;Hello World&apos;)&quot;&gt;Click Me!&lt;/command&gt;
+&lt;/menu&gt;
+</code></pre><h5 id="浏览器支持-2"><a href="#浏览器支持-2" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><p>目前只有 Internet Explorer 支持 <code>&lt;command&gt;</code> 标签。(自己测试怎么IE也不行)</p>
+<h5 id="定义和用法-9"><a href="#定义和用法-9" class="headerlink" title="定义和用法"></a>定义和用法</h5><p>command 元素表示用户能够调用的命令。可以定义命令按钮，比如单选按钮、复选框或按钮。</p>
+<p>只有当 command 元素位于 menu 元素内时，该元素才是可见的。否则不会显示这个元素，但是可以用它规定键盘快捷键。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>checked</td>
+<td>checked</td>
+<td>定义是否被选中。仅用于 radio 或 checkbox 类型。</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>disabled</td>
+<td>定义 command 是否可用。</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>url</td>
+<td>定义作为 command 来显示的图像的 url。</td>
+</tr>
+<tr>
+<td>label</td>
+<td>text</td>
+<td>为 command 定义可见的 label。</td>
+</tr>
+<tr>
+<td>radiogroup</td>
+<td>groupname</td>
+<td>定义 command 所属的组名。仅在类型为 radio 时使用。</td>
+</tr>
+<tr>
+<td>type</td>
+<td>checkbox<br>command<br>radio</td>
+<td>定义该 command 的类型。默认是 “command”。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datalist标签"><a href="#datalist标签" class="headerlink" title="datalist标签"></a>datalist标签</h3><pre><code>&lt;input id=&quot;myCar&quot; list=&quot;cars&quot; /&gt;
+&lt;datalist id=&quot;cars&quot;&gt;
+  &lt;option value=&quot;BMW&quot;&gt;宝马&lt;/option&gt;
+  &lt;option value=&quot;Ford&quot;&gt;福特&lt;/option&gt;
+  &lt;option value=&quot;Volvo&quot;&gt;沃尔沃&lt;/option&gt;
+&lt;/datalist&gt;
+</code></pre><h5 id="定义和用法-10"><a href="#定义和用法-10" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;datalist&gt;</code>标签定义下拉选项列表。请与 input 元素配合使用该元素，来定义 input 可能的值。</p>
+<p>datalist 及其选项不会被显示出来，它仅仅是合法的输入值列表。</p>
+<blockquote>
+<ul>
+<li>请使用 input 元素的 list 属性来绑定 datalist。<ul>
+<li>注意value属性值为选项内容，option标签内为当前选项内容的注释。</li>
+<li>区别与select标签的区分，输入方式也有所不同。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="details标签"><a href="#details标签" class="headerlink" title="details标签"></a>details标签</h3><pre><code>&lt;details&gt;
+    &lt;summary&gt;Copyright 2011.&lt;/summary&gt;
+    &lt;p&gt;All pages and graphics on this web site are the property of W3School.&lt;/p&gt;
+&lt;/details&gt;
+</code></pre><blockquote>
+<p>与<code>&lt;summary&gt;</code>标签配合使用可以为details定义标题。标题是可见的，用户点击标题时，会显示出 details。若不定义summary则标题显示详细信息。</p>
+</blockquote>
+<h5 id="定义和用法-11"><a href="#定义和用法-11" class="headerlink" title="定义和用法"></a>定义和用法</h5><p>定义元素的细节，用于描述文档或文档某个部分的细节。</p>
+<h5 id="浏览器支持-3"><a href="#浏览器支持-3" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><p>目前只有 Chrome 支持 <code>&lt;details&gt;</code> 标签。其他浏览器不识别但是会使用衬线体来直接显示其内所有内容。</p>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><p>open属性，只有一个值“open”，定义 details 内的内容默认可见。</p>
+<h3 id="dialog标签"><a href="#dialog标签" class="headerlink" title="dialog标签"></a>dialog标签</h3><pre><code>&lt;table border=&quot;1&quot;&gt;
+&lt;tr&gt;
+  &lt;th&gt;一月 &lt;dialog open&gt;这是打开的对话窗口&lt;/dialog&gt;&lt;/th&gt;
+  &lt;th&gt;二月&lt;/th&gt;
+  &lt;th&gt;三月&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;31&lt;/td&gt;
+  &lt;td&gt;28&lt;/td&gt;
+  &lt;td&gt;31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre><h5 id="定义和用法-12"><a href="#定义和用法-12" class="headerlink" title="定义和用法"></a>定义和用法</h5><p>定义对话框或窗口。</p>
+<h5 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h5><p>open属性，只有一个值“open”，规定 dialog 元素是活动的，用户可与之交互。</p>
+<h5 id="浏览器支持-4"><a href="#浏览器支持-4" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><p>目前只有 Chrome 和 Safari 6 支持 <dialog> 标签。</dialog></p>
+<h3 id="embed标签"><a href="#embed标签" class="headerlink" title="embed标签"></a>embed标签</h3><pre><code>&lt;embed src=&quot;helloworld.swf&quot; /&gt;
+</code></pre><h5 id="定义和用法-13"><a href="#定义和用法-13" class="headerlink" title="定义和用法"></a>定义和用法</h5><p>定义嵌入的内容，可以用来插入各种多媒体，格式可以是Swf、Midi、Wav、AIFF、AU、MP3等等。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>height</td>
+<td>pixels</td>
+<td>设置嵌入内容的高度。</td>
+</tr>
+<tr>
+<td>src</td>
+<td>url</td>
+<td>嵌入内容的 URL。</td>
+</tr>
+<tr>
+<td>type</td>
+<td>type</td>
+<td>定义嵌入内容的类型。</td>
+</tr>
+<tr>
+<td>width</td>
+<td>pixels</td>
+<td>设置嵌入内容的宽度。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="figure标签"><a href="#figure标签" class="headerlink" title="figure标签"></a>figure标签</h3><pre><code>&lt;figure&gt;
+  &lt;p&gt;黄浦江上的的卢浦大桥&lt;/p&gt;
+  &lt;img src=&quot;shanghai_lupu_bridge.jpg&quot; width=&quot;350&quot; height=&quot;234&quot; /&gt;
+&lt;/figure&gt;
+</code></pre><h5 id="定义和用法-14"><a href="#定义和用法-14" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;figure&gt;</code> 标签规定独立的流内容（图像、图表、照片、代码等等）,定义媒介内容的分组，以及它们的标题。其内容应该与主内容相关，但如果被删除，则不应对文档流产生影响。</p>
+<blockquote>
+<p>使用 <code>&lt;figcaption&gt;</code> 元素为 figure 添加标题（caption）。</p>
+</blockquote>
+<h3 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h3><p>H5新增许多其属性，列表如下</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accept</td>
+<td>mime_type</td>
+<td>规定通过文件上传来提交的文件的类型。</td>
+</tr>
+<tr>
+<td>align</td>
+<td>left<br>right<br>top<br>middle<br>bottom</td>
+<td>不赞成使用。规定图像输入的对齐方式。</td>
+</tr>
+<tr>
+<td>alt</td>
+<td>text</td>
+<td>定义图像输入的替代文本。</td>
+</tr>
+<tr>
+<td>autocomplete</td>
+<td>on<br>off</td>
+<td>规定是否使用输入字段的自动完成功能。</td>
+</tr>
+<tr>
+<td>autofocus</td>
+<td>autofocus</td>
+<td>规定输入字段在页面加载时是否获得焦点。（不适用于 type=”hidden”）</td>
+</tr>
+<tr>
+<td>checked</td>
+<td>checked</td>
+<td>规定此 input 元素首次加载时应当被选中。</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>disabled</td>
+<td>当 input 元素加载时禁用此元素。</td>
+</tr>
+<tr>
+<td>form</td>
+<td>formname</td>
+<td>规定输入字段所属的一个或多个表单。</td>
+</tr>
+<tr>
+<td>formaction</td>
+<td>URL</td>
+<td>覆盖表单的 action 属性。（适用于 type=”submit” 和 type=”image”）</td>
+</tr>
+<tr>
+<td>formenctype</td>
+<td>见注释</td>
+<td>覆盖表单的 enctype 属性。（适用于 type=”submit” 和 type=”image”）</td>
+</tr>
+<tr>
+<td>formmethod</td>
+<td>get<br>post</td>
+<td>覆盖表单的 method 属性。（适用于 type=”submit” 和 type=”image”）</td>
+</tr>
+<tr>
+<td>formnovalidate</td>
+<td>formnovalidate</td>
+<td>覆盖表单的 novalidate 属性。如果使用该属性，则提交表单时不进行验证。</td>
+</tr>
+<tr>
+<td>formtarget</td>
+<td>_blank<br>_self<br>_parent<br>_top<br>framename</td>
+<td>覆盖表单的 target 属性。（适用于 type=”submit” 和 type=”image”）</td>
+</tr>
+<tr>
+<td>height</td>
+<td>pixels<br>%</td>
+<td>定义 input 字段的高度。（适用于 type=”image”）</td>
+</tr>
+<tr>
+<td>list</td>
+<td>datalist-id</td>
+<td>引用包含输入字段的预定义选项的 datalist 。</td>
+</tr>
+<tr>
+<td>max</td>
+<td>number<br>date</td>
+<td>规定输入字段的最大值。请与 “min” 属性配合使用，来创建合法值的范围。</td>
+</tr>
+<tr>
+<td>maxlength</td>
+<td>number</td>
+<td>规定输入字段中的字符的最大长度。</td>
+</tr>
+<tr>
+<td>min</td>
+<td>number<br>date</td>
+<td>规定输入字段的最小值。请与 “max” 属性配合使用，来创建合法值的范围。</td>
+</tr>
+<tr>
+<td>multiple</td>
+<td>multiple</td>
+<td>如果使用该属性，则允许一个以上的值。</td>
+</tr>
+<tr>
+<td>name</td>
+<td>field_name</td>
+<td>定义 input 元素的名称。</td>
+</tr>
+<tr>
+<td>pattern</td>
+<td>regexp_pattern</td>
+<td>规定输入字段的值的模式或格式。例如 pattern=”[0-9]” 表示输入值必须是 0 与 9 之间的数字。</td>
+</tr>
+<tr>
+<td>placeholder</td>
+<td>text</td>
+<td>规定帮助用户填写输入字段的提示。</td>
+</tr>
+<tr>
+<td>readonly</td>
+<td>readonly</td>
+<td>规定输入字段为只读。</td>
+</tr>
+<tr>
+<td>required</td>
+<td>required</td>
+<td>指示输入字段的值是必需的。</td>
+</tr>
+<tr>
+<td>size</td>
+<td>number_of_char</td>
+<td>定义输入字段的宽度。</td>
+</tr>
+<tr>
+<td>src</td>
+<td>URL</td>
+<td>定义以提交按钮形式显示的图像的 URL。</td>
+</tr>
+<tr>
+<td>step</td>
+<td>number</td>
+<td>规定输入字的的合法数字间隔。</td>
+</tr>
+<tr>
+<td>type</td>
+<td>button<br>checkbox<br>file<br>hidden<br>image<br>password<br>radio<br>reset<br>submit<br>text</td>
+<td>规定 input 元素的类型。</td>
+</tr>
+<tr>
+<td>value</td>
+<td>value</td>
+<td>规定 input 元素的值。</td>
+</tr>
+<tr>
+<td>width</td>
+<td>pixels<br>%</td>
+<td>定义 input 字段的宽度。（适用于 type=”image”）</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jasonyan2015.github.io/2017/04/04/js跨域问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ajun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ajun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/04/js跨域问题/" itemprop="url">
+                  js跨域问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T10:15:55+08:00">
+                2017-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h5 id="同源包括三个相同"><a href="#同源包括三个相同" class="headerlink" title="同源包括三个相同"></a>同源包括三个相同</h5><ul>
+<li>协议（protocol）相同</li>
+<li>域名（domain/host）相同</li>
+<li>端口（port）相同</li>
+</ul>
+<p>举例来说，对于<code>http://www.example.com/dir/page.html</code>这个网址，协议是<code>http://</code>，域名是<code>www.example.com</code>，端口是<code>80</code>（默认端口可以省略）。它的同源情况如下。</p>
+<ul>
+<li><a href="http://www.example.com/dir2/other.html：同源" target="_blank" rel="external">http://www.example.com/dir2/other.html：同源</a></li>
+<li><a href="http://example.com/dir/other.html：不同源（域名不同）" target="_blank" rel="external">http://example.com/dir/other.html：不同源（域名不同）</a></li>
+<li><a href="http://v2.www.example.com/dir/other.html：不同源（域名不同）" target="_blank" rel="external">http://v2.www.example.com/dir/other.html：不同源（域名不同）</a></li>
+<li><a href="http://www.example.com:81/dir/other.html：不同源（端口不同）" target="_blank" rel="external">http://www.example.com:81/dir/other.html：不同源（端口不同）</a></li>
+</ul>
+<p>更多例子：</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>说明</th>
+<th>是否允许通信</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a><br><a href="http://www.a.com/b.js" target="_blank" rel="external">http://www.a.com/b.js</a></td>
+<td>同一域名下</td>
+<td>允许</td>
+</tr>
+<tr>
+<td><a href="http://www.a.com/lab/a.js" target="_blank" rel="external">http://www.a.com/lab/a.js</a><br><a href="http://www.a.com/script/b.js" target="_blank" rel="external">http://www.a.com/script/b.js</a></td>
+<td>同一域名下不同文件夹</td>
+<td>允许</td>
+</tr>
+<tr>
+<td><a href="http://www.a.com:8000/a.js" target="_blank" rel="external">http://www.a.com:8000/a.js</a><br><a href="http://www.a.com/b.js" target="_blank" rel="external">http://www.a.com/b.js</a></td>
+<td>同一域名，不同端口</td>
+<td>不允许</td>
+</tr>
+<tr>
+<td><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a><br><a href="https://www.a.com/b.js" target="_blank" rel="external">https://www.a.com/b.js</a></td>
+<td>同一域名，不同协议</td>
+<td>不允许</td>
+</tr>
+<tr>
+<td><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a><br><a href="http://70.32.92.74/b.js" target="_blank" rel="external">http://70.32.92.74/b.js</a></td>
+<td>域名和域名对应ip</td>
+<td>不允许</td>
+</tr>
+<tr>
+<td><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a><br><a href="http://script.a.com/b.js" target="_blank" rel="external">http://script.a.com/b.js</a></td>
+<td>主域相同，子域不同</td>
+<td>不允许</td>
+</tr>
+<tr>
+<td><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a><br><a href="http://a.com/b.js" target="_blank" rel="external">http://a.com/b.js</a></td>
+<td>同一域名，不同二级域名（同上）</td>
+<td>不允许（cookie这种情况下也不允许访问）</td>
+</tr>
+<tr>
+<td><a href="http://www.cnblogs.com/a.js" target="_blank" rel="external">http://www.cnblogs.com/a.js</a><br><a href="http://a.com/b.js" target="_blank" rel="external">http://a.com/b.js</a></td>
+<td>不同域名</td>
+<td>不允许</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意</p>
+<ol>
+<li>如果是协议和端口造成的跨域问题“前台”是无能为力的，</li>
+<li>在跨域问题上，域仅仅是通过“URL的首部”来识别而不会去尝试判断相同的ip地址对应着两个域或两个域是否在同一个ip上。</li>
+</ol>
+<blockquote>
+<p>“URL的首部”指<code>window.location.protocol</code> + <code>window.location.host</code>，也可以理解为“Domains, protocols and ports must match”。</p>
+</blockquote>
+</blockquote>
+<h5 id="同源策略的目的"><a href="#同源策略的目的" class="headerlink" title="同源策略的目的"></a>同源策略的目的</h5><p>为了保证用户信息的安全，防止恶意的网站窃取数据。</p>
+<h5 id="受限制的行为"><a href="#受限制的行为" class="headerlink" title="受限制的行为"></a>受限制的行为</h5><ul>
+<li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
+<li>DOM 无法获得。</li>
+<li>AJAX 请求不能发送。</li>
+</ul>
+<h3 id="cookie跨域"><a href="#cookie跨域" class="headerlink" title="cookie跨域"></a>cookie跨域</h3><p>Cookie 是服务器写入浏览器的一小段信息，是储存在用户本地终端上的数据，通常被用来记录访问者的一些信息（尽管这并不安全），只有同源的网页才能共享。</p>
+<p>不过这个共享范围比同源稍宽松些。</p>
+<p>如果两个网页一级域名相同，只是二级域名不同，那么浏览器允许通过设置document.domain来共享 Cookie。</p>
+<p>例如：</p>
+<ol>
+<li>对A,B网页同时设置：<code>document.domain = &#39;example.com&#39;;</code></li>
+<li>在A网页中通过脚本设置一个Cookie：<code>document.cookie = &quot;test1=hello&quot;;</code></li>
+<li>B网页就可以读到这个 Cookie：<code>var allCookie = document.cookie;</code></li>
+</ol>
+<blockquote>
+<p>注意：这种方法只适用于 Cookie 和 iframe 窗口（下一节会谈到），LocalStorage 和 IndexDB 无法通过这种方法规避同源政策，而要使用下文介绍的PostMessage API。</p>
+<p>另外，服务器也可以在设置Cookie的时候，指定Cookie的所属域名为一级域名，比如为<code>.example.com</code>设置<code>Set-Cookie: key=value; domain=.example.com; path=/</code>这样的话，二级域名和三级域名不用做任何设置，都可以读取这个Cookie。</p>
+</blockquote>
+<h3 id="iframe跨域"><a href="#iframe跨域" class="headerlink" title="iframe跨域"></a>iframe跨域</h3><p>如果两个网页不同源，就无法拿到对方的DOM。<br>典型的例子是<code>iframe</code>窗口和<code>window.open</code>方法打开的窗口，它们与父窗口无法通信。</p>
+<p>比如，父窗口运行下面的命令，如果<code>iframe</code>窗口不是同源，就会报错。</p>
+<pre><code>document.getElementById(&quot;myIFrame&quot;).contentWindow.document
+// Uncaught DOMException: Blocked a frame from accessing a cross-origin frame.
+</code></pre><p>上面命令中，父窗口想获取子窗口的DOM，因为跨源导致报错。<br>反之亦然，子窗口获取主窗口的DOM也会报错。</p>
+<pre><code>window.parent.document.body
+// 报错
+</code></pre><h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><h5 id="如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document-domain属性，就可以规避同源策略来访问DOM。"><a href="#如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document-domain属性，就可以规避同源策略来访问DOM。" class="headerlink" title="如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document.domain属性，就可以规避同源策略来访问DOM。"></a>如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的<code>document.domain</code>属性，就可以规避同源策略来访问DOM。</h5><p>举例如下</p>
+<p>在a.html中</p>
+<pre><code>document.domain = &apos;a.com&apos;;
+var ifr = document.createElement(&apos;iframe&apos;);
+ifr.src = &apos;http://script.a.com/b.html&apos;;
+ifr.style.display = &apos;none&apos;;
+document.body.appendChild(ifr);
+ifr.onload = function(){
+    var doc = ifr.contentDocument || ifr.contentWindow.document;
+    // 在这里操纵b.html
+    alert(doc.getElementsByTagName(&quot;h1&quot;)[0].childNodes[0].nodeValue);
+};
+</code></pre><p>b.html中</p>
+<pre><code>document.domain = &apos;a.com&apos;;
+</code></pre><h5 id="对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题"><a href="#对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题" class="headerlink" title="对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题"></a>对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题</h5><ol>
+<li>片段识别符（fragment identifier）</li>
+<li>设置<code>window.name</code></li>
+<li>跨文档通信API（Cross-document messaging）</li>
+</ol>
+<h6 id="片段标识符"><a href="#片段标识符" class="headerlink" title="片段标识符"></a>片段标识符</h6><p>片段标识符（fragment identifier）指的是，URL的#号后面的部分，比如<code>http://example.com/x.html#fragment的#fragment</code>。如果只是改变片段标识符，页面不会重新刷新。</p>
+<p>父窗口可以把信息，写入子窗口的片段标识符。</p>
+<pre><code>var src = originURL + &apos;#&apos; + data;
+document.getElementById(&apos;myIFrame&apos;).src = src;
+</code></pre><p>子窗口通过监听<code>hashchange</code>事件得到通知。</p>
+<pre><code>window.onhashchange = checkMessage;
+
+function checkMessage() {
+  var message = window.location.hash;
+  // ...
+}
+</code></pre><p>同样的，子窗口也可以改变父窗口的片段标识符。</p>
+<pre><code>parent.location.href= target + &quot;#&quot; + hash;
+</code></pre><h6 id="设置window-name"><a href="#设置window-name" class="headerlink" title="设置window.name"></a>设置<code>window.name</code></h6><p>浏览器窗口有<code>window.name</code>属性。这个属性的最大特点是，无论是否同源，只要在同一个窗口里，前一个网页设置了这个属性，后一个网页可以读取它。</p>
+<p>有三个页面：</p>
+<ul>
+<li>a.com/app.html：应用页面。</li>
+<li>a.com/proxy.html：代理文件，一般是一个没有任何内容的html文件，需要和应用页面在同一域下。</li>
+<li>b.com/data.html：应用页面需要获取数据的页面，可称为数据页面。</li>
+</ul>
+<p>过程如下：</p>
+<ol>
+<li>在应用页面<code>（a.com/app.html）</code>中创建一个<code>iframe</code>，把其<code>src</code>指向数据页面<code>（b.com/data.html）</code>。数据页面<code>（b.com/data.html）</code>设置window.name时，由于同源，会自动把数据附加到这个<code>iframe</code>的<code>window.name</code>上，代码如下：<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+        window.name = &apos;I was there!&apos;;    //这里是要传输的数据，大小一般为2M，IE和firefox下可以大至32M左右。
+                                         //数据格式可以自定义，如json、字符串
+&lt;/script&gt;
+</code></pre></li>
+<li>在应用页面<code>（a.com/app.html）</code>中监听<code>iframe</code>的<code>onload</code>事件，在此事件中设置这个<code>iframe</code>的<code>src</code>指向本地域的代理文件（代理文件和应用页面在同一域下，所以可以相互通信）。app.html部分代码如下：<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    var state = 0, 
+    iframe = document.createElement(&apos;iframe&apos;),
+    loadfn = function() {
+        if (state === 1) {
+            var data = iframe.contentWindow.name;    // 读取数据
+            alert(data);    //弹出&apos;I was there!&apos;
+        } else if (state === 0) {
+            state = 1;
+            iframe.contentWindow.location = &quot;http://a.com/proxy.html&quot;;    // 设置的代理文件，此时由于iframe的loaction改变，又一次触发load事件
+        }  
+    };
+    iframe.src = &apos;http://b.com/data.html&apos;;
+    if (iframe.attachEvent) {
+        iframe.attachEvent(&apos;onload&apos;, loadfn);
+    } else {
+        iframe.onload  = loadfn;
+    }
+    document.body.appendChild(iframe);
+&lt;/script&gt;
+</code></pre></li>
+<li>获取数据以后销毁这个<code>iframe</code>，释放内存；这也保证了安全（不被其他域frame js访问）。<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    iframe.contentWindow.document.write(&apos;&apos;);
+    iframe.contentWindow.close();
+    document.body.removeChild(iframe);
+&lt;/script&gt;
+</code></pre></li>
+</ol>
+<p>总结起来即：iframe的src属性由外域转向本地域，跨域数据即由iframe的window.name从外域传递到本地域。这个就巧妙地绕过了浏览器的跨域访问限制，但同时它又是安全操作。</p>
+<ul>
+<li>优点: window.name容量很大，可以放置非常长的字符串；</li>
+<li>缺点: 必须监听子窗口window.name属性的变化，影响网页性能。</li>
+</ul>
+<h6 id="跨文档通信API–postMessage"><a href="#跨文档通信API–postMessage" class="headerlink" title="跨文档通信API–postMessage()"></a>跨文档通信API–postMessage()</h6><p>HTML5新增一个<code>window.postMessage</code>方法，允许跨窗口通信，不论这两个窗口是否同源。并且支持基于web的实时消息传递。</p>
+<pre><code>otherWindow.postMessage(message, targetOrigin);
+</code></pre><ul>
+<li><code>otherWindow</code>: 对接收信息页面的window的引用。可以是页面中<code>iframe</code>的<code>contentWindow</code>属性；<code>window.open</code>的返回值；通过<code>name</code>或下标从<code>window.frames</code>取到的值。</li>
+<li><code>message</code>: 所要发送的数据，string类型。</li>
+<li><code>targetOrigin</code>: 用于限制otherWindow，即”协议 + 域名 + 端口”，<code>*</code>表示不限制域名，向所有窗口发送</li>
+</ul>
+<p>举例来说，父窗口<code>http://aaa.com</code>与子窗口<code>http://bbb.com</code>互发消息</p>
+<p>父-&gt;子</p>
+<pre><code>var popup = window.open(&apos;http://bbb.com&apos;, &apos;title&apos;);
+popup.postMessage(&apos;Hello World!&apos;, &apos;http://bbb.com&apos;);
+</code></pre><p>子-&gt;父</p>
+<pre><code>window.opener.postMessage(&apos;Nice to see you&apos;, &apos;http://aaa.com&apos;);
+</code></pre><p>接受消息：message事件</p>
+<pre><code>window.addEventListener(&apos;message&apos;, function(e) {
+  console.log(e.data);
+},false);
+</code></pre><p><code>message</code>事件的事件对象<code>event</code>，提供以下三个属性。</p>
+<ul>
+<li>event.source：发送消息的窗口</li>
+<li>event.origin: 消息发向的网址</li>
+<li>event.data: 消息内容</li>
+</ul>
+<p>下面的例子是，子窗口通过<code>event.source</code>属性引用父窗口，然后发送消息。</p>
+<pre><code>window.addEventListener(&apos;message&apos;, receiveMessage);
+function receiveMessage(event) {
+  event.source.postMessage(&apos;Nice to see you!&apos;, &apos;*&apos;);
+}
+</code></pre><p><code>event.origin</code>属性可以过滤不是发给本窗口的消息。</p>
+<pre><code>window.addEventListener(&apos;message&apos;, receiveMessage);
+function receiveMessage(event) {
+  if (event.origin !== &apos;http://aaa.com&apos;) return;
+  if (event.data === &apos;Hello World&apos;) {
+      event.source.postMessage(&apos;Hello&apos;, event.origin);
+  } else {
+    console.log(event.data);
+  }
+}
+</code></pre><h3 id="Ajax跨域"><a href="#Ajax跨域" class="headerlink" title="Ajax跨域"></a>Ajax跨域</h3><p>同源政策规定，AJAX请求只能发给同源的网址。</p>
+<p>除了架设服务器代理（浏览器请求同源服务器，再由后者请求外部服务），有三种方法规避这个限制。</p>
+<ul>
+<li>JSONP</li>
+<li>WebSocket</li>
+<li>CORS</li>
+</ul>
+<h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><p>JSONP是服务器与客户端跨源通信的常用方法。最大特点就是简单适用，老式浏览器全部支持，服务器改造非常小。</p>
+<p>它的基本思想是，网页通过添加一个<code>&lt;script&gt;</code>元素，向服务器请求JSON数据，这种做法不受同源政策限制；服务器收到请求后，将数据放在一个指定名字的回调函数里传回来。</p>
+<p>举个例子</p>
+<pre><code>function addScriptTag(src) {
+  var script = document.createElement(&apos;script&apos;);
+  script.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);
+  script.src = src;
+  document.body.appendChild(script);
+}
+
+window.onload = function () {
+  addScriptTag(&apos;http://example.com/ip?callback=foo&apos;);
+}
+
+function foo(data) {
+  console.log(&apos;Your public IP address is: &apos; + data.ip);
+};
+</code></pre><p>上面代码通过动态添加<code>&lt;script&gt;</code>元素，向服务器<code>example.com</code>发出请求。</p>
+<blockquote>
+<p>注意：该请求的查询字符串有一个<code>callback</code>参数（在服务器中须对其进行相关声明和定义），用来指定回调函数的名字，这对于JSONP是必需的。假设目标返回的数据是<code>[&quot;customername1&quot;,&quot;customername2&quot;]</code>那么真正返回到客户端的数据为<code>foo([&quot;customername1&quot;,&quot;customername2&quot;])</code></p>
+</blockquote>
+<p>服务器收到这个请求以后，会将数据放在回调函数的参数位置返回。</p>
+<p>由于<code>&lt;script&gt;</code>元素请求的脚本，直接作为代码运行。这时，只要浏览器定义了<code>foo</code>函数，该函数就会立即调用。作为参数的JSON数据被视为JavaScript对象，而不是字符串，因此避免了使用<code>JSON.parse</code>的步骤。</p>
+<h4 id="WebSocket跨域"><a href="#WebSocket跨域" class="headerlink" title="WebSocket跨域"></a>WebSocket跨域</h4><p>WebSocket是一种通信协议，使用<code>ws://</code>（非加密）和<code>wss://</code>（加密）作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信。</p>
+<p>下面是一个例子，浏览器发出的WebSocket请求的头信息</p>
+<pre><code>GET /chat HTTP/1.1
+Host: server.example.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+Origin: http://example.com
+</code></pre><p>上面代码中，有一个字段是Origin，表示该请求的请求源（origin），即发自哪个域名。</p>
+<p>正是因为有了<code>Origin</code>这个字段，所以WebSocket才没有实行同源政策。因为服务器可以根据这个字段，判断是否许可本次通信。如果该域名在白名单内，服务器就会做出如下回应。</p>
+<pre><code>HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
+Sec-WebSocket-Protocol: chat
+</code></pre><h4 id="CORS跨域"><a href="#CORS跨域" class="headerlink" title="CORS跨域"></a>CORS跨域</h4><p>跨源资源分享（Cross-Origin Resource Sharing）</p>
+<p>它是W3C标准，是跨源AJAX请求的根本解决方法。</p>
+<p>相比JSONP只能发GET请求，CORS允许任何类型的请求。</p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="external">CORS跨域详细</a></p>
+<hr>
+<p>参考链接</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="external">浏览器同源政策及其规避方法</a></li>
+<li><a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">JavaScript跨域总结与解决办法</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ajun" />
+          <p class="site-author-name" itemprop="name">Ajun</p>
+           
+              <p class="site-description motion-element" itemprop="description">Ajun的前端学习笔记</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ajun</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
