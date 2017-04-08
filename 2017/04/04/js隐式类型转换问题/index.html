@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="js,数据类型," />
 
 
 
@@ -89,22 +89,16 @@
 
 
 
-<meta name="description" content="起因腾讯笔试题顺便吐槽一句……
-腾讯考的选择题相对其他网易阿里360什么的要更专业前端一些，他们几个都更广泛考一些计算机组成，堆栈，二分什么乱七八糟的计算机基础知识，腾讯选择题全考的网络相关的，但是考的也太网络基础了…..交换机，IPV6相比IPV4的优点，UDP协议头，FTP协议…..咱们安安心心考个HTTP不好么…..我还没懂这么多呢[哭]
-好了正式的起因是在腾讯2017实习生笔试，选择题考了">
+<meta name="description" content="起因腾讯笔试题顺便吐槽一句……">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Js的隐式类型转换">
 <meta property="og:url" content="https://jasonyan2015.github.io/2017/04/04/js隐式类型转换问题/index.html">
 <meta property="og:site_name" content="Ajun">
-<meta property="og:description" content="起因腾讯笔试题顺便吐槽一句……
-腾讯考的选择题相对其他网易阿里360什么的要更专业前端一些，他们几个都更广泛考一些计算机组成，堆栈，二分什么乱七八糟的计算机基础知识，腾讯选择题全考的网络相关的，但是考的也太网络基础了…..交换机，IPV6相比IPV4的优点，UDP协议头，FTP协议…..咱们安安心心考个HTTP不好么…..我还没懂这么多呢[哭]
-好了正式的起因是在腾讯2017实习生笔试，选择题考了">
-<meta property="og:updated_time" content="2017-04-08T15:11:36.265Z">
+<meta property="og:description" content="起因腾讯笔试题顺便吐槽一句……">
+<meta property="og:updated_time" content="2017-04-08T16:23:40.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Js的隐式类型转换">
-<meta name="twitter:description" content="起因腾讯笔试题顺便吐槽一句……
-腾讯考的选择题相对其他网易阿里360什么的要更专业前端一些，他们几个都更广泛考一些计算机组成，堆栈，二分什么乱七八糟的计算机基础知识，腾讯选择题全考的网络相关的，但是考的也太网络基础了…..交换机，IPV6相比IPV4的优点，UDP协议头，FTP协议…..咱们安安心心考个HTTP不好么…..我还没懂这么多呢[哭]
-好了正式的起因是在腾讯2017实习生笔试，选择题考了">
+<meta name="twitter:description" content="起因腾讯笔试题顺便吐槽一句……">
 
 
 
@@ -112,7 +106,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -148,6 +142,16 @@
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?97e4fd3e134c7f0035f9be5d66f03cf2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -313,6 +317,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -330,6 +339,7 @@
 
       
         <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><h5 id="腾讯笔试题"><a href="#腾讯笔试题" class="headerlink" title="腾讯笔试题"></a>腾讯笔试题</h5><p>顺便吐槽一句……</p>
+<a id="more"></a>
 <p>腾讯考的选择题相对其他网易阿里360什么的要更专业前端一些，他们几个都更广泛考一些计算机组成，堆栈，二分什么乱七八糟的计算机基础知识，腾讯选择题全考的网络相关的，但是考的也太网络基础了…..交换机，IPV6相比IPV4的优点，UDP协议头，FTP协议…..咱们安安心心考个HTTP不好么…..我还没懂这么多呢[哭]</p>
 <h5 id="好了正式的"><a href="#好了正式的" class="headerlink" title="好了正式的"></a>好了正式的</h5><p>起因是在腾讯2017实习生笔试，选择题考了一道关于</p>
 <pre><code>if(0&lt;100&lt;0) console.log(&apos;0&lt;100&lt;0&apos;);
@@ -410,6 +420,14 @@ true + 0 === (0 + 1)    //true
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/数据类型/" rel="tag"># 数据类型</a>
+          
+        </div>
       
 
       
@@ -513,6 +531,15 @@ true + 0 === (0 + 1)    //true
           
 
           
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
 
         </nav>
 
@@ -588,12 +615,32 @@ true + 0 === (0 + 1)    //true
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
         
       </div>

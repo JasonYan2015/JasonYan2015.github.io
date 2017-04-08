@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="js,浏览器," />
 
 
 
@@ -92,11 +92,7 @@
 <meta name="description" content="同源策略同源包括三个相同
 协议（protocol）相同
 域名（domain/host）相同
-端口（port）相同
-
-举例来说，对于http://www.example.com/dir/page.html这个网址，协议是http://，域名是www.example.com，端口是80（默认端口可以省略）。它的同源情况如下。
-
-http://www.example.com/dir2/other.htm">
+端口（port）相同">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js跨域问题">
 <meta property="og:url" content="https://jasonyan2015.github.io/2017/04/04/js跨域问题/index.html">
@@ -104,22 +100,14 @@ http://www.example.com/dir2/other.htm">
 <meta property="og:description" content="同源策略同源包括三个相同
 协议（protocol）相同
 域名（domain/host）相同
-端口（port）相同
-
-举例来说，对于http://www.example.com/dir/page.html这个网址，协议是http://，域名是www.example.com，端口是80（默认端口可以省略）。它的同源情况如下。
-
-http://www.example.com/dir2/other.htm">
-<meta property="og:updated_time" content="2017-04-08T15:14:41.586Z">
+端口（port）相同">
+<meta property="og:updated_time" content="2017-04-08T16:24:03.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js跨域问题">
 <meta name="twitter:description" content="同源策略同源包括三个相同
 协议（protocol）相同
 域名（domain/host）相同
-端口（port）相同
-
-举例来说，对于http://www.example.com/dir/page.html这个网址，协议是http://，域名是www.example.com，端口是80（默认端口可以省略）。它的同源情况如下。
-
-http://www.example.com/dir2/other.htm">
+端口（port）相同">
 
 
 
@@ -127,7 +115,7 @@ http://www.example.com/dir2/other.htm">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -163,6 +151,16 @@ http://www.example.com/dir2/other.htm">
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?97e4fd3e134c7f0035f9be5d66f03cf2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -328,6 +326,11 @@ http://www.example.com/dir2/other.htm">
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -344,11 +347,12 @@ http://www.example.com/dir2/other.htm">
       
 
       
-        <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h5 id="同源包括三个相同"><a href="#同源包括三个相同" class="headerlink" title="同源包括三个相同"></a>同源包括三个相同</h5><ul>
+        <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><h3 id="同源包括三个相同"><a href="#同源包括三个相同" class="headerlink" title="同源包括三个相同"></a>同源包括三个相同</h3><ul>
 <li>协议（protocol）相同</li>
 <li>域名（domain/host）相同</li>
 <li>端口（port）相同</li>
 </ul>
+<a id="more"></a>
 <p>举例来说，对于<code>http://www.example.com/dir/page.html</code>这个网址，协议是<code>http://</code>，域名是<code>www.example.com</code>，端口是<code>80</code>（默认端口可以省略）。它的同源情况如下。</p>
 <ul>
 <li><a href="http://www.example.com/dir2/other.html：同源" target="_blank" rel="external">http://www.example.com/dir2/other.html：同源</a></li>
@@ -418,15 +422,15 @@ http://www.example.com/dir2/other.htm">
 <p>“URL的首部”指<code>window.location.protocol</code> + <code>window.location.host</code>，也可以理解为“Domains, protocols and ports must match”。</p>
 </blockquote>
 </blockquote>
-<h5 id="同源策略的目的"><a href="#同源策略的目的" class="headerlink" title="同源策略的目的"></a>同源策略的目的</h5><p>为了保证用户信息的安全，防止恶意的网站窃取数据。</p>
-<h5 id="受限制的行为"><a href="#受限制的行为" class="headerlink" title="受限制的行为"></a>受限制的行为</h5><ul>
+<h3 id="同源策略的目的"><a href="#同源策略的目的" class="headerlink" title="同源策略的目的"></a>同源策略的目的</h3><p>为了保证用户信息的安全，防止恶意的网站窃取数据。</p>
+<h3 id="受限制的行为"><a href="#受限制的行为" class="headerlink" title="受限制的行为"></a>受限制的行为</h3><ul>
 <li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
 <li>DOM 无法获得。</li>
 <li>AJAX 请求不能发送。</li>
 </ul>
-<h3 id="cookie跨域"><a href="#cookie跨域" class="headerlink" title="cookie跨域"></a>cookie跨域</h3><p>Cookie 是服务器写入浏览器的一小段信息，是储存在用户本地终端上的数据，通常被用来记录访问者的一些信息（尽管这并不安全），只有同源的网页才能共享。</p>
+<h2 id="cookie跨域"><a href="#cookie跨域" class="headerlink" title="cookie跨域"></a>cookie跨域</h2><p>Cookie 是服务器写入浏览器的一小段信息，是储存在用户本地终端上的数据，通常被用来记录访问者的一些信息（尽管这并不安全），只有同源的网页才能共享。</p>
 <p>不过这个共享范围比同源稍宽松些。</p>
-<p>如果两个网页一级域名相同，只是二级域名不同，那么浏览器允许通过设置document.domain来共享 Cookie。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>如果两个网页一级域名相同，只是二级域名不同，那么浏览器允许通过设置document.domain来共享 Cookie。</p>
 <p>例如：</p>
 <ol>
 <li>对A,B网页同时设置：<code>document.domain = &#39;example.com&#39;;</code></li>
@@ -437,14 +441,14 @@ http://www.example.com/dir2/other.htm">
 <p>注意：这种方法只适用于 Cookie 和 iframe 窗口（下一节会谈到），LocalStorage 和 IndexDB 无法通过这种方法规避同源政策，而要使用下文介绍的PostMessage API。</p>
 <p>另外，服务器也可以在设置Cookie的时候，指定Cookie的所属域名为一级域名，比如为<code>.example.com</code>设置<code>Set-Cookie: key=value; domain=.example.com; path=/</code>这样的话，二级域名和三级域名不用做任何设置，都可以读取这个Cookie。</p>
 </blockquote>
-<h3 id="iframe跨域"><a href="#iframe跨域" class="headerlink" title="iframe跨域"></a>iframe跨域</h3><p>如果两个网页不同源，就无法拿到对方的DOM。<br>典型的例子是<code>iframe</code>窗口和<code>window.open</code>方法打开的窗口，它们与父窗口无法通信。</p>
+<h2 id="iframe跨域"><a href="#iframe跨域" class="headerlink" title="iframe跨域"></a>iframe跨域</h2><p>如果两个网页不同源，就无法拿到对方的DOM。<br>典型的例子是<code>iframe</code>窗口和<code>window.open</code>方法打开的窗口，它们与父窗口无法通信。</p>
 <p>比如，父窗口运行下面的命令，如果<code>iframe</code>窗口不是同源，就会报错。</p>
 <pre><code>document.getElementById(&quot;myIFrame&quot;).contentWindow.document
 // Uncaught DOMException: Blocked a frame from accessing a cross-origin frame.
 </code></pre><p>上面命令中，父窗口想获取子窗口的DOM，因为跨源导致报错。<br>反之亦然，子窗口获取主窗口的DOM也会报错。</p>
 <pre><code>window.parent.document.body
 // 报错
-</code></pre><h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><h5 id="如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document-domain属性，就可以规避同源策略来访问DOM。"><a href="#如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document-domain属性，就可以规避同源策略来访问DOM。" class="headerlink" title="如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document.domain属性，就可以规避同源策略来访问DOM。"></a>如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的<code>document.domain</code>属性，就可以规避同源策略来访问DOM。</h5><p>举例如下</p>
+</code></pre><h3 id="解决办法-1"><a href="#解决办法-1" class="headerlink" title="解决办法"></a>解决办法</h3><h4 id="如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document-domain属性，就可以规避同源策略来访问DOM。"><a href="#如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document-domain属性，就可以规避同源策略来访问DOM。" class="headerlink" title="如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document.domain属性，就可以规避同源策略来访问DOM。"></a>如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的<code>document.domain</code>属性，就可以规避同源策略来访问DOM。</h4><p>举例如下</p>
 <p>在a.html中</p>
 <pre><code>document.domain = &apos;a.com&apos;;
 var ifr = document.createElement(&apos;iframe&apos;);
@@ -458,12 +462,12 @@ ifr.onload = function(){
 };
 </code></pre><p>b.html中</p>
 <pre><code>document.domain = &apos;a.com&apos;;
-</code></pre><h5 id="对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题"><a href="#对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题" class="headerlink" title="对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题"></a>对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题</h5><ol>
+</code></pre><h4 id="对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题"><a href="#对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题" class="headerlink" title="对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题"></a>对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题</h4><ol>
 <li>片段识别符（fragment identifier）</li>
 <li>设置<code>window.name</code></li>
 <li>跨文档通信API（Cross-document messaging）</li>
 </ol>
-<h6 id="片段标识符"><a href="#片段标识符" class="headerlink" title="片段标识符"></a>片段标识符</h6><p>片段标识符（fragment identifier）指的是，URL的#号后面的部分，比如<code>http://example.com/x.html#fragment的#fragment</code>。如果只是改变片段标识符，页面不会重新刷新。</p>
+<h5 id="片段标识符"><a href="#片段标识符" class="headerlink" title="片段标识符"></a>片段标识符</h5><p>片段标识符（fragment identifier）指的是，URL的#号后面的部分，比如<code>http://example.com/x.html#fragment的#fragment</code>。如果只是改变片段标识符，页面不会重新刷新。</p>
 <p>父窗口可以把信息，写入子窗口的片段标识符。</p>
 <pre><code>var src = originURL + &apos;#&apos; + data;
 document.getElementById(&apos;myIFrame&apos;).src = src;
@@ -476,7 +480,7 @@ function checkMessage() {
 }
 </code></pre><p>同样的，子窗口也可以改变父窗口的片段标识符。</p>
 <pre><code>parent.location.href= target + &quot;#&quot; + hash;
-</code></pre><h6 id="设置window-name"><a href="#设置window-name" class="headerlink" title="设置window.name"></a>设置<code>window.name</code></h6><p>浏览器窗口有<code>window.name</code>属性。这个属性的最大特点是，无论是否同源，只要在同一个窗口里，前一个网页设置了这个属性，后一个网页可以读取它。</p>
+</code></pre><h5 id="设置window-name"><a href="#设置window-name" class="headerlink" title="设置window.name"></a>设置<code>window.name</code></h5><p>浏览器窗口有<code>window.name</code>属性。这个属性的最大特点是，无论是否同源，只要在同一个窗口里，前一个网页设置了这个属性，后一个网页可以读取它。</p>
 <p>有三个页面：</p>
 <ul>
 <li>a.com/app.html：应用页面。</li>
@@ -523,7 +527,7 @@ function checkMessage() {
 <li>优点: window.name容量很大，可以放置非常长的字符串；</li>
 <li>缺点: 必须监听子窗口window.name属性的变化，影响网页性能。</li>
 </ul>
-<h6 id="跨文档通信API–postMessage"><a href="#跨文档通信API–postMessage" class="headerlink" title="跨文档通信API–postMessage()"></a>跨文档通信API–postMessage()</h6><p>HTML5新增一个<code>window.postMessage</code>方法，允许跨窗口通信，不论这两个窗口是否同源。并且支持基于web的实时消息传递。</p>
+<h5 id="跨文档通信API–postMessage"><a href="#跨文档通信API–postMessage" class="headerlink" title="跨文档通信API–postMessage()"></a>跨文档通信API–postMessage()</h5><p>HTML5新增一个<code>window.postMessage</code>方法，允许跨窗口通信，不论这两个窗口是否同源。并且支持基于web的实时消息传递。</p>
 <pre><code>otherWindow.postMessage(message, targetOrigin);
 </code></pre><ul>
 <li><code>otherWindow</code>: 对接收信息页面的window的引用。可以是页面中<code>iframe</code>的<code>contentWindow</code>属性；<code>window.open</code>的返回值；通过<code>name</code>或下标从<code>window.frames</code>取到的值。</li>
@@ -561,14 +565,14 @@ function receiveMessage(event) {
     console.log(event.data);
   }
 }
-</code></pre><h3 id="Ajax跨域"><a href="#Ajax跨域" class="headerlink" title="Ajax跨域"></a>Ajax跨域</h3><p>同源政策规定，AJAX请求只能发给同源的网址。</p>
+</code></pre><h2 id="Ajax跨域"><a href="#Ajax跨域" class="headerlink" title="Ajax跨域"></a>Ajax跨域</h2><p>同源政策规定，AJAX请求只能发给同源的网址。</p>
 <p>除了架设服务器代理（浏览器请求同源服务器，再由后者请求外部服务），有三种方法规避这个限制。</p>
 <ul>
 <li>JSONP</li>
 <li>WebSocket</li>
 <li>CORS</li>
 </ul>
-<h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><p>JSONP是服务器与客户端跨源通信的常用方法。最大特点就是简单适用，老式浏览器全部支持，服务器改造非常小。</p>
+<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>JSONP是服务器与客户端跨源通信的常用方法。最大特点就是简单适用，老式浏览器全部支持，服务器改造非常小。</p>
 <p>它的基本思想是，网页通过添加一个<code>&lt;script&gt;</code>元素，向服务器请求JSON数据，这种做法不受同源政策限制；服务器收到请求后，将数据放在一个指定名字的回调函数里传回来。</p>
 <p>举个例子</p>
 <pre><code>function addScriptTag(src) {
@@ -591,7 +595,7 @@ function foo(data) {
 </blockquote>
 <p>服务器收到这个请求以后，会将数据放在回调函数的参数位置返回。</p>
 <p>由于<code>&lt;script&gt;</code>元素请求的脚本，直接作为代码运行。这时，只要浏览器定义了<code>foo</code>函数，该函数就会立即调用。作为参数的JSON数据被视为JavaScript对象，而不是字符串，因此避免了使用<code>JSON.parse</code>的步骤。</p>
-<h4 id="WebSocket跨域"><a href="#WebSocket跨域" class="headerlink" title="WebSocket跨域"></a>WebSocket跨域</h4><p>WebSocket是一种通信协议，使用<code>ws://</code>（非加密）和<code>wss://</code>（加密）作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信。</p>
+<h3 id="WebSocket跨域"><a href="#WebSocket跨域" class="headerlink" title="WebSocket跨域"></a>WebSocket跨域</h3><p>WebSocket是一种通信协议，使用<code>ws://</code>（非加密）和<code>wss://</code>（加密）作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信。</p>
 <p>下面是一个例子，浏览器发出的WebSocket请求的头信息</p>
 <pre><code>GET /chat HTTP/1.1
 Host: server.example.com
@@ -608,7 +612,7 @@ Upgrade: websocket
 Connection: Upgrade
 Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
 Sec-WebSocket-Protocol: chat
-</code></pre><h4 id="CORS跨域"><a href="#CORS跨域" class="headerlink" title="CORS跨域"></a>CORS跨域</h4><p>跨源资源分享（Cross-Origin Resource Sharing）</p>
+</code></pre><h3 id="CORS跨域"><a href="#CORS跨域" class="headerlink" title="CORS跨域"></a>CORS跨域</h3><p>跨源资源分享（Cross-Origin Resource Sharing）</p>
 <p>它是W3C标准，是跨源AJAX请求的根本解决方法。</p>
 <p>相比JSONP只能发GET请求，CORS允许任何类型的请求。</p>
 <p><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="external">CORS跨域详细</a></p>
@@ -644,6 +648,14 @@ Sec-WebSocket-Protocol: chat
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/浏览器/" rel="tag"># 浏览器</a>
+          
+        </div>
       
 
       
@@ -743,6 +755,15 @@ Sec-WebSocket-Protocol: chat
           
 
           
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
 
         </nav>
 
@@ -780,7 +801,7 @@ Sec-WebSocket-Protocol: chat
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#同源策略"><span class="nav-number">1.</span> <span class="nav-text">同源策略</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#同源包括三个相同"><span class="nav-number">1.0.1.</span> <span class="nav-text">同源包括三个相同</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#同源策略的目的"><span class="nav-number">1.0.2.</span> <span class="nav-text">同源策略的目的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#受限制的行为"><span class="nav-number">1.0.3.</span> <span class="nav-text">受限制的行为</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie跨域"><span class="nav-number">2.</span> <span class="nav-text">cookie跨域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iframe跨域"><span class="nav-number">3.</span> <span class="nav-text">iframe跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决办法"><span class="nav-number">3.1.</span> <span class="nav-text">解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document-domain属性，就可以规避同源策略来访问DOM。"><span class="nav-number">3.1.1.</span> <span class="nav-text">如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document.domain属性，就可以规避同源策略来访问DOM。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题"><span class="nav-number">3.1.2.</span> <span class="nav-text">对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#片段标识符"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">片段标识符</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设置window-name"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">设置window.name</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#跨文档通信API–postMessage"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">跨文档通信API–postMessage()</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax跨域"><span class="nav-number">4.</span> <span class="nav-text">Ajax跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP"><span class="nav-number">4.1.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WebSocket跨域"><span class="nav-number">4.2.</span> <span class="nav-text">WebSocket跨域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS跨域"><span class="nav-number">4.3.</span> <span class="nav-text">CORS跨域</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#同源策略"><span class="nav-number">1.</span> <span class="nav-text">同源策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同源包括三个相同"><span class="nav-number">1.1.</span> <span class="nav-text">同源包括三个相同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同源策略的目的"><span class="nav-number">1.2.</span> <span class="nav-text">同源策略的目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#受限制的行为"><span class="nav-number">1.3.</span> <span class="nav-text">受限制的行为</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie跨域"><span class="nav-number">2.</span> <span class="nav-text">cookie跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法"><span class="nav-number">2.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iframe跨域"><span class="nav-number">3.</span> <span class="nav-text">iframe跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法-1"><span class="nav-number">3.1.</span> <span class="nav-text">解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document-domain属性，就可以规避同源策略来访问DOM。"><span class="nav-number">3.1.1.</span> <span class="nav-text">如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document.domain属性，就可以规避同源策略来访问DOM。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题"><span class="nav-number">3.1.2.</span> <span class="nav-text">对于完全不同源的网站，目前有以下几种方法可以解决跨域窗口的通信问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#片段标识符"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">片段标识符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置window-name"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">设置window.name</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#跨文档通信API–postMessage"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">跨文档通信API–postMessage()</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax跨域"><span class="nav-number">4.</span> <span class="nav-text">Ajax跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP"><span class="nav-number">4.1.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket跨域"><span class="nav-number">4.2.</span> <span class="nav-text">WebSocket跨域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CORS跨域"><span class="nav-number">4.3.</span> <span class="nav-text">CORS跨域</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -818,12 +839,32 @@ Sec-WebSocket-Protocol: chat
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
         
       </div>
