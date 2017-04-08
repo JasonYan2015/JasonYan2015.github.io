@@ -1,51 +1,1241 @@
-extends base
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Ajun的前端学习笔记"><title> | Ajun</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Ajun</h1><a id="logo" href="/.">Ajun</a><p class="description">听说悟净已经植发治好了秃头，有了论及婚嫁的女友。</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"></h1><div class="post-meta">Apr 4, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h1 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h1><h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><ul>
+<li>用于绘画的 canvas 元素</li>
+<li>用于媒介回放的 video 和 audio 元素</li>
+<li>对本地离线存储的更好的支持</li>
+<li>新的特殊内容元素，比如 article、footer、header、nav、section</li>
+<li>新的表单控件，比如 calendar、date、time、email、url、search</li>
+</ul>
+<h2 id="video标签"><a href="#video标签" class="headerlink" title="video标签"></a>video标签</h2><pre><code>&lt;video width=&quot;320&quot; height=&quot;240&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot; loop=&quot;loop&quot;&gt;
+      &lt;source src=&quot;movie.ogg&quot; type=&quot;video/ogg&quot;&gt;
+      &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;
+</code></pre><ul>
+<li>width：定义播放器宽度</li>
+<li>height： 设置视频播放器的高度</li>
+<li>controls：如果出现该属性，则向用户显示控件，播放按钮，音量，进度条，下载按钮等</li>
+<li>autoplay： 如果出现该属性，则视频在就绪后马上播放。</li>
+<li>loop：如果出现该属性，则当媒介文件完成播放后再次开始播放</li>
+<li>preload：如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 “autoplay”，则忽略该属性</li>
+<li>src：要播放的视频的 URL，也可以像上例中写在source标签里</li>
+</ul>
+<p>video 元素允许多个 source 元素。source 元素可以链接不同的视频文件。浏览器将使用第一个可识别的格式。</p>
+<p><code>&lt;video&gt;</code> 与<code>&lt;/video&gt;</code> 之间插入的内容是供不支持 video 元素的浏览器显示的：</p>
+<h4 id="支持格式"><a href="#支持格式" class="headerlink" title="支持格式"></a>支持格式</h4><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>IE</th>
+<th>Firefox</th>
+<th>Opera</th>
+<th>Chrome</th>
+<th>Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ogg</td>
+<td>No</td>
+<td>3.5+</td>
+<td>10.5+</td>
+<td>5.0+</td>
+<td>No</td>
+</tr>
+<tr>
+<td>MPEG 4</td>
+<td>9.0+</td>
+<td>No</td>
+<td>No</td>
+<td>5.0+</td>
+<td>3.0+</td>
+</tr>
+<tr>
+<td>WebM</td>
+<td>No</td>
+<td>4.0+</td>
+<td>10.6+</td>
+<td>6.0+</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Ogg = 带有 Theora 视频编码和 Vorbis 音频编码的 Ogg 文件</li>
+<li>MPEG4 = 带有 H.264 视频编码和 AAC 音频编码的 MPEG 4 文件</li>
+<li>WebM = 带有 VP8 视频编码和 Vorbis 音频编码的 WebM 文件</li>
+</ul>
+<h4 id="方法，属性和事件"><a href="#方法，属性和事件" class="headerlink" title="方法，属性和事件"></a>方法，属性和事件</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>属性</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>play()</td>
+<td>currentSrc</td>
+<td>play</td>
+</tr>
+<tr>
+<td>pause()</td>
+<td>currentTime</td>
+<td>pause</td>
+</tr>
+<tr>
+<td>load()</td>
+<td>videoWidth</td>
+<td>progress</td>
+</tr>
+<tr>
+<td>canPlayType</td>
+<td>videoHeight</td>
+<td>error</td>
+</tr>
+<tr>
+<td></td>
+<td>duration</td>
+<td>timeupdate</td>
+</tr>
+<tr>
+<td></td>
+<td>ended</td>
+<td>ended</td>
+</tr>
+<tr>
+<td></td>
+<td>error</td>
+<td>abort</td>
+</tr>
+<tr>
+<td></td>
+<td>paused</td>
+<td>empty</td>
+</tr>
+<tr>
+<td></td>
+<td>muted</td>
+<td>emptied</td>
+</tr>
+<tr>
+<td></td>
+<td>seeking</td>
+<td>waiting</td>
+</tr>
+<tr>
+<td></td>
+<td>volume</td>
+<td>loadedmetadata</td>
+</tr>
+<tr>
+<td></td>
+<td>height</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>width</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>在所有属性中，只有 videoWidth 和 videoHeight 属性是立即可用的。在视频的元数据已加载后，其他属性才可用。</p>
+</blockquote>
+<h2 id="audio标签"><a href="#audio标签" class="headerlink" title="audio标签"></a>audio标签</h2><pre><code>&lt;audio src=&quot;song.ogg&quot; controls=&quot;controls&quot;&gt;
+    Your browser does not support the audio tag.
+&lt;/audio&gt;
+</code></pre><ul>
+<li>autoplay：如果出现该属性，则音频在就绪后马上播放。</li>
+<li>controls：如果出现该属性，则向用户显示控件，比如播放按钮。</li>
+<li>loop：如果出现该属性，则每当音频结束时重新开始播放。</li>
+<li>preload：如果出现该属性，则音频在页面加载时进行加载，并预备播放。如果使用 “autoplay”，则忽略该属性。</li>
+<li>src：要播放的音频的 URL。</li>
+</ul>
+<p>audio 元素允许多个 source 元素。source 元素可以链接不同的音频文件。浏览器将使用第一个可识别的格式。</p>
+<p><code>&lt;audio&gt;</code> 与 <code>&lt;/audio&gt;</code> 之间插入的内容是供不支持 audio 元素的浏览器显示的。</p>
+<h4 id="支持格式-1"><a href="#支持格式-1" class="headerlink" title="支持格式"></a>支持格式</h4><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>IE9</th>
+<th>Firefox3.5</th>
+<th>Opera10.5</th>
+<th>Chrome3.0</th>
+<th>Safari3.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ogg Vorbis</td>
+<td></td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>MP3</td>
+<td>YES</td>
+<td></td>
+<td></td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Wav</td>
+<td></td>
+<td>YES</td>
+<td>YES</td>
+<td></td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
+<h2 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h2><pre><code>&lt;canvas id=&quot;myCanvas&quot;&gt;&lt;/canvas&gt;
 
-block title
-  title= page.title + ' | ' + config.title
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var canvas=document.getElementById(&apos;myCanvas&apos;);
+    var ctx=canvas.getContext(&apos;2d&apos;);
+    ctx.fillStyle=&apos;#FF0000&apos;;
+    ctx.fillRect(0,0,80,100);
+&lt;/script&gt;
+</code></pre><h5 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><p>Internet Explorer 8 以及更早的版本不支持 <code>&lt;canvas&gt;</code>标签。其他浏览器不识别但是会使用衬线体来直接显示其内所有内容。</p>
+<h5 id="标签定义和用法"><a href="#标签定义和用法" class="headerlink" title="标签定义和用法"></a>标签定义和用法</h5><p><code>&lt;canvas&gt;</code> 标签定义图形，比如图表和其他图像。但是它只提供图形容器，必须使用javascript来绘制图形。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>height</td>
+<td>pixels</td>
+<td>设置 canvas 的高度。</td>
+</tr>
+<tr>
+<td>width</td>
+<td>pixels</td>
+<td>设置 canvas 的宽度。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="使用javascript绘制"><a href="#使用javascript绘制" class="headerlink" title="使用javascript绘制"></a>使用javascript绘制</h4><p><a href="http://www.w3school.com.cn/tags/html_ref_canvas.asp" target="_blank" rel="external">W3School参考链接</a></p>
+<h5 id="颜色、样式和阴影"><a href="#颜色、样式和阴影" class="headerlink" title="颜色、样式和阴影"></a>颜色、样式和阴影</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fillStyle</td>
+<td>设置或返回用于填充绘画的颜色、渐变或模式</td>
+</tr>
+<tr>
+<td>strokeStyle</td>
+<td>设置或返回用于笔触的颜色、渐变或模式</td>
+</tr>
+<tr>
+<td>shadowColor</td>
+<td>设置或返回用于阴影的颜色</td>
+</tr>
+<tr>
+<td>shadowBlur</td>
+<td>设置或返回用于阴影的模糊级别</td>
+</tr>
+<tr>
+<td>shadowOffsetX</td>
+<td>设置或返回阴影距形状的水平距离</td>
+</tr>
+<tr>
+<td>shadowOffsetY</td>
+<td>设置或返回阴影距形状的垂直距离</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>createLinearGradient()</td>
+<td>创建线性渐变（用在画布内容上）</td>
+</tr>
+<tr>
+<td>createPattern()</td>
+<td>在指定的方向上重复指定的元素</td>
+</tr>
+<tr>
+<td>createRadialGradient()</td>
+<td>创建放射状/环形的渐变（用在画布内容上）</td>
+</tr>
+<tr>
+<td>addColorStop()</td>
+<td>规定渐变对象中的颜色和停止位置</td>
+</tr>
+</tbody>
+</table>
+<h5 id="线条样式"><a href="#线条样式" class="headerlink" title="线条样式"></a>线条样式</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lineCap</td>
+<td>设置或返回线条的结束端点样式</td>
+</tr>
+<tr>
+<td>lineJoin</td>
+<td>设置或返回两条线相交时，所创建的拐角类型</td>
+</tr>
+<tr>
+<td>lineWidth</td>
+<td>设置或返回当前的线条宽度</td>
+</tr>
+<tr>
+<td>miterLimit</td>
+<td>设置或返回最大斜接长度</td>
+</tr>
+</tbody>
+</table>
+<h5 id="矩形"><a href="#矩形" class="headerlink" title="矩形"></a>矩形</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rect()</td>
+<td>创建矩形</td>
+</tr>
+<tr>
+<td>fillRect()</td>
+<td>绘制“被填充”的矩形</td>
+</tr>
+<tr>
+<td>strokeRect()</td>
+<td>绘制矩形（无填充）</td>
+</tr>
+<tr>
+<td>clearRect()</td>
+<td>在给定的矩形内清除指定的像素</td>
+</tr>
+</tbody>
+</table>
+<h5 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fill()</td>
+<td>填充当前绘图（路径）</td>
+</tr>
+<tr>
+<td>stroke()</td>
+<td>绘制已定义的路径</td>
+</tr>
+<tr>
+<td>beginPath()</td>
+<td>起始一条路径，或重置当前路径</td>
+</tr>
+<tr>
+<td>moveTo()</td>
+<td>把路径移动到画布中的指定点，不创建线条</td>
+</tr>
+<tr>
+<td>closePath()</td>
+<td>创建从当前点回到起始点的路径</td>
+</tr>
+<tr>
+<td>lineTo()</td>
+<td>添加一个新点，然后在画布中创建从该点到最后指定点的线条</td>
+</tr>
+<tr>
+<td>clip()</td>
+<td>从原始画布剪切任意形状和尺寸的区域</td>
+</tr>
+<tr>
+<td>quadraticCurveTo()</td>
+<td>创建二次贝塞尔曲线</td>
+</tr>
+<tr>
+<td>bezierCurveTo()</td>
+<td>创建三次方贝塞尔曲线</td>
+</tr>
+<tr>
+<td>arc()</td>
+<td>创建弧/曲线（用于创建圆形或部分圆）</td>
+</tr>
+<tr>
+<td>arcTo()</td>
+<td>创建两切线之间的弧/曲线</td>
+</tr>
+<tr>
+<td>isPointInPath()</td>
+<td>如果指定的点位于当前路径中，则返回 true，否则返回 false</td>
+</tr>
+</tbody>
+</table>
+<h5 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scale()</td>
+<td>缩放当前绘图至更大或更小</td>
+</tr>
+<tr>
+<td>rotate()</td>
+<td>旋转当前绘图</td>
+</tr>
+<tr>
+<td>translate()</td>
+<td>重新映射画布上的 (0,0) 位置</td>
+</tr>
+<tr>
+<td>transform()</td>
+<td>替换绘图的当前转换矩阵</td>
+</tr>
+<tr>
+<td>setTransform()</td>
+<td>将当前转换重置为单位矩阵。然后运行 transform()</td>
+</tr>
+</tbody>
+</table>
+<h5 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>font</td>
+<td>设置或返回文本内容的当前字体属性</td>
+</tr>
+<tr>
+<td>textAlign</td>
+<td>设置或返回文本内容的当前对齐方式</td>
+</tr>
+<tr>
+<td>textBaseline</td>
+<td>设置或返回在绘制文本时使用的当前文本基线</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fillText()</td>
+<td>在画布上绘制“被填充的”文本</td>
+</tr>
+<tr>
+<td>strokeText()</td>
+<td>在画布上绘制文本（无填充）</td>
+</tr>
+<tr>
+<td>measureText()</td>
+<td>返回包含指定文本宽度的对象</td>
+</tr>
+</tbody>
+</table>
+<h5 id="图像绘制"><a href="#图像绘制" class="headerlink" title="图像绘制"></a>图像绘制</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>drawImage()</td>
+<td>向画布上绘制图像、画布或视频</td>
+</tr>
+</tbody>
+</table>
+<h5 id="像素操作"><a href="#像素操作" class="headerlink" title="像素操作"></a>像素操作</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>返回 ImageData 对象的宽度</td>
+</tr>
+<tr>
+<td>height</td>
+<td>返回 ImageData 对象的高度</td>
+</tr>
+<tr>
+<td>data</td>
+<td>返回一个对象，其包含指定的 ImageData 对象的图像数据</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>createImageData()</td>
+<td>创建新的、空白的 ImageData 对象</td>
+</tr>
+<tr>
+<td>getImageData()</td>
+<td>返回 ImageData 对象，该对象为画布上指定的矩形复制像素数据</td>
+</tr>
+<tr>
+<td>putImageData()</td>
+<td>把图像数据（从指定的 ImageData 对象）放回画布上</td>
+</tr>
+</tbody>
+</table>
+<p>#####　合成</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>globalAlpha</td>
+<td>设置或返回绘图的当前 alpha 或透明值</td>
+</tr>
+<tr>
+<td>globalCompositeOperation</td>
+<td>设置或返回新图像如何绘制到已有的图像上</td>
+</tr>
+</tbody>
+</table>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>save()</td>
+<td>保存当前环境的状态</td>
+</tr>
+<tr>
+<td>restore()</td>
+<td>返回之前保存过的路径状态和属性</td>
+</tr>
+<tr>
+<td>createEvent()</td>
+<td></td>
+</tr>
+<tr>
+<td>getContext()</td>
+<td></td>
+</tr>
+<tr>
+<td>toDataURL()</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong><code>&lt;canvas&gt;</code> 标记和 SVG 以及 VML 之间的差异</strong><br><code>&lt;canvas&gt;</code>有一个基于 JavaScript 的绘图 API，而 SVG 和 VML 使用一个 XML 文档来描述绘图。<br>这两种方式在功能上是等同的，任何一种都可以用另一种来模拟。从表面上看，它们很不相同，可是，每一种都有强项和弱点。例如，SVG 绘图很容易编辑，只要从其描述中移除元素就行。<br>要从同一图形的一个 <code>&lt;canvas&gt;</code> 标记中移除元素，往往需要擦掉绘图重新绘制它。</p>
+</blockquote>
+<h2 id="拖放"><a href="#拖放" class="headerlink" title="拖放"></a>拖放</h2><pre><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+    #div1, #div2, #div3, #div4{
+        float:left; 
+        width:100px;
+        height:100px;
+        margin:10px;
+        padding:10px;
+        border:1px solid #aaaaaa;
+    }
+    *{
+        transition:all 0.5s;
+    }
+    #dragDiv{
+        background-color: #369;
+        width:100px;
+        height:100px;
+    }
+    #mouseLocation{
+        clear: both;
+        width: 265px;
+        margin-left: 10px;
+        text-align: center;
+    }
+    #crossDiv{
+        clear: both;
+        display: inline-block;
+        height: 200px;
+        width: 10px;
+        background-color: #333;
+    }
+    #dragElement{
+        float: left;
+        width: 120px;
+        height: 120px;
+        background-color: #369;
+        margin-left: -99999px;
+        opacity: 1;
+    }
+    #dragElement:click{
+        width: 150px;
+        height: 150px;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
 
-block content
-  .post
-    h1.post-title= page.title
-    .post-meta= page.date.format('ll')
-      if page.categories.length > 0
-        span= ' | '
-        span.category
-          for category in page.categories.toArray()
-            a(href=url_for(category.path))= category.name
-      if theme.busuanzi == true
-        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
-        span#busuanzi_container_page_pv= ' | '
-          span#busuanzi_value_page_pv
-          span= ' ' + __('Hits')
-    if theme.duoshuo
-      a.ds-thread-count(data-thread-key=page.path, href=url_for(page.path) + '#comments')
-    if theme.disqus
-      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
-    if page.toc
-      div(class='clear')
-        div(id='toc' class='toc-article')
-          div(class='toc-title')= __('contents')
-          != toc(page.content, {list_number: theme.toc_number})
-    .post-content
-      != page.content
-    if theme.shareto == true
-      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
-      a.article-share-link(data-url='#{page.permalink}', data-id='#{page._id}')= __('shareto')
-    include _partial/tag
-    include _partial/post_nav
-    if theme.duoshuo
-      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
-         .ds-share-inline
-            ul.ds-share-icons-16
-              li(data-toggle='ds-share-icons-more')
-                a(class='ds-more' href='javascript:void(0);') 分享到：
-              li
-                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
-              li
-                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
-              li
-                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
-              li
-                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
-            .ds-share-icons-more
-    include _partial/comments
+&lt;div id=&quot;div1&quot; ondrop=&quot;drop(event)&quot; ondragover=&quot;allowDrop(event)&quot; ondragleave=&quot;dragLeave(event)&quot;&gt;
+    &lt;div id=&quot;dragDiv&quot; draggable=&quot;true&quot; ondragstart=&quot;drag(event)&quot; ondrag=&quot;draging(event)&quot; &gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;div2&quot; ondrop=&quot;drop(event)&quot; ondragover=&quot;allowDrop(event)&quot; ondragleave=&quot;dragLeave(event)&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;mouseLocation&quot;&gt;X坐标：0，Y坐标：0&lt;/div&gt;
+&lt;div id=&quot;dragElement&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;div3&quot; ondrop=&quot;drop(event)&quot; ondragover=&quot;allowDrop(event)&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;div4&quot; ondrop=&quot;drop(event)&quot; ondragover=&quot;allowDrop(event)&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var mouseLocation = document.getElementById(&quot;mouseLocation&quot;);
+    var dragElement = document.getElementById(&quot;dragElement&quot;);
+
+    function draging(ev) {
+        mouseLocation.innerHTML = &quot;X坐标：&quot; + ev.clientX + &quot;，Y坐标：&quot; + ev.clientY;
+    }
+
+    function allowDrop(ev){
+        ev.preventDefault();
+        mouseLocation.style.backgroundColor = &quot;#333&quot;;
+        mouseLocation.style.color = &quot;#fff&quot;;
+        ev.dataTransfer.dropEffect = &quot;copy&quot;;
+    }
+
+    function dragLeave(ev) {
+        mouseLocation.style.backgroundColor = &quot;#fff&quot;;
+        mouseLocation.style.color = &quot;#000&quot;;
+    }
+
+    function drag(ev){
+        ev.dataTransfer.setData(&quot;Text&quot;,ev.target.id);
+        ev.dataTransfer.setDragImage(dragElement, 60, 60);
+        ev.dataTransfer.effectAllowed = &quot;copy&quot;;
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData(&quot;Text&quot;);
+        ev.target.appendChild(document.getElementById(data));
+    }
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>整个过程可解析为如下过程：</p>
+<ol>
+<li><p><strong>设置元素为可拖放</strong>——draggable 属性</p>
+<pre><code>`&lt;img draggable=&quot;true&quot; /&gt;`
+</code></pre></li>
+<li><p><strong>拖动什么</strong> ——ondragstart 和 setData()<br><br>在上面的例子中，ondragstart 属性调用了一个函数，drag(event)，它规定了被拖动的数据。dataTransfer.setData() 方法设置被拖数据的数据类型和值。</p>
+</li>
+</ol>
+<blockquote>
+<p><a href="http://www.tuicool.com/articles/j6Zbam" target="_blank" rel="external">参考链接</a></p>
+</blockquote>
+<pre><code>    function drag(ev) {
+        ev.dataTransfer.setData(&quot;Text&quot;,ev.target.id);
+    }
+
+在这个例子中，数据类型是 &quot;Text&quot;，值是可拖动元素的 id (&quot;drag1&quot;)。
+</code></pre><ol>
+<li><p><strong>拖动过程中</strong>——ondrag<br><br>拖动过程中，在被拖拉的节点上持续触发。</p>
+</li>
+<li><p><strong>放到何处</strong> ——ondragover和getData()<br><br>ondragover 事件规定在何处放置被拖动的数据。<br>默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式。<br>这要通过调用 ondragover 事件的 event.preventDefault() 方法。</p>
+<pre><code>event.preventDefault()
+</code></pre></li>
+<li><p><strong>进行放置</strong> ——ondrop<br><br>当放置被拖数据时，会发生 drop 事件。在上面的例子中，ondrop 属性调用了一个函数，drop(event)。</p>
+<pre><code>function drop(ev) {
+    ev.preventDefault();
+    var data=ev.dataTransfer.getData(&quot;Text&quot;);
+    ev.target.appendChild(document.getElementById(data));
+}
+</code></pre></li>
+</ol>
+<blockquote>
+<p>代码解释：</p>
+<ul>
+<li>调用 preventDefault() 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）</li>
+<li>通过 dataTransfer.getData(“Text”) 方法获得被拖的数据。该方法将返回在 setData() 方法中设置为相同类型的任何数据。</li>
+<li>被拖数据是被拖元素的 id (“drag1”)</li>
+<li>把被拖元素追加到放置元素（目标元素）中</li>
+</ul>
+</blockquote>
+<p>其他事件和方法：</p>
+<ul>
+<li><strong>dragend事件</strong>：<br>拖拉结束时（释放鼠标键或按下escape键）在被拖拉的节点上触发，该事件的target属性是被拖拉的节点。它与dragStart事件，在同一个节点上触发。不管拖拉是否跨窗口，或者中途被取消，dragend事件总是会触发的。</li>
+<li><strong>dragenter事件</strong>：拖拉进入当前节点时，在当前节点上触发，该事件的target属性是当前节点。通常应该在这个事件的监听函数中，指定是否允许在当前节点放下（drop）拖拉的数据。如果当前节点没有该事件的监听函数，或者监听函数不执行任何操作，就意味着不允许在当前节点放下数据。在视觉上显示拖拉进入当前节点，也是在这个事件的监听函数中设置。</li>
+<li><strong>dragover事件</strong>：拖拉到当前节点上方时，在当前节点上持续触发，该事件的target属性是当前节点。该事件与dragenter事件基本类似，默认会重置当前的拖拉事件的效果（DataTransfer对象的dropEffect属性）为none，即不允许放下被拖拉的节点，所以如果允许在当前节点drop数据，通常会使用preventDefault方法，取消重置拖拉效果为none。</li>
+<li><strong>event.dataTransfer.setDragImage(element,x,y)方法</strong>：设置拖放操作的自定义图标。其中element设置自定义图标，x设置图标与鼠标在水平方向上的距离，y设置图标与鼠标在垂直方向上的距离。</li>
+</ul>
+<p>####H5拖拽常用功能</p>
+<blockquote>
+<p>HTML5文件拖拽预览Demo</p>
+</blockquote>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+ &lt;head&gt; 
+  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt; 
+  &lt;title&gt;HTML5文件拖拽预览Demo&lt;/title&gt; 
+  &lt;style type=&quot;text/css&quot;&gt;
+      h1 {
+        padding: 0px;
+        margin: 0px;
+    }
+    div#show {
+        border: 1px solid #ccc;
+        width: 400px;
+        height: 300px;
+        display: -moz-box;
+        display: -webkit-box;
+        -moz-box-align: center;
+        -webkit-box-align: center;
+        -moz-box-pack: center;
+        -webkit-box-pack: center;
+        resize: both;
+        overflow: auto;
+    }
+    div[id^=show]:hover {
+        border: 1px solid #333;
+    }
+    div#main {
+        width: 100%;
+    }
+    div#successLabel {
+        color: Red;
+    }
+    div#content {
+        display: none;
+    }    
+&lt;/style&gt; 
+  &lt;script type=&quot;text/javascript&quot;&gt;
+      function init() {
+        var dest = document.getElementById(&quot;show&quot;);
+        dest.addEventListener(&quot;dragover&quot;,
+            function(ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+            },
+        false);
+        dest.addEventListener(&quot;dragend&quot;,
+            function(ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+            },
+        false);
+        dest.addEventListener(&quot;drop&quot;,
+            function(ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+                console.log(ev.dataTransfer) var file = ev.dataTransfer.files[0];
+                var reader = new FileReader();
+                if (file.type.substr(0, 5) == &quot;image&quot;) {
+                    reader.onload = function(event) {
+                        dest.style.background = &apos;url(&apos; + event.target.result + &apos;) no-repeat center&apos;;
+                        dest.innerHTML = &quot;&quot;;
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type.substr(0, 4) == &quot;text&quot;) {
+                    reader.readAsText(file);
+                    reader.onload = function(f) {
+                        dest.innerHTML = &quot;&lt;pre&gt;&quot; + this.result + &quot;&lt;/pre&gt;&quot;;
+                        dest.style.background = &quot;white&quot;;
+                    }
+                } else {
+                    dest.innerHTML = &quot;暂不支持此类文件的预览&quot;;
+                    dest.style.background = &quot;white&quot;;
+                }
+            },
+           false);
+    } 
+    //设置页面属性，不执行默认处理（拒绝被拖放）
+    // document.ondragover = function(e) {
+    //     e.preventDefault();
+    // };
+    // document.ondrop = function(e) {
+    //     e.preventDefault();
+    // }
+    // window.onload = init;
+
+  &lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt; 
+  &lt;h1&gt;HTML5文件拖拽预览Demo&lt;/h1&gt; 
+  &lt;div id=&quot;show&quot;&gt;
+    文件预览区，仅限图片和txt文件 
+  &lt;/div&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="Web存储"><a href="#Web存储" class="headerlink" title="Web存储"></a>Web存储</h2><p>HTML5 提供了两种在客户端存储数据的新方法：</p>
+<ul>
+<li>localStorage - 没有时间限制的数据存储</li>
+<li>sessionStorage - 针对一个 session 的数据存储</li>
+</ul>
+<p>之前，这些都是由 cookie 完成的。但是 cookie 不适合大量数据的存储，因为它们由每个对服务器的请求来传递，这使得 cookie 速度很慢而且效率也不高。</p>
+<p>在 HTML5 中，数据不是由每个服务器请求传递的，而是只有在请求时使用数据。它使在不影响网站性能的情况下存储大量数据成为可能。<br>对于不同的网站，数据存储于不同的区域，并且一个网站只能访问其自身的数据。<br>HTML5 使用 JavaScript 来存储和访问数据。</p>
+<h4 id="localStorage方法"><a href="#localStorage方法" class="headerlink" title="localStorage方法"></a>localStorage方法</h4><p>localStorage 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。</p>
+<p>这个例子创建并访问了 localStorage：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    localStorage.lastname=&quot;Smith&quot;;
+    document.write(localStorage.lastname);
+&lt;/script&gt;
+</code></pre><p>下面的例子对用户访问页面的次数进行计数：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    if (localStorage.pagecount) {
+          localStorage.pagecount=Number(localStorage.pagecount) +1;
+    }
+    else {
+         localStorage.pagecount=1;
+    }
+    document.write(&quot;Visits &quot;+ localStorage.pagecount + &quot; time(s).&quot;);
+&lt;/script&gt;
+</code></pre><h4 id="sessionStorage方法"><a href="#sessionStorage方法" class="headerlink" title="sessionStorage方法"></a>sessionStorage方法</h4><p>sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。</p>
+<p>创建并访问一个 sessionStorage：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    sessionStorage.lastname=&quot;Smith&quot;;
+    document.write(sessionStorage.lastname);
+&lt;/script&gt;
+</code></pre><p>应用——统计用户在当前 session 中访问页面的次数进行计数：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    if (sessionStorage.pagecount) {
+          sessionStorage.pagecount=Number(sessionStorage.pagecount) +1;
+    }
+    else {
+         sessionStorage.pagecount=1;
+    }
+    document.write(&quot;Visits &quot;+sessionStorage.pagecount+&quot; time(s) this session.&quot;);
+&lt;/script&gt;
+</code></pre><h2 id="H5标签"><a href="#H5标签" class="headerlink" title="H5标签"></a>H5标签</h2><h3 id="nav标签"><a href="#nav标签" class="headerlink" title="nav标签"></a>nav标签</h3><pre><code>&lt;nav&gt;
+    &lt;a href=&quot;index.asp&quot;&gt;Home&lt;/a&gt;
+    &lt;a href=&quot;html5_meter.asp&quot;&gt;Previous&lt;/a&gt;
+    &lt;a href=&quot;html5_noscript.asp&quot;&gt;Next&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre><h5 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;nav&gt;</code>定义导航链接的部分。</p>
+<blockquote>
+<p>如果文档中有“前后”按钮，则应该把它放到 <code>&lt;nav&gt;</code> 元素中。</p>
+</blockquote>
+<h3 id="section标签"><a href="#section标签" class="headerlink" title="section标签"></a>section标签</h3><pre><code>&lt;section&gt;
+  &lt;h1&gt;PRC&lt;/h1&gt;
+  &lt;p&gt;The People&apos;s Republic of China was born in 1949...&lt;/p&gt;
+&lt;/section&gt;
+</code></pre><h5 id="定义和用法-1"><a href="#定义和用法-1" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;section&gt;</code> 标签定义文档中的节（section、区段）。比如章节、页眉、页脚或文档中的其他部分。</p>
+<h3 id="header标签"><a href="#header标签" class="headerlink" title="header标签"></a>header标签</h3><pre><code>&lt;header&gt;
+    &lt;h1&gt;Welcome to my homepage&lt;/h1&gt;
+    &lt;p&gt;My name is Donald Duck&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;p&gt;The rest of my home page...&lt;/p&gt;
+</code></pre><h5 id="定义和用法-2"><a href="#定义和用法-2" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;header&gt;</code>定义 section 或 page 的页眉（介绍信息）。</p>
+<h3 id="footer标签"><a href="#footer标签" class="headerlink" title="footer标签"></a>footer标签</h3><pre><code>&lt;footer&gt;
+      &lt;p&gt;Posted by: Ajun&lt;/p&gt;
+      &lt;p&gt;Contact information: &lt;a href=&quot;mailto:774271383@qq.com&quot;&gt;774271383@qq.com&lt;/a&gt;.&lt;/p&gt;
+&lt;/footer&gt;
+</code></pre><h5 id="定义和用法-3"><a href="#定义和用法-3" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;footer&gt;</code> 标签定义文档或节的页脚。</p>
+<p>页脚通常包含文档的作者、版权信息、使用条款链接、联系信息等等。<br>一个文档中可以使用多个 <code>&lt;footer&gt;</code> 元素。</p>
+<blockquote>
+<p><code>&lt;footer&gt;</code> 元素内的联系信息应该位于 <code>&lt;address&gt;</code> 标签中。</p>
+</blockquote>
+<h3 id="output标签"><a href="#output标签" class="headerlink" title="output标签"></a>output标签</h3><pre><code>&lt;form oninput=&quot;x.value=parseInt(a.value)+parseInt(b.value)&quot;&gt;0
+       &lt;input type=&quot;range&quot; id=&quot;a&quot; value=&quot;50&quot;&gt;100+&lt;input type=&quot;number&quot; id=&quot;b&quot; value=&quot;50&quot;&gt;
+       =&lt;output name=&quot;x&quot; for=&quot;a b&quot;&gt;100&lt;/output&gt;
+&lt;/form&gt; 
+</code></pre><h5 id="定义和用法-4"><a href="#定义和用法-4" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;output&gt;</code>定义不同类型的输出，比如脚本的输出。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for</td>
+<td>element_id</td>
+<td>定义输出域相关的一个或多个元素。</td>
+</tr>
+<tr>
+<td>form</td>
+<td>form_id</td>
+<td>定义输入字段所属的一个或多个表单。</td>
+</tr>
+<tr>
+<td>name</td>
+<td>name</td>
+<td>定义对象的唯一名称。（表单提交时使用）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="progress标签"><a href="#progress标签" class="headerlink" title="progress标签"></a>progress标签</h3><pre><code>&lt;progress value=&quot;22&quot; max=&quot;100&quot;&gt;&lt;/progress&gt; 
+</code></pre><h5 id="浏览器支持-1"><a href="#浏览器支持-1" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><p>Internet Explorer 9 以及更早的版本不支持 <code>&lt;progress&gt;</code> 标签。</p>
+<h5 id="定义和用法-5"><a href="#定义和用法-5" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;progress&gt;</code> 标签标示任务的进度（进程）。</p>
+<blockquote>
+<p>结合<code>&lt;progress&gt;</code>标签与 JavaScript 一同使用，来显示任务的进度。<br>注意不适合用来表示度量衡（例如，磁盘空间使用情况或查询结果）。如需表示度量衡，请使用 <code>&lt;meter&gt;</code> 标签代替。</p>
+</blockquote>
+<h3 id="article标签"><a href="#article标签" class="headerlink" title="article标签"></a>article标签</h3><pre><code>&lt;article&gt;
+      &lt;h1&gt;Internet Explorer 9&lt;/h1&gt;
+      &lt;p&gt;Windows Internet Explorer 9（简称 IE9）于2011年3月14日发布。&lt;/p&gt;
+&lt;/article&gt;
+</code></pre><h5 id="定义和用法-6"><a href="#定义和用法-6" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;article&gt;</code> 标签规定独立的自包含内容。一篇文章应有其自身的意义，应该有可能独立于站点的其余部分对其进行分发。</p>
+<p><code>&lt;article&gt;</code> 元素的潜在来源：</p>
+<ul>
+<li>论坛帖子</li>
+<li>报纸文章</li>
+<li>博客条目</li>
+<li>用户评论</li>
+</ul>
+<h3 id="aside标签"><a href="#aside标签" class="headerlink" title="aside标签"></a>aside标签</h3><pre><code>&lt;p&gt;Me and my family visited The Epcot center this summer.&lt;/p&gt;
+&lt;aside&gt;
+    &lt;h4&gt;Epcot Center&lt;/h4&gt;
+    The Epcot Center is a theme park in Disney World, Florida.
+&lt;/aside&gt;
+</code></pre><h5 id="定义和用法-7"><a href="#定义和用法-7" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;aside&gt;</code>标签定义其所处内容之外的内容。aside的内容应该与附近的内容相关。</p>
+<h3 id="bdi标签"><a href="#bdi标签" class="headerlink" title="bdi标签"></a>bdi标签</h3><pre><code>&lt;ul&gt;
+    &lt;li&gt;Username &lt;bdi&gt;Bill&lt;/bdi&gt;:80 points&lt;/li&gt;
+    &lt;li&gt;Username &lt;bdi&gt;Steve&lt;/bdi&gt;: 78 points&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h5 id="定义和用法-8"><a href="#定义和用法-8" class="headerlink" title="定义和用法"></a>定义和用法</h5><p>bdi 指的是 bidi 隔离。</p>
+<p><code>&lt;bdi&gt;</code> 标签允许您设置一段文本，使其脱离其父元素的文本方向设置。在发布用户评论或其他您无法完全控制的内容时，该标签很有用。</p>
+<h3 id="command标签"><a href="#command标签" class="headerlink" title="command标签"></a>command标签</h3><pre><code>&lt;menu&gt;
+    &lt;command onclick=&quot;alert(&apos;Hello World&apos;)&quot;&gt;Click Me!&lt;/command&gt;
+&lt;/menu&gt;
+</code></pre><h5 id="浏览器支持-2"><a href="#浏览器支持-2" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><p>目前只有 Internet Explorer 支持 <code>&lt;command&gt;</code> 标签。(自己测试怎么IE也不行)</p>
+<h5 id="定义和用法-9"><a href="#定义和用法-9" class="headerlink" title="定义和用法"></a>定义和用法</h5><p>command 元素表示用户能够调用的命令。可以定义命令按钮，比如单选按钮、复选框或按钮。</p>
+<p>只有当 command 元素位于 menu 元素内时，该元素才是可见的。否则不会显示这个元素，但是可以用它规定键盘快捷键。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>checked</td>
+<td>checked</td>
+<td>定义是否被选中。仅用于 radio 或 checkbox 类型。</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>disabled</td>
+<td>定义 command 是否可用。</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>url</td>
+<td>定义作为 command 来显示的图像的 url。</td>
+</tr>
+<tr>
+<td>label</td>
+<td>text</td>
+<td>为 command 定义可见的 label。</td>
+</tr>
+<tr>
+<td>radiogroup</td>
+<td>groupname</td>
+<td>定义 command 所属的组名。仅在类型为 radio 时使用。</td>
+</tr>
+<tr>
+<td>type</td>
+<td>checkbox<br>command<br>radio</td>
+<td>定义该 command 的类型。默认是 “command”。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datalist标签"><a href="#datalist标签" class="headerlink" title="datalist标签"></a>datalist标签</h3><pre><code>&lt;input id=&quot;myCar&quot; list=&quot;cars&quot; /&gt;
+&lt;datalist id=&quot;cars&quot;&gt;
+  &lt;option value=&quot;BMW&quot;&gt;宝马&lt;/option&gt;
+  &lt;option value=&quot;Ford&quot;&gt;福特&lt;/option&gt;
+  &lt;option value=&quot;Volvo&quot;&gt;沃尔沃&lt;/option&gt;
+&lt;/datalist&gt;
+</code></pre><h5 id="定义和用法-10"><a href="#定义和用法-10" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;datalist&gt;</code>标签定义下拉选项列表。请与 input 元素配合使用该元素，来定义 input 可能的值。</p>
+<p>datalist 及其选项不会被显示出来，它仅仅是合法的输入值列表。</p>
+<blockquote>
+<ul>
+<li>请使用 input 元素的 list 属性来绑定 datalist。<ul>
+<li>注意value属性值为选项内容，option标签内为当前选项内容的注释。</li>
+<li>区别与select标签的区分，输入方式也有所不同。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="details标签"><a href="#details标签" class="headerlink" title="details标签"></a>details标签</h3><pre><code>&lt;details&gt;
+    &lt;summary&gt;Copyright 2011.&lt;/summary&gt;
+    &lt;p&gt;All pages and graphics on this web site are the property of W3School.&lt;/p&gt;
+&lt;/details&gt;
+</code></pre><blockquote>
+<p>与<code>&lt;summary&gt;</code>标签配合使用可以为details定义标题。标题是可见的，用户点击标题时，会显示出 details。若不定义summary则标题显示详细信息。</p>
+</blockquote>
+<h5 id="定义和用法-11"><a href="#定义和用法-11" class="headerlink" title="定义和用法"></a>定义和用法</h5><p>定义元素的细节，用于描述文档或文档某个部分的细节。</p>
+<h5 id="浏览器支持-3"><a href="#浏览器支持-3" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><p>目前只有 Chrome 支持 <code>&lt;details&gt;</code> 标签。其他浏览器不识别但是会使用衬线体来直接显示其内所有内容。</p>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><p>open属性，只有一个值“open”，定义 details 内的内容默认可见。</p>
+<h3 id="dialog标签"><a href="#dialog标签" class="headerlink" title="dialog标签"></a>dialog标签</h3><pre><code>&lt;table border=&quot;1&quot;&gt;
+&lt;tr&gt;
+  &lt;th&gt;一月 &lt;dialog open&gt;这是打开的对话窗口&lt;/dialog&gt;&lt;/th&gt;
+  &lt;th&gt;二月&lt;/th&gt;
+  &lt;th&gt;三月&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;31&lt;/td&gt;
+  &lt;td&gt;28&lt;/td&gt;
+  &lt;td&gt;31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre><h5 id="定义和用法-12"><a href="#定义和用法-12" class="headerlink" title="定义和用法"></a>定义和用法</h5><p>定义对话框或窗口。</p>
+<h5 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h5><p>open属性，只有一个值“open”，规定 dialog 元素是活动的，用户可与之交互。</p>
+<h5 id="浏览器支持-4"><a href="#浏览器支持-4" class="headerlink" title="浏览器支持"></a>浏览器支持</h5><p>目前只有 Chrome 和 Safari 6 支持 <dialog> 标签。</dialog></p>
+<h3 id="embed标签"><a href="#embed标签" class="headerlink" title="embed标签"></a>embed标签</h3><pre><code>&lt;embed src=&quot;helloworld.swf&quot; /&gt;
+</code></pre><h5 id="定义和用法-13"><a href="#定义和用法-13" class="headerlink" title="定义和用法"></a>定义和用法</h5><p>定义嵌入的内容，可以用来插入各种多媒体，格式可以是Swf、Midi、Wav、AIFF、AU、MP3等等。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>height</td>
+<td>pixels</td>
+<td>设置嵌入内容的高度。</td>
+</tr>
+<tr>
+<td>src</td>
+<td>url</td>
+<td>嵌入内容的 URL。</td>
+</tr>
+<tr>
+<td>type</td>
+<td>type</td>
+<td>定义嵌入内容的类型。</td>
+</tr>
+<tr>
+<td>width</td>
+<td>pixels</td>
+<td>设置嵌入内容的宽度。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="figure标签"><a href="#figure标签" class="headerlink" title="figure标签"></a>figure标签</h3><pre><code>&lt;figure&gt;
+  &lt;p&gt;黄浦江上的的卢浦大桥&lt;/p&gt;
+  &lt;img src=&quot;shanghai_lupu_bridge.jpg&quot; width=&quot;350&quot; height=&quot;234&quot; /&gt;
+&lt;/figure&gt;
+</code></pre><h5 id="定义和用法-14"><a href="#定义和用法-14" class="headerlink" title="定义和用法"></a>定义和用法</h5><p><code>&lt;figure&gt;</code> 标签规定独立的流内容（图像、图表、照片、代码等等）,定义媒介内容的分组，以及它们的标题。其内容应该与主内容相关，但如果被删除，则不应对文档流产生影响。</p>
+<blockquote>
+<p>使用 <code>&lt;figcaption&gt;</code> 元素为 figure 添加标题（caption）。</p>
+</blockquote>
+<h3 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h3><p>H5新增许多其属性，列表如下</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accept</td>
+<td>mime_type</td>
+<td>规定通过文件上传来提交的文件的类型。</td>
+</tr>
+<tr>
+<td>align</td>
+<td>left<br>right<br>top<br>middle<br>bottom</td>
+<td>不赞成使用。规定图像输入的对齐方式。</td>
+</tr>
+<tr>
+<td>alt</td>
+<td>text</td>
+<td>定义图像输入的替代文本。</td>
+</tr>
+<tr>
+<td>autocomplete</td>
+<td>on<br>off</td>
+<td>规定是否使用输入字段的自动完成功能。</td>
+</tr>
+<tr>
+<td>autofocus</td>
+<td>autofocus</td>
+<td>规定输入字段在页面加载时是否获得焦点。（不适用于 type=”hidden”）</td>
+</tr>
+<tr>
+<td>checked</td>
+<td>checked</td>
+<td>规定此 input 元素首次加载时应当被选中。</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>disabled</td>
+<td>当 input 元素加载时禁用此元素。</td>
+</tr>
+<tr>
+<td>form</td>
+<td>formname</td>
+<td>规定输入字段所属的一个或多个表单。</td>
+</tr>
+<tr>
+<td>formaction</td>
+<td>URL</td>
+<td>覆盖表单的 action 属性。（适用于 type=”submit” 和 type=”image”）</td>
+</tr>
+<tr>
+<td>formenctype</td>
+<td>见注释</td>
+<td>覆盖表单的 enctype 属性。（适用于 type=”submit” 和 type=”image”）</td>
+</tr>
+<tr>
+<td>formmethod</td>
+<td>get<br>post</td>
+<td>覆盖表单的 method 属性。（适用于 type=”submit” 和 type=”image”）</td>
+</tr>
+<tr>
+<td>formnovalidate</td>
+<td>formnovalidate</td>
+<td>覆盖表单的 novalidate 属性。如果使用该属性，则提交表单时不进行验证。</td>
+</tr>
+<tr>
+<td>formtarget</td>
+<td>_blank<br>_self<br>_parent<br>_top<br>framename</td>
+<td>覆盖表单的 target 属性。（适用于 type=”submit” 和 type=”image”）</td>
+</tr>
+<tr>
+<td>height</td>
+<td>pixels<br>%</td>
+<td>定义 input 字段的高度。（适用于 type=”image”）</td>
+</tr>
+<tr>
+<td>list</td>
+<td>datalist-id</td>
+<td>引用包含输入字段的预定义选项的 datalist 。</td>
+</tr>
+<tr>
+<td>max</td>
+<td>number<br>date</td>
+<td>规定输入字段的最大值。请与 “min” 属性配合使用，来创建合法值的范围。</td>
+</tr>
+<tr>
+<td>maxlength</td>
+<td>number</td>
+<td>规定输入字段中的字符的最大长度。</td>
+</tr>
+<tr>
+<td>min</td>
+<td>number<br>date</td>
+<td>规定输入字段的最小值。请与 “max” 属性配合使用，来创建合法值的范围。</td>
+</tr>
+<tr>
+<td>multiple</td>
+<td>multiple</td>
+<td>如果使用该属性，则允许一个以上的值。</td>
+</tr>
+<tr>
+<td>name</td>
+<td>field_name</td>
+<td>定义 input 元素的名称。</td>
+</tr>
+<tr>
+<td>pattern</td>
+<td>regexp_pattern</td>
+<td>规定输入字段的值的模式或格式。例如 pattern=”[0-9]” 表示输入值必须是 0 与 9 之间的数字。</td>
+</tr>
+<tr>
+<td>placeholder</td>
+<td>text</td>
+<td>规定帮助用户填写输入字段的提示。</td>
+</tr>
+<tr>
+<td>readonly</td>
+<td>readonly</td>
+<td>规定输入字段为只读。</td>
+</tr>
+<tr>
+<td>required</td>
+<td>required</td>
+<td>指示输入字段的值是必需的。</td>
+</tr>
+<tr>
+<td>size</td>
+<td>number_of_char</td>
+<td>定义输入字段的宽度。</td>
+</tr>
+<tr>
+<td>src</td>
+<td>URL</td>
+<td>定义以提交按钮形式显示的图像的 URL。</td>
+</tr>
+<tr>
+<td>step</td>
+<td>number</td>
+<td>规定输入字的的合法数字间隔。</td>
+</tr>
+<tr>
+<td>type</td>
+<td>button<br>checkbox<br>file<br>hidden<br>image<br>password<br>radio<br>reset<br>submit<br>text</td>
+<td>规定 input 元素的类型。</td>
+</tr>
+<tr>
+<td>value</td>
+<td>value</td>
+<td>规定 input 元素的值。</td>
+</tr>
+<tr>
+<td>width</td>
+<td>pixels<br>%</td>
+<td>定义 input 字段的宽度。（适用于 type=”image”）</td>
+</tr>
+</tbody>
+</table>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://jasonyan2015.github.io/2017/04/04/HTML5新特性笔记/" data-id="cj19bmrw9000230vz5kbmqkuc" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2017/04/04/iframe高度调整/" class="pre"></a><a href="/2017/04/04/js跨域问题/" class="next"></a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://jasonyan2015.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/CMD规范/">CMD规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/AMD规范/">AMD规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/自定义浏览器滚动条/">自定义浏览器滚动条</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/js隐式类型转换问题/">js隐式类型转换问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/iframe高度调整/">iframe高度调整</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/HTML5新特性笔记/">HTML5新特性笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/js跨域问题/">js跨域问题</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">Ajun.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

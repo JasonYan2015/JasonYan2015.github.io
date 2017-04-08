@@ -1,51 +1,56 @@
-extends base
-
-block title
-  title= page.title + ' | ' + config.title
-
-block content
-  .post
-    h1.post-title= page.title
-    .post-meta= page.date.format('ll')
-      if page.categories.length > 0
-        span= ' | '
-        span.category
-          for category in page.categories.toArray()
-            a(href=url_for(category.path))= category.name
-      if theme.busuanzi == true
-        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
-        span#busuanzi_container_page_pv= ' | '
-          span#busuanzi_value_page_pv
-          span= ' ' + __('Hits')
-    if theme.duoshuo
-      a.ds-thread-count(data-thread-key=page.path, href=url_for(page.path) + '#comments')
-    if theme.disqus
-      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
-    if page.toc
-      div(class='clear')
-        div(id='toc' class='toc-article')
-          div(class='toc-title')= __('contents')
-          != toc(page.content, {list_number: theme.toc_number})
-    .post-content
-      != page.content
-    if theme.shareto == true
-      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
-      a.article-share-link(data-url='#{page.permalink}', data-id='#{page._id}')= __('shareto')
-    include _partial/tag
-    include _partial/post_nav
-    if theme.duoshuo
-      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
-         .ds-share-inline
-            ul.ds-share-icons-16
-              li(data-toggle='ds-share-icons-more')
-                a(class='ds-more' href='javascript:void(0);') 分享到：
-              li
-                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
-              li
-                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
-              li
-                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
-              li
-                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
-            .ds-share-icons-more
-    include _partial/comments
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Ajun的前端学习笔记"><title> | Ajun</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Ajun</h1><a id="logo" href="/.">Ajun</a><p class="description">听说悟净已经植发治好了秃头，有了论及婚嫁的女友。</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"></h1><div class="post-meta">Apr 4, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><h5 id="腾讯笔试题"><a href="#腾讯笔试题" class="headerlink" title="腾讯笔试题"></a>腾讯笔试题</h5><p>顺便吐槽一句……</p>
+<p>腾讯考的选择题相对其他网易阿里360什么的要更专业前端一些，他们几个都更广泛考一些计算机组成，堆栈，二分什么乱七八糟的计算机基础知识，腾讯选择题全考的网络相关的，但是考的也太网络基础了…..交换机，IPV6相比IPV4的优点，UDP协议头，FTP协议…..咱们安安心心考个HTTP不好么…..</p>
+<h5 id="好了正式的"><a href="#好了正式的" class="headerlink" title="好了正式的"></a>好了正式的</h5><p>起因是在腾讯2017实习生笔试，选择题考了一道关于</p>
+<pre><code>if(0&lt;100&lt;0) console.log(&apos;0&lt;100&lt;0&apos;);
+if(0&lt;100&lt;(0+4)) console.log(&apos;0&lt;100&lt;(0+4)&apos;)
+</code></pre><h2 id="Js的隐式类型转换"><a href="#Js的隐式类型转换" class="headerlink" title="Js的隐式类型转换"></a>Js的隐式类型转换</h2><p>JS是弱类型编程语言，这点我一直印象深刻，因为刚学JS的时候发现声明变量不用乱七八糟的去动脑区分 <code>int</code>,<code>long int</code>,<code>short int</code>,<code>double</code>等等，只要一个<code>var</code>！没错！统统不要，只要一个<code>var</code>是不是hin贴心！！！</p>
+<p>但是弱类型也带来了一些副作用，比如在代码中存在一些隐式类型转换，可能会让输入输出结果与编程者的期望不太一样。就像这道考题。</p>
+<p>考完去chrome控制台验证了一下，输出结果应该是<code>0&lt;100&lt;(0+4)</code>，也就是说，<code>0&lt;100&lt;0+4</code>在if逻辑中判断为<code>true</code>。（神tm的判断……）</p>
+<p>这就是隐式类型转换存在的缘故。因为括号内容<code>(0+4)</code>的存在，导致了括号中的表达式参与的判断被隐式转换成了number类型，因此，<code>0&lt;100</code>正常逻辑判断为<code>true</code>后，判断<code>true&lt;(0+4)</code>时被转换成了<code>0&lt;(0+4)</code>，所以最后被判断为<code>true</code>。</p>
+<p>以下为控制台验证过程，’//‘后为返回结果</p>
+<pre><code>true &lt; 1                //false
+true &lt; 2                //true
+true - 1                //0
+true &lt; (0 + 0)            //false
+true &lt; (0 + 4)             //true
+true === (0 + 1)        //false
+true == (0 + 1)            //true
+true + 0 === (0 + 1)    //true
+</code></pre><p>P.S.今天做赛码的笔试题的时候学到一个零几年就有但现在基本没人用的跑马灯标签：<br><code>&lt;marquee&gt;</code></p>
+<p>其实我感觉功能还挺酷炫的。不仅可以移动文字，也可以移动图片，表格等。</p>
+<p>语法：<code>&lt;marquee direction=&quot;&quot; behavior=&quot;&quot; scrollamount=&quot;&quot; &gt;...&lt;/marquee&gt;</code>(在标记之间添加要进行滚动的内容)</p>
+<p>重要属性：</p>
+<ul>
+<li>滚动方向direction（包括4个值：up、 down、 left和 right）</li>
+<li>滚动方式behavior（scroll:循环滚动，默认效果； slide:只滚动一次就停止； alternate:来回交替进行滚动）</li>
+<li>滚动速度scrollamount（滚动速度是设置每次滚动时移动的长度，以像素为单位）</li>
+<li>滚动延迟scrolldelay（设置滚动的时间间隔，单位是毫秒）</li>
+<li>滚动循环loop（默认值是-1，滚动会不断的循环下去）</li>
+<li>滚动范围width、height</li>
+<li>滚动背景颜色bgcolor</li>
+<li>空白空间hspace、vspace</li>
+</ul>
+<p>例子跑起来</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;test&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;marquee direction=&quot;up&quot; scroll=&quot;alternate&quot; loop=&quot;-1&quot; scrollamount=&quot;10&quot;&gt;这是一个marquee标签，似乎是零几年就存在的一个标签，但是现在好像没听说过&lt;/marquee&gt;
+    &lt;marquee direction=&quot;left&quot; scroll=&quot;alternate&quot; loop=&quot;-1&quot; scrollamount=&quot;10&quot;&gt;&lt;img src=&quot;https://ss0.baidu.com/73t1bjeh1BF3odCf/it/u=156557612,1695936325&amp;fm=85&amp;s=695818D27C46B819D23D44D50300C062&quot;&gt;&lt;/marquee&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>那么问题来了，这么酷炫的标签为什么现在没人用了呢？</p>
+<p>因为他被W3C标准抛弃了！</p>
+<p>主要原因可以看一下参考链接。一句话就是：用归用，标准归标准。</p>
+<blockquote>
+<p>顺便插个嘴，这玩意儿浏览器支持还挺好的（毕竟那么早的标签了）</p>
+</blockquote>
+<p>参考链接：</p>
+<ul>
+<li><a href="http://www.chinablackhat.com/kf/201410/6610.html" target="_blank" rel="external">Marquee为什么不符合WEB标准？</a></li>
+<li><a href="http://www.cnblogs.com/zzuIvy/p/marqueeTest_1.html" target="_blank" rel="external">HTML标签marquee实现滚动效果</a></li>
+<li><a href="http://www.cnblogs.com/hustskyking/p/marquee-in-javascript.html" target="_blank" rel="external">一个不陌生的JS效果-marquee的代替实现方法</a></li>
+</ul>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://jasonyan2015.github.io/2017/04/04/js隐式类型转换问题/" data-id="cj19bmrwn000530vzrqonogje" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2017/04/04/自定义浏览器滚动条/" class="pre"></a><a href="/2017/04/04/iframe高度调整/" class="next"></a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://jasonyan2015.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/CMD规范/">CMD规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/AMD规范/">AMD规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/自定义浏览器滚动条/">自定义浏览器滚动条</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/js隐式类型转换问题/">js隐式类型转换问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/iframe高度调整/">iframe高度调整</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/HTML5新特性笔记/">HTML5新特性笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/04/js跨域问题/">js跨域问题</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">Ajun.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
