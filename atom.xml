@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jasonyan2015.github.io/"/>
-  <updated>2017-04-11T12:50:47.106Z</updated>
+  <updated>2017-04-11T12:52:27.081Z</updated>
   <id>https://jasonyan2015.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>前端安全：XSS和</title>
+    <title>前端安全：XSS和CSRF</title>
     <link href="https://jasonyan2015.github.io/2017/04/11/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"/>
     <id>https://jasonyan2015.github.io/2017/04/11/前端安全/</id>
     <published>2017-04-11T12:31:51.755Z</published>
-    <updated>2017-04-11T12:50:47.106Z</updated>
+    <updated>2017-04-11T12:52:27.081Z</updated>
     
     <content type="html"><![CDATA[<h2 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h2><p>XSS（cross-site scripting跨域脚本攻击）攻击是最常见的WEB攻击之一，其重点是“<strong>跨域</strong>”和“<strong>客户端执行</strong>”。</p>
 <p>XSS攻击分为三种</p>
@@ -152,6 +152,10 @@
     
     </summary>
     
+    
+      <category term="js" scheme="https://jasonyan2015.github.io/tags/js/"/>
+    
+      <category term="安全" scheme="https://jasonyan2015.github.io/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -2191,9 +2195,9 @@ Sec-WebSocket-Protocol: chat
     </summary>
     
     
-      <category term="浏览器" scheme="https://jasonyan2015.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    
       <category term="js" scheme="https://jasonyan2015.github.io/tags/js/"/>
+    
+      <category term="浏览器" scheme="https://jasonyan2015.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     
   </entry>
   
