@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jasonyan2015.github.io/"/>
-  <updated>2017-05-01T02:41:33.732Z</updated>
+  <updated>2017-05-01T03:13:49.800Z</updated>
   <id>https://jasonyan2015.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://jasonyan2015.github.io/2017/05/01/node%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E--pug/"/>
     <id>https://jasonyan2015.github.io/2017/05/01/node模板引擎--pug/</id>
     <published>2017-05-01T02:42:35.548Z</published>
-    <updated>2017-05-01T02:41:33.732Z</updated>
+    <updated>2017-05-01T03:13:49.800Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>最近发掘了一个个人项目，初上手Node构建web应用。之前大概学了学好久了也都忘了，这次趁着这个项目好好熟悉熟悉，练练手。首先从模板引擎开始吧。</p>
@@ -42,7 +42,7 @@
 <p>但是我觉得吧，因为<code>pug</code>的简洁语法，导致会有点上手难度，不像ejs，简直就是个<code>jsp</code>，一眼就看懂了，但是<code>pug</code>要是没专门学习过还真看不太懂，更别说自己写了。</p>
 <h2 id="jade语法"><a href="#jade语法" class="headerlink" title="jade语法"></a>jade语法</h2><p><strong>缩进</strong>，<strong>缩进</strong>，<strong>再缩进</strong></p>
 <blockquote>
-<p>我就笼统地总结一下吧，因为看了很多模板引擎地对比打算用<code>mustache</code>去了hhhhhhh</p>
+<p>就笼统地总结一下吧,详细可以看一下参考链接。</p>
 </blockquote>
 <ol>
 <li>不用尖括号，使用 <strong>缩进</strong></li>
@@ -71,9 +71,9 @@
     </summary>
     
     
-      <category term="node" scheme="https://jasonyan2015.github.io/tags/node/"/>
-    
       <category term="html" scheme="https://jasonyan2015.github.io/tags/html/"/>
+    
+      <category term="node" scheme="https://jasonyan2015.github.io/tags/node/"/>
     
       <category term="pug" scheme="https://jasonyan2015.github.io/tags/pug/"/>
     
