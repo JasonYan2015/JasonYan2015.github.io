@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jasonyan2015.github.io/"/>
-  <updated>2017-04-11T12:52:27.081Z</updated>
+  <updated>2017-05-01T02:41:33.732Z</updated>
   <id>https://jasonyan2015.github.io/</id>
   
   <author>
@@ -14,6 +14,842 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>node模板引擎——pug(jade)</title>
+    <link href="https://jasonyan2015.github.io/2017/05/01/node%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E--pug/"/>
+    <id>https://jasonyan2015.github.io/2017/05/01/node模板引擎--pug/</id>
+    <published>2017-05-01T02:42:35.548Z</published>
+    <updated>2017-05-01T02:41:33.732Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>最近发掘了一个个人项目，初上手Node构建web应用。之前大概学了学好久了也都忘了，这次趁着这个项目好好熟悉熟悉，练练手。首先从模板引擎开始吧。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>jade</code>和<code>pug</code>是一个东西，以前叫<code>jade</code>后来因为商标问题改名<code>pug</code>。</p>
+<h2 id="和ejs比较"><a href="#和ejs比较" class="headerlink" title="和ejs比较"></a>和ejs比较</h2><p>网上有流传过一个万行测试(当时还叫Jade)，让两者和另一个模板引擎，<code>Handlebars</code>解释万行html代码，最后的效率（花费时间）是</p>
+<p>Jade 287ms &gt; ejs 43ms &gt; Handlebars 28ms</p>
+<blockquote>
+<p>Jade 因为采用了类似 zen coding 的语法，比较新奇，但效率极其低下。</p>
+</blockquote>
+<p>但是，<code>pug</code>就其强制缩进而优雅简洁。<code>ejs</code>更传统，于是在大量数据代码结构下页面的结构容易显得混乱。</p>
+<p>另外看了知乎贺老的回答，发觉<code>pug</code>一个超棒的点</p>
+<blockquote>
+<p>换行处理，避免产生额外的空白节点</p>
+</blockquote>
+<p>不知道大家怎么想，反正我老是因为莫名其妙的空白节点困扰，尤其是css样式的时候，其实也知道怎么解决，比如根节点<code>font-size: 0</code>之类的，但是主要是容易和其他样式造成的莫名空隙搞混，不知道到底是哪个原因，就会多一步确认和调试步骤</p>
+<p>贺老还讲了很多，具体看文末的参考链接。</p>
+<p>但是我觉得吧，因为<code>pug</code>的简洁语法，导致会有点上手难度，不像ejs，简直就是个<code>jsp</code>，一眼就看懂了，但是<code>pug</code>要是没专门学习过还真看不太懂，更别说自己写了。</p>
+<h2 id="jade语法"><a href="#jade语法" class="headerlink" title="jade语法"></a>jade语法</h2><p><strong>缩进</strong>，<strong>缩进</strong>，<strong>再缩进</strong></p>
+<blockquote>
+<p>我就笼统地总结一下吧，因为看了很多模板引擎地对比打算用<code>mustache</code>去了hhhhhhh</p>
+</blockquote>
+<ol>
+<li>不用尖括号，使用 <strong>缩进</strong></li>
+<li>每个换行的第一个单词会被解释为一个标签(无论HTML有没有这个标签)</li>
+<li>标签的属性名使用括号包起来，并且属性之间用逗号间隔<code>(ATTRNAME1=ATTRVALUE1, ATTRNAME2=ATTRVALUE2)</code>。特别的，<code>id</code>和<code>class</code>可以用像<code>emmet</code>的语法: <code>TAGNAME#IDNAME.CLASSNAME</code>，然后再跟括号包裹其他属性</li>
+<li>使用<code>!{}</code> <code>#{}</code> <code>=</code> <code>!=</code>来渲染后台数据，其中，用<code>!</code>的这一系列可以解释后天数据中的尖括号标签，而其他会把尖括号当成字符串渲染，感觉也是安全考虑</li>
+<li>服务端代码用<code>-</code>开头，比如<code>if</code>判断和<code>for</code>循环等</li>
+<li>可以重用<code>jade</code>块(<code>Mixin</code>声明一个块，然后用<code>+BLOCKNAME()</code>调用)</li>
+<li>模板继承，<code>extends DIRNAME</code></li>
+</ol>
+<hr>
+<p>参考链接</p>
+<ul>
+<li><a href="http://cnodejs.org/topic/50e70edfa7e6c6171a1d70fa" target="_blank" rel="external">Web 模板 Jade、EJS、Handlebars 万行代码解释效率比较，Jade 完败</a></li>
+<li><a href="https://www.zhihu.com/question/20355486?sort=created" target="_blank" rel="external">【知乎】关于nodejs的模板引擎，如何选择 EJS 和 Jade?</a></li>
+<li><a href="http://cnodejs.org/topic/5368adc5cf738dd6090060f2" target="_blank" rel="external"> Jade 模板引擎使用</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近发掘了一个个人项目，初上手Node构建web应用。之前大概学了学好久了也都忘了，这次趁着这个项目好好熟悉熟悉，练练手。首先从模板引擎开始吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="node" scheme="https://jasonyan2015.github.io/tags/node/"/>
+    
+      <category term="html" scheme="https://jasonyan2015.github.io/tags/html/"/>
+    
+      <category term="pug" scheme="https://jasonyan2015.github.io/tags/pug/"/>
+    
+      <category term="模板引擎" scheme="https://jasonyan2015.github.io/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第一次面向对象，把对象Po出来吧</title>
+    <link href="https://jasonyan2015.github.io/2017/04/22/%E6%A8%A1%E6%8B%9Fselect/"/>
+    <id>https://jasonyan2015.github.io/2017/04/22/模拟select/</id>
+    <published>2017-04-22T08:33:38.801Z</published>
+    <updated>2017-04-22T08:33:10.199Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>面对select这种如此常见的需求，怎么能不写个通用组件呢</p>
+</blockquote>
+<a id="more"></a>
+<p>直接po源码，第一次面向对象，如有任何建议、意见，不胜感激！</p>
+<pre><code>function Select(options) {
+    this.DOMobj = document.querySelector(options.srcNode);
+    this.DOMselect = document.createElement(&apos;div&apos;);
+    this.DOMoptContainer = document.createElement(&apos;ul&apos;);
+    this.DOMoptions = {};
+
+    this.prototype = {
+        //默认样式
+        defaultStyle : {
+            &apos;select&apos;: {
+                &apos;position&apos;: &apos;relative&apos;,
+                &apos;display&apos;: &apos;inline-block&apos;,
+                &apos;width&apos;: &apos;200px&apos;,
+                &apos;height&apos;: &apos;32px&apos;,
+                &apos;line-height&apos;: &apos;32px&apos;,
+                &apos;background-color&apos;: &apos;#fff&apos;,
+                &apos;text-align&apos;: &apos;center&apos;,
+                &apos;box-shadow&apos;: &apos;0 0 1px #333&apos;,
+                &apos;cursor&apos;: &apos;pointer&apos;
+            },
+            &apos;optContainer&apos;: {
+                &apos;margin&apos;: &apos;0&apos;,
+                &apos;padding&apos;: &apos;0&apos;,
+                &apos;display&apos;: &apos;none&apos;,
+                &apos;list-style&apos;: &apos;none&apos;,
+                &apos;position&apos;: &apos;absolute&apos;,
+                &apos;z-index&apos;: &apos;9999&apos;,
+                &apos;width&apos;: &apos;200px&apos;,
+                &apos;background-color&apos;: &apos;#eee&apos;,
+                &apos;text-align&apos;: &apos;center&apos;,
+                &apos;box-shadow&apos;: &apos;0 0 1px #333&apos;
+            },
+            &apos;option&apos;: {
+                &apos;margin&apos;: &apos;0&apos;,
+                &apos;padding&apos;: &apos;0&apos;,
+                &apos;display&apos;: &apos;inline-block&apos;,
+                &apos;list-style&apos;: &apos;none&apos;,
+                &apos;width&apos;: &apos;200px&apos;,
+                &apos;height&apos;: &apos;32px&apos;,
+                &apos;line-height&apos;: &apos;32px&apos;,
+                &apos;background-color&apos;: &apos;#eee&apos;,
+                &apos;color&apos;: &apos;#369&apos;,
+                &apos;text-align&apos;: &apos;center&apos;,
+                &apos;cursor&apos;: &apos;pointer&apos;
+            },
+            &apos;option:hover&apos;: {
+                &apos;background-color&apos;: &apos;#2477fb&apos;,
+                &apos;color&apos;: &apos;#fff&apos;
+            }
+        },
+        //给下拉框添加上各选项，同时也作为选择内容框的点击事件
+        setOptions: (function() {
+            var flag = this.DOMselect.getAttribute(&apos;data-isOptionShown&apos;) === &apos;true&apos; ? true : false;
+            if(!this.DOMselect.getAttribute(&apos;data-isOptionShown&apos;)) {
+                this.DOMoptContainer.innerHTML = &apos;&apos;;
+                var elemLi = [];
+
+                for (var p in options.data) {
+                    if (options.data.hasOwnProperty(p)) {
+                        elemLi[p] = document.createElement(&apos;li&apos;);
+                        elemLi[p].setAttribute(&apos;data-value&apos;, p);
+                        elemLi[p].setAttribute(&apos;data-content&apos;, options.data[p]);
+                        elemLi[p].innerHTML = options.data[p];
+                        this.DOMoptContainer.appendChild(elemLi[p]);
+                        elemLi[p].addEventListener(&apos;click&apos;, this.prototype.handleSelect);
+                    }
+                }
+
+                this.DOMoptions = this.DOMoptContainer.getElementsByTagName(&apos;li&apos;);
+                this.DOMselect.setAttribute(&apos;data-isOptionShown&apos;, false);
+                this.DOMoptContainer.style.display = &apos;block&apos;;
+            } else if(!flag) {
+                this.DOMoptContainer.style.display = &apos;block&apos;;
+                this.DOMselect.setAttribute(&apos;data-isOptionShown&apos;, true);
+            } else if(flag) {
+                this.DOMoptContainer.style.display = &apos;none&apos;;
+                this.DOMselect.setAttribute(&apos;data-isOptionShown&apos;, false);
+            }
+        }).bind(this),
+        //每个选项的点击事件
+        handleSelect: (function(e) {
+            var ev = e || window.event;
+            var target = ev.target || ev.srcElement;
+
+            this.DOMselect.innerHTML = target.innerHTML;
+            this.DOMselect.setAttribute(&apos;data-value&apos;, target.getAttribute(&apos;data-value&apos;));
+            this.DOMselect.setAttribute(&apos;data-content&apos;, target.getAttribute(&apos;data-content&apos;));
+            this.DOMselect.setAttribute(&apos;data-isOptionShown&apos;, false);
+
+            this.DOMoptContainer.style.display = &apos;none&apos;;
+            if (options.onChange) {
+                options.onChange(this.DOMselect);
+            }
+        }).bind(this),
+        //更新样式入口
+        updateStyle: (function(str) {
+            var o = {};
+            if (str) {
+                for (var index in str) {
+                    o[index] = Object.assign({}, this.prototype.defaultStyle[index], str[index]);
+                }
+            }
+            o = Object.assign({}, this.prototype.defaultStyle, o);
+            this.prototype.setStyle(o);
+        }).bind(this),
+        //为组件内各个元素添加行内样式
+        setStyle: (function(s) {
+            for(var sKey in s) {
+                if(s.hasOwnProperty(sKey)) {
+                    var str = &apos;&apos;;
+                    switch (sKey) {
+                    case &apos;root&apos;: {
+                        Object.assign(this.DOMobj.style, s[sKey]);
+                        break;
+                    }
+                    case &apos;select&apos;: {
+                        Object.assign(this.DOMselect.style, s[sKey]);
+                        break;
+                    }
+                    case &apos;optContainer&apos;: {
+                        Object.assign(this.DOMoptContainer.style, s[sKey]);
+                        break;
+                    }
+                    case &apos;option&apos;: {
+                        for (var i = 0; i &lt; this.DOMoptions.length; i++) {
+                            Object.assign(this.DOMoptions[i].style, s[sKey]);
+                        }
+                        break;
+                    }
+                    case &apos;option:hover&apos;: {
+                        var self = this;
+                        for (var j = 0; j &lt; this.DOMoptions.length; j++) {
+                            this.DOMoptions[j].onmouseover = function(event) {
+                                var obj = Object.assign({}, self.prototype.defaultStyle.option, self.prototype.defaultStyle[&apos;option:hover&apos;], options.style ? Object.assign({}, options.style[&apos;option&apos;], options.style[&apos;option:hover&apos;]) : null);
+                                Object.assign(event.target.style, obj);
+                            };
+                            this.DOMoptions[j].onmouseout = function(event) {
+                                var obj = Object.assign({}, self.prototype.defaultStyle.option, options.style ? options.style.option : null);
+                                Object.assign(event.target.style, obj);
+                            };
+                        }
+                        break;
+                    }
+                    }
+                }
+            }
+        }).bind(this),
+        //鼠标离开选项区选项消失，mouseleave事件
+        loseFocus: (function(event) {
+            var ev = event || window.event;
+            var target = ev.target || ev.srcElement;
+            ev.stopPropagation();
+            target.style.display = &apos;none&apos;;
+
+            this.DOMselect.setAttribute(&apos;data-isOptionShown&apos;, false);
+        }).bind(this)
+    };
+
+    //整个组件初始化
+    this.init = function() {
+        //清空并添加空元素div和ul
+        this.DOMobj.innerHTML = &apos;&apos;;
+        this.DOMobj.appendChild(this.DOMselect);
+        this.DOMobj.appendChild(this.DOMoptContainer);
+
+        //div作为选择内容框，添加点击事件
+        var self = this;
+        this.DOMselect.addEventListener(&apos;click&apos;, function(){self.prototype.setOptions(options.data);}, true);
+        this.DOMoptContainer.addEventListener(&apos;mouseleave&apos;, self.prototype.loseFocus);
+        //设置默认选中项
+        this.DOMselect.setAttribute(&apos;data-value&apos;, options.chosen[0]);
+        this.DOMselect.setAttribute(&apos;data-content&apos;, options.chosen[1]);
+        this.DOMselect.innerHTML = options.chosen[1];
+
+        this.prototype.setOptions(options.data);
+        this.prototype.updateStyle(options.style);
+    };
+
+    this.init();
+}
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;面对select这种如此常见的需求，怎么能不写个通用组件呢&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="模块化" scheme="https://jasonyan2015.github.io/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
+    
+      <category term="js" scheme="https://jasonyan2015.github.io/tags/js/"/>
+    
+      <category term="面向对象" scheme="https://jasonyan2015.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jQuery源码剖析·第一弹</title>
+    <link href="https://jasonyan2015.github.io/2017/04/22/jQuery%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E7%AC%AC%E4%B8%80%E5%BC%B9/"/>
+    <id>https://jasonyan2015.github.io/2017/04/22/jQuery源码分析第一弹/</id>
+    <published>2017-04-22T08:24:45.697Z</published>
+    <updated>2017-04-22T08:26:51.484Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>神库jQuery的内心世界</p>
+<p>选用1.9.0版本jQuery</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><strong>沙箱封装</strong></li>
+<li><strong>core工具方法</strong>：jquery的核心组成部分，包括<ul>
+<li>$.trim()去除字符串两端的空格。（内部调用7次）</li>
+<li>$.each()遍历数组或对象（内部调用59次）</li>
+<li>$.inArray()返回一个值在数组中的索引位置。如果该值不在数组中，则返回-1。（内部调用9次）</li>
+<li>$.grep()返回数组中符合某种标准的元素。（内部调用6次）</li>
+<li>$.merge()合并两个数组。（内部调用11次）</li>
+<li>$.map()将一个数组中的元素转换到另一个数组中。（内部调用12次）</li>
+<li>$.makeArray()将对象转化为数组。（内部调用6次）</li>
+<li>$.globalEval() 在全局作用域下执行一段js脚本。（内部调用2次）</li>
+<li>$.proxy()接受一个函数，然后返回一个新函数，并且这个新函数始终保持了特定的上下文(context)语境。（内部调用0次）</li>
+<li>$.nodeName()返回DOM节点的节点名字，或者判断DOM节点名是否为某某名字。（内部调用51次）</li>
+<li>$.extend()将多个对象，合并到第一个对象。（内部调用42次）</li>
+</ul>
+</li>
+<li><strong>$.type类型判断</strong>：判断对象的类别（函数对象、日期对象、数组对象、正则对象等等（内部调用65次）,并以调用此方法来实现：<ul>
+<li>$.isArray()判断某个参数是否为数组。（内部调用12次）</li>
+<li>$.isEmptyObject()判断某个对象是否为空（不含有任何属性）。（内部调用4次）</li>
+<li>$.isFunction()判断某个参数是否为函数。（内部调用32次）</li>
+<li>$.isPlainObject()判断某个参数是否为用”{}”或”new Object”建立的对象。（内部调用4次）</li>
+<li>$.isWindow()判断是否为window对象。（内部调用6次）</li>
+</ul>
+</li>
+<li><strong>处理ajax返回数据</strong>：主要包括<ul>
+<li>$.parseHTML() 解析HTML（内部调用2次）</li>
+<li>$.parseJSON() 解析JSON（内部调用2次）</li>
+<li>$.parseXML() 解析XML（内部调用1次）</li>
+</ul>
+</li>
+<li><strong>几个简单的函数</strong>：不在之后的文章中分析<ul>
+<li>$.noop() 一个空函数，个人觉得是用来作为一个默认的回调函数，无需每次去定义一个空的function消耗资源。（内部调用2次）</li>
+<li>$.now() 获取当前时间戳，代码很简单：return (new Date()).getTime();。（内部调用4次）</li>
+<li>$.error() 报错，对外抛出一个异常，代码很简单：throw new Error(msg);。（内部调用2次）</li>
+</ul>
+</li>
+</ol>
+<h2 id="沙箱封装"><a href="#沙箱封装" class="headerlink" title="沙箱封装"></a>沙箱封装</h2><pre><code>(function( window, undefined ) {
+     //用一个函数域把整个库包起来，就是所谓的沙箱
+     //在这里边var定义的变量，属于这个函数域内的局部变量，避免污染全局
+     //把当前沙箱需要的外部变量通过函数参数引入进来
+     //只要保证参数对内提供的接口的一致性，你还可以随意替换传进来的这个参数
+    &quot;use strict&quot;;
+    window.jQuery = window.$ = jQuery;
+})( window );
+</code></pre><p>至于为什么第二个参数<code>undefined</code>，这是一个针对压缩的小trick，同时也是为了防止因ES5之前能对<code>undefined</code>赋值而使用者编程不规范引发错误。</p>
+<p>压缩前</p>
+<pre><code>(function( window, undefined ) {
+  var a = undefined;
+  if (a == undefined){......}
+
+  ......
+  if (c == undefined) return;
+})( window );
+</code></pre><p>压缩后</p>
+<pre><code>(function(w, u) {
+  var a = u;
+  if (a == u){......}
+
+  ......
+  if (c == u) return;
+})(w);
+</code></pre><p>内部全局的<code>undefined</code>被缩成一个<code>u</code>，缩小了整个库的压缩包的体积。</p>
+<h2 id="core工具方法"><a href="#core工具方法" class="headerlink" title="core工具方法"></a>core工具方法</h2><h3 id="引用类型公有方法的存储"><a href="#引用类型公有方法的存储" class="headerlink" title="引用类型公有方法的存储"></a>引用类型公有方法的存储</h3><h4 id="源码："><a href="#源码：" class="headerlink" title="源码："></a>源码：</h4><pre><code>class2type = {},
+core_deletedIds = [],
+core_version = &quot;1.9.0&quot;,
+
+// Save a reference to some core methods
+core_concat = core_deletedIds.concat,
+core_push = core_deletedIds.push,
+core_slice = core_deletedIds.slice,
+core_indexOf = core_deletedIds.indexOf,
+core_toString = class2type.toString,
+core_hasOwn = class2type.hasOwnProperty,
+core_trim = core_version.trim,
+</code></pre><h4 id="等同于："><a href="#等同于：" class="headerlink" title="等同于："></a>等同于：</h4><pre><code>core_concat = Array.prototype.concat, 
+......
+</code></pre><h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><p>这里把js的几个引用类型的原生方法存储下来。本身这些方法的调用方式就有这3种：</p>
+<pre><code>var arr = [];
+
+1. arr.concat();
+2. core_concat.call(arr);
+3. core_concat.apply(arr);
+</code></pre><p>这里就有两个问题</p>
+<ol>
+<li>jQuery为什么要先把这些方法存储起来？</li>
+<li>jQuery为什么要采用方式二或者三，而不直接使用方式一的做法？ </li>
+</ol>
+<p>其实第二个问题就回答了第一个问题。<br>而关于第二个问题有两个回答：</p>
+<ol>
+<li>按第一种方式调用时，首先需要辨别当前实例<code>arr</code>的类型是<code>Array</code>，在内存空间中寻找<code>Array</code>的<code>concat</code>内存入口，把当前对象<code>arr</code>的指针和其他参数压入栈，跳转到<code>concat</code>地址开始执行。而当保存了<code>concat</code>方法的入口<code>core_concat</code>时，完全就可以省去前面两个步骤，从而提升一些性能。</li>
+<li><code>var obj = {};</code>此时调用<code>obj.concat</code>会报错。但是如果采用后两种方式调用的话，能够解决这个问题。 也即是让类数组也能用到数组的方法（这就是<code>call</code>跟<code>apply</code>带来的另一种用法），尤其在jQuery里边引用一些DOM对象时，也能完美的用这个方法去解决。</li>
+</ol>
+<h3 id="trim"><a href="#trim" class="headerlink" title="$.trim()"></a>$.trim()</h3><h4 id="源码：-1"><a href="#源码：-1" class="headerlink" title="源码："></a>源码：</h4><pre><code>core_version = &quot;1.9.0&quot;,
+core_trim = core_version.trim,
+rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
+
+trim: core_trim &amp;&amp; !core_trim.call(&quot;\uFEFF\xA0&quot;) ?
+  function( text ) {
+    return text == null ?
+      &quot;&quot; :
+      core_trim.call( text );
+  } :
+
+  // Otherwise use our own trimming functionality
+  function( text ) {
+    return text == null ?
+      &quot;&quot; :
+      ( text + &quot;&quot; ).replace( rtrim, &quot;&quot; );
+  }
+</code></pre><h4 id="等同于：-1"><a href="#等同于：-1" class="headerlink" title="等同于："></a>等同于：</h4><pre><code>trim: if (String.prototype.trim &amp;&amp; &quot;\uFEFF\xA0&quot;.trim() !== &quot;&quot;) {
+    //直接调用原生String的trim方法
+} else {
+    //使用正则表达式和replace方法替换前尾的空格
+}
+</code></pre><h4 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h4><p>如果浏览器原生支持<code>String</code>的<code>trim</code>方法，并且能够解析全角空格，那么就直接使用原生的<code>trim</code>方法</p>
+<blockquote>
+<p><code>\uFEFF</code>是utf8的字节序标记，<code>\xA0</code>是全角空格</p>
+</blockquote>
+<p>如果以上条件成立，那就直接用原生的trim函数:</p>
+<pre><code>$.trim = function( text ) {
+    return text == null ?
+        &quot;&quot; :
+        text.trim();
+}
+</code></pre><p>如果上述条件不成立，那就自己实现一个<code>trim</code>方法：</p>
+<pre><code>$.trim = function( text ) {
+    return text == null ?
+        &quot;&quot; :
+        ( text + &quot;&quot; ).replace( rtrim, &quot;&quot; );
+}
+</code></pre><h3 id="each"><a href="#each" class="headerlink" title="$.each()"></a>$.each()</h3><h4 id="源码：-2"><a href="#源码：-2" class="headerlink" title="源码："></a>源码：</h4><pre><code>$.each = function( obj, callback, args ) {
+  //obj 是需要遍历的数组或者对象
+  //callback是处理数组或对象的每个元素的回调函数，它的返回值实际会中断循环的过程
+
+  var value,
+    i = 0,
+    length = obj.length,
+    //判断是不是数组
+    isArray = isArraylike( obj );
+
+  if ( args ) {
+    if ( isArray ) {
+      for ( ; i &lt; length; i++ ) {
+        value = callback.apply( obj[ i ], args );
+        //相当于: args = [arg1, arg2, arg3];
+        //callback(args1, args2, args3)。然后callback里边的this指向了obj[i]
+
+        if ( value === false ) {
+          //注意到，当callback函数返回值会false的时候，注意是全等！循环结束
+          break;
+        }
+      }
+    } else {
+      for ( i in obj ) {
+        value = callback.apply( obj[ i ], args );
+
+        if ( value === false ) {
+          break;
+        }
+      }
+    }
+
+  // A special, fast, case for the most common use of each
+  } else {
+    if ( isArray ) {
+      for ( ; i &lt; length; i++ ) {
+        value = callback.call( obj[ i ], i, obj[ i ] );
+        //相当于callback(i, obj[i])。然后callback里边的this指向了obj[i]
+
+        if ( value === false ) {
+            break;
+          }
+        }
+      } else {
+        for ( i in obj ) {
+          value = callback.call( obj[ i ], i, obj[ i ] );
+
+          if ( value === false ) {
+            break;
+          }
+        }
+      }
+    }
+
+  return obj;
+}
+</code></pre><h4 id="等同于：-2"><a href="#等同于：-2" class="headerlink" title="等同于："></a>等同于：</h4><pre><code>//for in对于数组来说性能比较低而且存在某些bug
+//这里只是希望用更简洁的代码来减少原先代码的重复性
+$.each = function( obj, callback, args ) {
+  var value,
+    i = 0,
+    length = obj.length;
+
+  for ( i in obj ) {
+    value =
+      args ?
+      callback.apply( obj[ i ], args ) :
+      callback.call( obj[ i ], i, obj[ i ] );
+
+    if ( value === false ) {
+      break;
+    }
+  }
+  return obj;
+}
+</code></pre><h4 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h4><p>看这两个例子</p>
+<pre><code>$.each([1,2,3], function(key, value){
+  console.log(&quot;[&quot; + key + &quot;]=&quot; + value);
+  return false;
+});
+//输出：
+[0]=1
+//原数组结果：
+[1,2,3]
+</code></pre><p><code>$.each()</code>接受2个参数， 数组[1,2,3],回调函数<br>可以看到回调函数具有两个参数，<code>key</code>是数组的索引，<code>value</code>是对应的元素</p>
+<pre><code>$.each([1,2,3], function(arg1, arg2){
+  console.log(this + &quot;,&quot; + arg1 + &quot;,&quot; + arg2);
+  return ;
+}, [4, 5]);
+//输出：
+1,4,5
+2,4,5
+3,4,5
+//原数组结果：
+[1,2,3]
+</code></pre><p><code>$.each()</code>接受3个参数， 数组[1,2,3],回调函数，一个额外的参数数组<code>args</code>=[4,5]<br>可以看到回调函数的两个参数就是<code>$.each()</code>的第三个参数<code>args</code>，在函数里边的<code>this</code>就是遍历元素自己</p>
+<p>对比上述二者也可以看到，当回调函数<code>return false</code>后就跳出循环，遍历不再执行</p>
+<h3 id="inArray"><a href="#inArray" class="headerlink" title="$.inArray()"></a>$.inArray()</h3><h4 id="源码：-3"><a href="#源码：-3" class="headerlink" title="源码："></a>源码：</h4><pre><code>core_deletedIds = [],
+core_indexOf = core_deletedIds.indexOf,
+
+//elem 规定需检索的值。
+//arr 数组
+//i 可选的整数参数。规定在数组中开始检索的位置。它的合法取值是 0 到 arr.length - 1。如省略该参数，则将从数组首元素开始检索。
+inArray: function( elem, arr, i ) {
+  var len;
+
+  if ( arr ) {
+    //原生的Array对象支持indexOf方法，直接调用
+    if ( core_indexOf ) {
+      return core_indexOf.call( arr, elem, i );
+    }
+
+    len = arr.length;
+    i = i ? i &lt; 0 ? Math.max( 0, len + i ) : i : 0;
+
+    for ( ; i &lt; len; i++ ) {
+      if ( i in arr &amp;&amp; arr[ i ] === elem ) {
+        return i;
+      }
+    }
+  }
+
+  //全部都不符合，返回-1
+  return -1;
+},
+</code></pre><h4 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h4><pre><code>i = i ? i &lt; 0 ? Math.max( 0, len + i ) : i : 0;
+</code></pre><p>当i为负数时，从数组后边len+i的位置开始索引</p>
+<pre><code>for ( ; i &lt; len; i++ ) {
+    if ( i in arr &amp;&amp; arr[ i ] === elem ) {
+    return i;
+    }
+}
+</code></pre><p>这里的<code>(i in arr)</code>判断是为了跳过稀疏数组中的元素<br>例如 <code>var arr = []; arr[2] = 1;</code><br>此时 <code>arr == [undefined, undefined, 1]</code><br>结果是 =&gt; </p>
+<ul>
+<li><code>(0 in arr == false)</code> </li>
+<li><code>(1 in arr == false)</code> </li>
+<li><code>(2 in arr == true)</code></li>
+</ul>
+<p>另外（在火狐下）测试得：</p>
+<pre><code>var arr = [undefined, 1]; 
+</code></pre><p>输出是： </p>
+<pre><code>arr == [undefined, 1] 
+0 in arr == true; 
+arr.indexOf(undefined) == 0; 
+arr[0] == undefined; 
+</code></pre><p>但是如果是以下代码： </p>
+<pre><code>var arr = []; 
+a[1] = 1; 
+</code></pre><p>输出是： </p>
+<pre><code>arr == [undefined, 1] 
+0 in arr == false; 
+arr.indexOf(undefined) == -1; 
+arr[0] == undefined;
+</code></pre><p>所以<code>(i in arr)</code>也是必要的。</p>
+<h3 id="grep"><a href="#grep" class="headerlink" title="$.grep()"></a>$.grep()</h3><h4 id="源码：-4"><a href="#源码：-4" class="headerlink" title="源码："></a>源码：</h4><pre><code>grep: function( elems, callback, inv ) {
+    var retVal,
+    ret = [],
+    i = 0,
+    length = elems.length;
+    //转成布尔型
+    inv = !!inv;
+
+    // Go through the array, only saving the items that pass the validator function
+    for ( ; i &lt; length; i++ ) {
+        retVal = !!callback( elems[ i ], i );
+        //注意这里的callback参数是先value,后key
+        if ( inv !== retVal ) {
+            ret.push( elems[ i ] );
+        }
+    }
+
+    return ret;
+}
+</code></pre><p>用例：</p>
+<pre><code>$.grep( [0,1,2], function(n,i){
+  return n &lt;= 0;
+});
+//结果是：[0] 
+
+$.grep( [0,1,2], function(n,i){
+  return n &lt;= 0;
+}, true);
+//结果是：[1, 2]
+</code></pre><hr>
+<p>参考链接</p>
+<ul>
+<li><a href="https://www.w3ctech.com/topic/256" target="_blank" rel="external">jQuery源码剖析（一）——概览&amp;工具方法</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;神库jQuery的内心世界&lt;/p&gt;
+&lt;p&gt;选用1.9.0版本jQuery&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="https://jasonyan2015.github.io/tags/js/"/>
+    
+      <category term="jquery" scheme="https://jasonyan2015.github.io/tags/jquery/"/>
+    
+      <category term="源码分析" scheme="https://jasonyan2015.github.io/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新时代使用react框架的环境搭建</title>
+    <link href="https://jasonyan2015.github.io/2017/04/22/webpack+es6+react+babel%E7%83%AD%E6%9B%B4%E6%96%B0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>https://jasonyan2015.github.io/2017/04/22/webpack+es6+react+babel热更新环境搭建/</id>
+    <published>2017-04-22T07:50:08.680Z</published>
+    <updated>2017-04-22T08:23:16.849Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>作为一名2016年成长起来的前端，怎么能不会react，不会babel，不会es6，不会webpack…..呢</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><p>创建一个目录，就不用说了。这里先取名为<code>root</code>。</p>
+<h3 id="创建项目配置文件package-json"><a href="#创建项目配置文件package-json" class="headerlink" title="创建项目配置文件package.json"></a>创建项目配置文件<code>package.json</code></h3><pre><code>npm init
+</code></pre><p>填写相关问题，即可在<code>root</code>根目录创建<code>package.json</code>文件。</p>
+<blockquote>
+<p>注意，其中的package name不能与<code>npm</code>的包同名，否则<code>npm install</code>的时候会出错，安装不上。另外，创建该配置文件后，后续<code>npm install</code>的包都会在安装完成后自动加入<code>package.json</code>的字段中。</p>
+</blockquote>
+<p>这里给个目录预告</p>
+<ul>
+<li>/app<ul>
+<li>main.js</li>
+<li>component.js</li>
+</ul>
+</li>
+<li>/public<ul>
+<li>bundle.js</li>
+<li>index.html</li>
+</ul>
+</li>
+<li>/node_modules<ul>
+<li>…</li>
+</ul>
+</li>
+<li>package.json</li>
+<li>webpack.config.js</li>
+</ul>
+<h3 id="安装与配置webpack"><a href="#安装与配置webpack" class="headerlink" title="安装与配置webpack"></a>安装与配置<code>webpack</code></h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code>npm install --save-dev webpack
+</code></pre><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>在根目录<code>root</code>创建<code>webpack.config.js</code>。</p>
+<p>具体配置参数请搜索相关信息，不详细介绍，这里给个例子</p>
+<pre><code>var path = require(&apos;path&apos;);
+
+module.exports = {
+    entry: path.resolve(__dirname, &apos;app/main.js&apos;),
+    output: {
+        path: path.resolve(__dirname, &apos;public&apos;),
+        filename: &apos;bundle.js&apos;,
+    },
+    module: {
+        loaders: [
+              {
+                test: /\.js$/, 
+                exclude: /node_modules/, 
+                loader: &apos;babel-loader&apos;
+            }
+        ]
+    },
+};
+</code></pre><h3 id="安装与配置webpack-dev-server"><a href="#安装与配置webpack-dev-server" class="headerlink" title="安装与配置webpack-dev-server"></a>安装与配置<code>webpack-dev-server</code></h3><p>这是一个能够提供一个可选的本地开发服务器（基于Node创建），用来监听文件改变并自动编译的包</p>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><pre><code>npm install --save-dev webpack-dev-server
+</code></pre><h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><p>在<code>webpack.config.js</code>中添加</p>
+<pre><code>module.exports = {
+    ......
+    devServer: {
+        contentBase: &quot;public&quot;,
+        historyApiFallback: true,
+        inline: true,
+        hot: true
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ]
+};
+</code></pre><h3 id="安装react-react-dom"><a href="#安装react-react-dom" class="headerlink" title="安装react,react-dom"></a>安装react,react-dom</h3><pre><code>npm install --save-dev react react-dom
+</code></pre><blockquote>
+<p>多个包之间用空格间隔开</p>
+</blockquote>
+<h3 id="安装与配置eslint"><a href="#安装与配置eslint" class="headerlink" title="安装与配置eslint"></a>安装与配置eslint</h3><h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><pre><code>npm install eslint -g
+</code></pre><blockquote>
+<p>用了全局安装，我在使用时使用本地安装使用时在根目录找不到命令<code>eslint</code>不知道为什么，最后一想，反正代码检查全都要用，就全局安装了。后续有时间会研究一下这个问题。</p>
+</blockquote>
+<h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><p>使用<code>eslint</code>自带的命令配置即可：</p>
+<pre><code>eslint -init
+</code></pre><p>和<code>npm init</code>的形式一样，也是问答式的自动创建。更为方便的是也可以通过这个命令直接使用比如airbnb公司的配置（他们的配置几乎是所有<code>eslint</code>使用者的强推，这也看出来大家都用的mac[捂脸],windows下使用<code>eslint-config-airbnb</code>每行都错，因为windows使用的换行符是<code>crlf</code>而mac是<code>lf</code>，他们的配置要求所有换行是<code>lf</code>）</p>
+<h2 id="目录树"><a href="#目录树" class="headerlink" title="目录树"></a>目录树</h2><p>安装了一些必要的包之后，目前根目录<code>root</code>下的文件结构应该是这样的，其中有三个文件是手动创建的：</p>
+<ul>
+<li><code>main.js</code>：<code>webpack</code>打包整个项目时作为唯一入口，引用项目的所有依赖</li>
+<li><code>index.html</code>：引入<code>main.js</code>，作为承载整个项目的页面</li>
+<li><code>component.js</code>：具体的业务相关逻辑代码存放处，可再细分</li>
+</ul>
+<p>而<code>bundle.js</code>会在后续中使用<code>webpack</code>自动创建。</p>
+<ul>
+<li>/app<ul>
+<li>main.js</li>
+<li>component.js</li>
+</ul>
+</li>
+<li>/public<ul>
+<li>bundle.js</li>
+<li>index.html</li>
+</ul>
+</li>
+<li>/node_modules<ul>
+<li>…</li>
+</ul>
+</li>
+<li>package.json</li>
+<li>webpack.config.js</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="index-html，component-js和main-js的例子"><a href="#index-html，component-js和main-js的例子" class="headerlink" title="index.html，component.js和main.js的例子"></a><code>index.html</code>，<code>component.js</code>和<code>main.js</code>的例子</h3><p><strong>app/component.js</strong></p>
+<pre><code>&apos;use strict&apos;;
+
+module.exports = function () {
+    var element = document.createElement(&apos;h1&apos;);
+
+    element.innerHTML = &apos;Hello world&apos;;
+
+    return element;
+};
+</code></pre><p><strong>app/main.js</strong></p>
+<pre><code>&apos;use strict&apos;;
+var component = require(&apos;./component.js&apos;);
+
+document.body.appendChild(component());
+</code></pre><p><strong>index.html</strong></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>好了，最后在根目录运行 </p>
+<pre><code>webpack
+</code></pre><p>就自动编译出了<code>bundle.js</code>。</p>
+<p>另外，如果使用自动编译：</p>
+<pre><code>webpack-dev-server --devtool eval --progress --colors
+</code></pre><p>参数说明：</p>
+<ul>
+<li>webpack-dev-server - 在 localhost:8080 建立一个 Web 服务器</li>
+<li>–devtool eval - 为代码创建源地址。当有任何报错的时候可以让你更加精确地定位到文件和行号</li>
+<li>–hot - 需要在<code>webpack.config.js</code>中引用一个<code>plugins</code>插件<code>new webpack.HotModuleReplacementPlugin()</code>才生效</li>
+<li>–progress - 显示合并代码进度</li>
+<li>–colors - 在命令行中显示颜色</li>
+<li>–content-base public - 指向设置的输出目录</li>
+</ul>
+<p>附：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">devtool选项</th>
+<th style="text-align:left">配置结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">source-map</td>
+<td style="text-align:left">在一个单独的文件中产生一个完整且功能完全的文件。这个文件具有最好的source map，但是它会减慢打包文件的构建速度；</td>
+</tr>
+<tr>
+<td style="text-align:left">cheap-module-source-map</td>
+<td style="text-align:left">在一个单独的文件中生成一个不带列映射的map，不带列映射提高项目构建速度，但是也使得浏览器开发者工具只能对应到具体的行，不能对应到具体的列（符号），会对调试造成不便；</td>
+</tr>
+<tr>
+<td style="text-align:left">eval-source-map</td>
+<td style="text-align:left">使用eval打包源文件模块，在同一个文件中生成干净的完整的source map。这个选项可以在不影响构建速度的前提下生成完整的sourcemap，但是对打包后输出的JS文件的执行具有性能和安全的隐患。不过在开发阶段这是一个非常好的选项，但是在生产阶段一定不要用这个选项；</td>
+</tr>
+<tr>
+<td style="text-align:left">cheap-module-eval-source-map</td>
+<td style="text-align:left">这是在打包文件时最快的生成source map的方法，生成的Source Map 会和打包后的JavaScript文件同行显示，没有列映射，和eval-source-map选项具有相似的缺点</td>
+</tr>
+</tbody>
+</table>
+<h3 id="命令行规范"><a href="#命令行规范" class="headerlink" title="命令行规范"></a>命令行规范</h3><p>随着工程的复杂化，我们会需要越来越多的命令去执行，规范的行为是，统一放到<code>package.json</code>的<code>scripts</code>字段中，统一管理。</p>
+<p>像上面的 </p>
+<p><code>webpack-dev-server --devtool eval --progress --colors</code></p>
+<p>命令，可以这样配置<code>scripts</code>字段(<code>key</code>名可以任意起，这里叫<code>build</code>，<code>dev</code>)</p>
+<pre><code>&quot;scripts&quot;: {
+    &quot;build&quot;: &quot;webpack&quot;,
+    &quot;dev&quot;: &quot;webpack-dev-server --devtool eval --progress --colors&quot;
+}
+</code></pre><p>这样每次使用</p>
+<pre><code>npm run dev
+</code></pre><p>就会实际上执行</p>
+<pre><code>webpack-dev-server --devtool eval --progress --colors
+</code></pre><h3 id="使用总结"><a href="#使用总结" class="headerlink" title="使用总结"></a>使用总结</h3><p>使用<code>npm run dev</code>后每次修改并保存<code>main.js</code>都会触发一次<code>webpack</code>编译，然后在浏览器访问<code>127.0.0.1:8080</code>监听8080端口即可看到浏览器渲染结果。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;作为一名2016年成长起来的前端，怎么能不会react，不会babel，不会es6，不会webpack…..呢&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="https://jasonyan2015.github.io/tags/js/"/>
+    
+      <category term="webpack" scheme="https://jasonyan2015.github.io/tags/webpack/"/>
+    
+      <category term="react" scheme="https://jasonyan2015.github.io/tags/react/"/>
+    
+      <category term="babel" scheme="https://jasonyan2015.github.io/tags/babel/"/>
+    
+  </entry>
   
   <entry>
     <title>前端安全：XSS和CSRF</title>
@@ -419,6 +1255,178 @@
       <category term="响应式" scheme="https://jasonyan2015.github.io/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/"/>
     
       <category term="CSS" scheme="https://jasonyan2015.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【模块化JS】AMD规范</title>
+    <link href="https://jasonyan2015.github.io/2017/04/04/AMD%E8%A7%84%E8%8C%83/"/>
+    <id>https://jasonyan2015.github.io/2017/04/04/AMD规范/</id>
+    <published>2017-04-04T07:08:59.321Z</published>
+    <updated>2017-04-22T08:16:41.150Z</updated>
+    
+    <content type="html"><![CDATA[<p>Asynchronous Module Definition——异步模块定义</p>
+<p>它是一个在浏览器端模块化开发的规范。由于不是Javascript原生支持，使用AMD规范进行页面开发需要用到对应的库函数——<strong>RequireJS</strong></p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1485016792251&amp;di=e0445002cd2ccabd9c130a8e12d4d1d2&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.uedsc.com%2Fwp-content%2Fuploads%2F2015%2F08%2Frequirejs.jpg" alt="RequireJS图标"></p>
+<h4 id="RequireJS主要解决两个问题"><a href="#RequireJS主要解决两个问题" class="headerlink" title="RequireJS主要解决两个问题"></a>RequireJS主要解决两个问题</h4><ol>
+<li>多个js文件之间可能存在依赖关系时需要被依赖文件先备加载到浏览器</li>
+<li>js文件加载时，加载文件越多，页面失去响应时间越久</li>
+</ol>
+<a id="more"></a>
+<h4 id="语法简介"><a href="#语法简介" class="headerlink" title="语法简介"></a>语法简介</h4><p><em>定义模块</em>——define([id], [dependencies], factory);</p>
+<p>它是全局变量，用于定义模块。</p>
+<ul>
+<li>id：可选，用于定义模块标识。若没有提供该参数，则标识为脚本文件名</li>
+<li>dependencies：可选，所依赖的模块</li>
+<li>factory：模块初始化要执行的函数或对象。若为函数，则只被执行一次，若为对象，则此对象应为模块的输出值。</li>
+</ul>
+<p><em>加载模块</em>——require([dependencies], callback);</p>
+<ul>
+<li>dependencies：数组，表示所依赖的模块</li>
+<li>callback：回调函数，当前面指定的模块都加载成功后，它将被调用。加载的模块会以参数形式传入该函数，从而在回调函数内部就可以使用这些模块。</li>
+</ul>
+<blockquote>
+<p>补充：require()函数在加载依赖的函数时是异步加载的，这样浏览器就不会失去响应，它指定的回调函数只有在前面的模块都加载成功后才会运行。由此解决依赖性问题。</p>
+</blockquote>
+<h3 id="使用RequireJS"><a href="#使用RequireJS" class="headerlink" title="使用RequireJS"></a>使用RequireJS</h3><h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p><a href="http://www.requirejs.cn/docs/download.html" target="_blank" rel="external">下载链接</a></p>
+<h4 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h4><p>假定现在项目中所有js文件都放在一个”scripts”目录下，并添加上require.js。</p>
+<pre><code>* 项目目录/
+  * project.html
+  * scripts/
+     * main.js
+     * *require.js*
+     * helper/
+         * util.js
+</code></pre><p>为了充分利用require.js建议只在HTML中引入require.js，然后通过它来请求加载其他的scripts：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My Sample Project&lt;/title&gt;
+        &lt;!-- data-main attribute tells require.js to load scripts/main.js after require.js loads. --&gt;
+        &lt;script data-main=&quot;scripts/main&quot; src=&quot;scripts/require.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;My Sample Project&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><ul>
+<li>data-main属性：require.js使用它来启动脚本加载过程。</li>
+</ul>
+<blockquote>
+<p>RequireJS以一个相对于baseUrl的地址来加载所有的代码。而baseUrl有三种方式可以设置。</p>
+<ol>
+<li>使用上述data-main属性，可设置baseUrl为该属性相一致的目录。上例中为scripts文件夹</li>
+<li>使用RequireJS 的config手动设置。比如在main.js头部添加<pre><code> require.config({
+    paths: {
+            jsFileName: &apos;FileAddress&apos;
+    }
+});
+</code></pre></li>
+<li>如果没有显式指定上述二者，则默认为包含RequireJS的那个HTML页面所属目录。</li>
+</ol>
+</blockquote>
+<p>然后在main.js中使用require()来加载所有需要运行的scripts。</p>
+<pre><code>require([&quot;helper/util&quot;], function(util) {
+    //This function is called when scripts/helper/util.js is loaded.
+    //If util.js calls define(), then this function is not fired until
+    //util&apos;s dependencies have loaded, and the util argument will hold
+    //the module value for &quot;helper/util&quot;.
+});
+</code></pre><h4 id="加载文件"><a href="#加载文件" class="headerlink" title="加载文件"></a>加载文件</h4><p>以加载一个jQuery库为例。之前都是加载本地js模块，若是需要加载来自本地服务器、其他网站或CDN的js，那么可以用如下方式：</p>
+<pre><code>require.config({
+    paths : {
+        &quot;jquery&quot; : [&quot;http://libs.baidu.com/jquery/2.0.3/jquery&quot;]   
+    }
+})
+require([&quot;jquery&quot;,&quot;js/a&quot;],function($){
+    $(function(){
+        alert(&quot;load finished&quot;);  
+    })
+})
+</code></pre><p>require.config用来配置模块加载位置。简单点说就是给模块起一个更短更好记的名字，比如将百度的jquery库地址标记为jquery，这样在require时只需要写[“jquery”]就可以加载该js。当然，本地的js也可以这样配置。</p>
+<p>通过paths的配置会使我们的模块名字更精炼，paths还有一个重要的功能，就是可以配置多个路径，如果远程cdn库没有加载成功，可以加载本地的库，如：</p>
+<pre><code>require.config({
+    paths : {
+        &quot;jquery&quot; : [&quot;http://libs.baidu.com/jquery/2.0.3/jquery&quot;, &quot;js/jquery&quot;],
+        &quot;a&quot; : &quot;js/a&quot;   
+    }
+})
+require([&quot;jquery&quot;,&quot;a&quot;],function($){
+    $(function(){
+        alert(&quot;load finished&quot;);  
+    })
+})
+</code></pre><p>这样配置后，当百度的jquery没有加载成功后，会加载本地js目录下的jquery。</p>
+<ol>
+<li>在使用requirejs时，加载模块时不用写.js后缀的，当然也是不能写后缀</li>
+<li>上面例子中的callback函数中发现有$参数，这个就是依赖的jquery模块的输出变量，如果你依赖多个模块，可以依次写入多个参数来使用。</li>
+</ol>
+<p>事实上，一般把require.config配置放到data-main中配置，这样就可以使每一个页面都使用这个配置，然后页面中就可以直接使用require来加载所有的短模块名。</p>
+<p><em>main.js</em></p>
+<pre><code>require.config({
+    paths : {
+        &quot;jquery&quot; : [&quot;http://libs.baidu.com/jquery/2.0.3/jquery&quot;, &quot;js/jquery&quot;],
+        &quot;a&quot; : &quot;js/a&quot;   
+    }
+})
+</code></pre><p><em>project.html</em></p>
+<pre><code>&lt;script data-main=&quot;js/main&quot; src=&quot;js/require.js&quot;&gt;&lt;/script&gt;
+</code></pre><h5 id="加载第三方模块"><a href="#加载第三方模块" class="headerlink" title="加载第三方模块"></a>加载第三方模块</h5><p>通过require加载的模块一般都需要符合AMD规范即使用define来申明模块，但是部分时候需要加载非AMD规范的js，这时候就需要用到另一个功能——shim</p>
+<p>主要用在两个地方</p>
+<ol>
+<li><p>非AMD模块输出，将非标准的AMD模块”垫”成可用的模块，例如：老版本的jquery，并没有继承AMD规范，所以不能直接require[“jquery”],这时候就需要shim。比如我要是用underscore类库，但是他并没有实现AMD规范，那么可以这样配置：</p>
+<pre><code>require.config({
+    shim: {
+        &quot;underscore&quot; : {
+            exports : &quot;_&quot;;
+        }
+    }
+})
+</code></pre><p> 这样配置后，就可以在其他模块中引用underscore模块：</p>
+<pre><code>require([&quot;underscore&quot;], function(_){
+    _.each([1,2,3], alert);
+})
+</code></pre></li>
+<li><p>插件形式的非AMD模块。我们经常会用到jquery插件，而这些插件基本都不符合AMD规范，比如jquery.form插件，这时候就需要将form插件shim到jquery中：</p>
+<pre><code>require.config({
+    shim: {
+        &quot;underscore&quot; : {
+            exports : &quot;_&quot;;
+        },
+        &quot;jquery.form&quot; : {
+            deps : [&quot;jquery&quot;]
+        }
+    }
+})
+</code></pre><p> 这样配置之后我们就可以使用加载插件后的jquery了</p>
+<pre><code>require.config([&quot;jquery&quot;, &quot;jquery.form&quot;], function($){
+    $(function(){
+        $(&quot;#form&quot;).ajaxSubmit({...});
+    })
+})
+</code></pre></li>
+</ol>
+<hr>
+<p><a href="http://www.runoob.com/w3cnote/requirejs-tutorial-1.html" target="_blank" rel="external">RequireJS简单教程</a></p>
+<p><a href="http://www.requirejs.cn/" target="_blank" rel="external">RequireJS中文网</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Asynchronous Module Definition——异步模块定义&lt;/p&gt;
+&lt;p&gt;它是一个在浏览器端模块化开发的规范。由于不是Javascript原生支持，使用AMD规范进行页面开发需要用到对应的库函数——&lt;strong&gt;RequireJS&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://timgsa.baidu.com/timg?image&amp;amp;quality=80&amp;amp;size=b9999_10000&amp;amp;sec=1485016792251&amp;amp;di=e0445002cd2ccabd9c130a8e12d4d1d2&amp;amp;imgtype=0&amp;amp;src=http%3A%2F%2Fwww.uedsc.com%2Fwp-content%2Fuploads%2F2015%2F08%2Frequirejs.jpg&quot; alt=&quot;RequireJS图标&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;RequireJS主要解决两个问题&quot;&gt;&lt;a href=&quot;#RequireJS主要解决两个问题&quot; class=&quot;headerlink&quot; title=&quot;RequireJS主要解决两个问题&quot;&gt;&lt;/a&gt;RequireJS主要解决两个问题&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;多个js文件之间可能存在依赖关系时需要被依赖文件先备加载到浏览器&lt;/li&gt;
+&lt;li&gt;js文件加载时，加载文件越多，页面失去响应时间越久&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="模块化" scheme="https://jasonyan2015.github.io/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
+    
+      <category term="js" scheme="https://jasonyan2015.github.io/tags/js/"/>
     
   </entry>
   

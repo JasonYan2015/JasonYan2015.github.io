@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js,数据类型," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -89,17 +89,15 @@
 
 
 
-<meta name="description" content="起因腾讯笔试题顺便吐槽一句……">
-<meta name="keywords" content="js,数据类型">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Js的隐式类型转换">
-<meta property="og:url" content="https://jasonyan2015.github.io/2017/04/04/js隐式类型转换问题/index.html">
+<meta name="description" content="Ajun的前端学习笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ajun">
+<meta property="og:url" content="https://jasonyan2015.github.io/page/2/index.html">
 <meta property="og:site_name" content="Ajun">
-<meta property="og:description" content="起因腾讯笔试题顺便吐槽一句……">
-<meta property="og:updated_time" content="2017-04-08T16:23:40.952Z">
+<meta property="og:description" content="Ajun的前端学习笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Js的隐式类型转换">
-<meta name="twitter:description" content="起因腾讯笔试题顺便吐槽一句……">
+<meta name="twitter:title" content="Ajun">
+<meta name="twitter:description" content="Ajun的前端学习笔记">
 
 
 
@@ -127,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://jasonyan2015.github.io/2017/04/04/js隐式类型转换问题/"/>
+  <link rel="canonical" href="https://jasonyan2015.github.io/page/2/"/>
 
 
 
 
 
-  <title> Js的隐式类型转换 | Ajun </title>
+  <title> Ajun </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -168,7 +166,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -241,9 +241,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -252,7 +252,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://jasonyan2015.github.io/2017/04/04/js隐式类型转换问题/">
+    <link itemprop="mainEntityOfPage" href="https://jasonyan2015.github.io/2017/04/04/js跨域问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ajun">
@@ -273,7 +273,10 @@
             
             
               
-                Js的隐式类型转换
+                
+                <a class="post-title-link" href="/2017/04/04/js跨域问题/" itemprop="url">
+                  js跨域问题
+                </a>
               
             
           </h1>
@@ -288,7 +291,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T15:08:59+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T10:15:55+08:00">
                 2017-04-04
               </time>
             
@@ -308,11 +311,6 @@
           
 
           
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
-          
 
           
 
@@ -329,135 +327,58 @@
       
 
       
-        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><h5 id="腾讯笔试题"><a href="#腾讯笔试题" class="headerlink" title="腾讯笔试题"></a>腾讯笔试题</h5><p>顺便吐槽一句……</p>
-<a id="more"></a>
-<p>腾讯考的选择题相对其他网易阿里360什么的要更专业前端一些，他们几个都更广泛考一些计算机组成，堆栈，二分什么乱七八糟的计算机基础知识，腾讯选择题全考的网络相关的，但是考的也太网络基础了…..交换机，IPV6相比IPV4的优点，UDP协议头，FTP协议…..咱们安安心心考个HTTP不好么…..我还没懂这么多呢[哭]</p>
-<h5 id="好了正式的"><a href="#好了正式的" class="headerlink" title="好了正式的"></a>好了正式的</h5><p>起因是在腾讯2017实习生笔试，选择题考了一道关于</p>
-<pre><code>if(0&lt;100&lt;0) console.log(&apos;0&lt;100&lt;0&apos;);
-if(0&lt;100&lt;(0+4)) console.log(&apos;0&lt;100&lt;(0+4)&apos;)
-</code></pre><h2 id="Js的隐式类型转换"><a href="#Js的隐式类型转换" class="headerlink" title="Js的隐式类型转换"></a>Js的隐式类型转换</h2><p>JS是弱类型编程语言，这点我一直印象深刻，因为刚学JS的时候发现声明变量不用乱七八糟的去动脑区分 <code>int</code>,<code>long int</code>,<code>short int</code>,<code>double</code>等等，只要一个<code>var</code>！没错！统统不要，只要一个<code>var</code>是不是hin贴心！！！</p>
-<p>但是弱类型也带来了一些副作用，比如在代码中存在一些隐式类型转换，可能会让输入输出结果与编程者的期望不太一样。就像这道考题。</p>
-<p>考完去chrome控制台验证了一下，输出结果应该是<code>0&lt;100&lt;(0+4)</code>，也就是说，<code>0&lt;100&lt;0+4</code>在if逻辑中判断为<code>true</code>。（神tm的判断……）</p>
-<p>这就是隐式类型转换存在的缘故。因为括号内容<code>(0+4)</code>的存在，导致了括号中的表达式参与的判断被隐式转换成了number类型，因此，<code>0&lt;100</code>正常逻辑判断为<code>true</code>后，判断<code>true&lt;(0+4)</code>时被转换成了<code>0&lt;(0+4)</code>，所以最后被判断为<code>true</code>。</p>
-<p>以下为控制台验证过程，’//‘后为返回结果</p>
-<pre><code>true &lt; 1                //false
-true &lt; 2                //true
-true - 1                //0
-true &lt; (0 + 0)            //false
-true &lt; (0 + 4)             //true
-true === (0 + 1)        //false
-true == (0 + 1)            //true
-true + 0 === (0 + 1)    //true
-</code></pre><p>P.S.今天做赛码的笔试题的时候学到一个零几年就有但现在基本没人用的跑马灯标签：<br><code>&lt;marquee&gt;</code></p>
-<p>其实我感觉功能还挺酷炫的。不仅可以移动文字，也可以移动图片，表格等。</p>
-<p>语法：<code>&lt;marquee direction=&quot;&quot; behavior=&quot;&quot; scrollamount=&quot;&quot; &gt;...&lt;/marquee&gt;</code>(在标记之间添加要进行滚动的内容)</p>
-<p>重要属性：</p>
-<ul>
-<li>滚动方向direction（包括4个值：up、 down、 left和 right）</li>
-<li>滚动方式behavior（scroll:循环滚动，默认效果； slide:只滚动一次就停止； alternate:来回交替进行滚动）</li>
-<li>滚动速度scrollamount（滚动速度是设置每次滚动时移动的长度，以像素为单位）</li>
-<li>滚动延迟scrolldelay（设置滚动的时间间隔，单位是毫秒）</li>
-<li>滚动循环loop（默认值是-1，滚动会不断的循环下去）</li>
-<li>滚动范围width、height</li>
-<li>滚动背景颜色bgcolor</li>
-<li>空白空间hspace、vspace</li>
+        
+          <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><h3 id="同源包括三个相同"><a href="#同源包括三个相同" class="headerlink" title="同源包括三个相同"></a>同源包括三个相同</h3><ul>
+<li>协议（protocol）相同</li>
+<li>域名（domain/host）相同</li>
+<li>端口（port）相同</li>
 </ul>
-<p>例子跑起来</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;test&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;marquee direction=&quot;up&quot; scroll=&quot;alternate&quot; loop=&quot;-1&quot; scrollamount=&quot;10&quot;&gt;这是一个marquee标签，似乎是零几年就存在的一个标签，但是现在好像没听说过&lt;/marquee&gt;
-    &lt;marquee direction=&quot;left&quot; scroll=&quot;alternate&quot; loop=&quot;-1&quot; scrollamount=&quot;10&quot;&gt;&lt;img src=&quot;https://ss0.baidu.com/73t1bjeh1BF3odCf/it/u=156557612,1695936325&amp;fm=85&amp;s=695818D27C46B819D23D44D50300C062&quot;&gt;&lt;/marquee&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>那么问题来了，这么酷炫的标签为什么现在没人用了呢？</p>
-<p>因为他被W3C标准抛弃了！</p>
-<p>主要原因可以看一下参考链接。一句话就是：用归用，标准归标准。</p>
-<blockquote>
-<p>顺便插个嘴，这玩意儿浏览器支持还挺好的（毕竟那么早的标签了）</p>
-</blockquote>
-<p>参考链接：</p>
-<ul>
-<li><a href="http://www.chinablackhat.com/kf/201410/6610.html" target="_blank" rel="external">Marquee为什么不符合WEB标准？</a></li>
-<li><a href="http://www.cnblogs.com/zzuIvy/p/marqueeTest_1.html" target="_blank" rel="external">HTML标签marquee实现滚动效果</a></li>
-<li><a href="http://www.cnblogs.com/hustskyking/p/marquee-in-javascript.html" target="_blank" rel="external">一个不陌生的JS效果-marquee的代替实现方法</a></li>
-</ul>
-
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/04/js跨域问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/js/" rel="tag"># js</a>
-          
-            <a href="/tags/数据类型/" rel="tag"># 数据类型</a>
-          
-        </div>
+
       
 
       
-        
-      
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/04/04/自定义浏览器滚动条/" rel="next" title="自定义浏览器滚动条">
-                <i class="fa fa-chevron-left"></i> 自定义浏览器滚动条
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/04/HTML5新特性笔记/" rel="prev" title="HTML5新特性">
-                HTML5新特性 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -465,10 +386,6 @@ true + 0 === (0 + 1)    //true
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -488,17 +405,8 @@ true + 0 === (0 + 1)    //true
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -558,22 +466,6 @@ true + 0 === (0 + 1)    //true
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#腾讯笔试题"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">腾讯笔试题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#好了正式的"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">好了正式的</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Js的隐式类型转换"><span class="nav-number">2.</span> <span class="nav-text">Js的隐式类型转换</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -701,10 +593,6 @@ true + 0 === (0 + 1)    //true
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
 
   
 
