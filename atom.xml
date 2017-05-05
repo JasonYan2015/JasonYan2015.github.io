@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jasonyan2015.github.io/"/>
-  <updated>2017-05-01T03:13:49.800Z</updated>
+  <updated>2017-05-05T16:03:30.969Z</updated>
   <id>https://jasonyan2015.github.io/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2017.5~2017.9计划表</title>
+    <link href="https://jasonyan2015.github.io/2017/05/06/2017%E8%AE%A1%E5%88%92/"/>
+    <id>https://jasonyan2015.github.io/2017/05/06/2017计划/</id>
+    <published>2017-05-05T16:00:45.984Z</published>
+    <updated>2017-05-05T16:03:30.969Z</updated>
+    
+    <content type="html"><![CDATA[<p>##事项</p>
+<ul>
+<li>【基础】红宝书（1周），犀牛书（9周）。你不知道的js系列（6周），奇舞团视频</li>
+<li>【项目】网易云app项目</li>
+<li>【笔试准备】笔试训练</li>
+<li>【面试准备】vue、angular教程，jq源码，http、网络相关</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h2 id="5月"><a href="#5月" class="headerlink" title="5月"></a>5月</h2><h4 id="6-Sat"><a href="#6-Sat" class="headerlink" title="6 Sat."></a>6 Sat.</h4><ul>
+<li>7.30 起床，伯川占座</li>
+<li>~ 复习经济学原理</li>
+<li>10.00 出发10路过去罗斯福</li>
+<li>~ 回伯川复习 or 红宝书</li>
+<li>赛码周练</li>
+</ul>
+<h4 id="7-Sun"><a href="#7-Sun" class="headerlink" title="7 Sun."></a>7 Sun.</h4><ul>
+<li>经济学原理复习</li>
+</ul>
+<h4 id="8-Mon"><a href="#8-Mon" class="headerlink" title="8 Mon."></a><strong>8</strong> Mon.</h4><ul>
+<li>经济学原理考试</li>
+<li>跑步</li>
+</ul>
+<h4 id="10-Wed"><a href="#10-Wed" class="headerlink" title="10 Wed."></a>10 Wed.</h4><ul>
+<li><strong>截止</strong> 解决 项目中node后端页面跳转问题</li>
+</ul>
+<h4 id="30"><a href="#30" class="headerlink" title="30"></a><strong>30</strong></h4><ul>
+<li>开始投简历</li>
+</ul>
+<h2 id="6月"><a href="#6月" class="headerlink" title="6月"></a>6月</h2><h4 id="2"><a href="#2" class="headerlink" title="2"></a><strong>2</strong></h4><ul>
+<li>腾讯大连离职</li>
+</ul>
+<h4 id="8"><a href="#8" class="headerlink" title="8"></a><strong>8</strong></h4><ul>
+<li>过控工程考试</li>
+</ul>
+<h4 id="21"><a href="#21" class="headerlink" title="21"></a><strong>2</strong>1</h4><ul>
+<li>过控仪表考试</li>
+</ul>
+<h4 id="23"><a href="#23" class="headerlink" title="23"></a><strong>23</strong></h4><ul>
+<li>计算机控制技术考试</li>
+</ul>
+<h2 id="9月"><a href="#9月" class="headerlink" title="9月"></a>9月</h2><h1 id="校招开始"><a href="#校招开始" class="headerlink" title="校招开始"></a>校招开始</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##事项&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;【基础】红宝书（1周），犀牛书（9周）。你不知道的js系列（6周），奇舞团视频&lt;/li&gt;
+&lt;li&gt;【项目】网易云app项目&lt;/li&gt;
+&lt;li&gt;【笔试准备】笔试训练&lt;/li&gt;
+&lt;li&gt;【面试准备】vue、angular教程，jq源码，http、网络相关&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>node模板引擎——pug(jade)</title>
@@ -71,9 +136,9 @@
     </summary>
     
     
-      <category term="html" scheme="https://jasonyan2015.github.io/tags/html/"/>
-    
       <category term="node" scheme="https://jasonyan2015.github.io/tags/node/"/>
+    
+      <category term="html" scheme="https://jasonyan2015.github.io/tags/html/"/>
     
       <category term="pug" scheme="https://jasonyan2015.github.io/tags/pug/"/>
     
