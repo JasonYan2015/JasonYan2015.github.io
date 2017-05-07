@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jasonyan2015.github.io/"/>
-  <updated>2017-05-06T07:40:04.418Z</updated>
+  <updated>2017-05-07T12:32:43.116Z</updated>
   <id>https://jasonyan2015.github.io/</id>
   
   <author>
@@ -16,11 +16,500 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>第三讲——消费者选择理论</title>
+    <link href="https://jasonyan2015.github.io/2017/05/07/%E7%AC%AC%E4%B8%89%E8%AE%B2%E2%80%94%E2%80%94%E6%B6%88%E8%B4%B9%E8%80%85%E5%86%B3%E7%AD%96/"/>
+    <id>https://jasonyan2015.github.io/2017/05/07/第三讲——消费者决策/</id>
+    <published>2017-05-07T12:33:37.694Z</published>
+    <updated>2017-05-07T12:32:43.116Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>明天考选修，贴个[哭]</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="第6章-消费者选择理论"><a href="#第6章-消费者选择理论" class="headerlink" title="第6章  消费者选择理论"></a>第6章  消费者选择理论</h1><h2 id="预算约束"><a href="#预算约束" class="headerlink" title="预算约束"></a>预算约束</h2><p>收入既定的情况下，对消费者可以支付得起的消费组合的限制</p>
+<p>一个“消费束”是其所消费的物品的一个特定组合，比如: 40 条鱼与 300 个芒果</p>
+<blockquote>
+<p>在预算约束下，消费者多购买某个产品就要相对应放弃部分产品的购买量，叫做<em>机会成本</em></p>
+</blockquote>
+<h3 id="预算约束线（或等收入线）"><a href="#预算约束线（或等收入线）" class="headerlink" title="预算约束线（或等收入线）"></a>预算约束线（或等收入线）</h3><p>表明收入一定的情况下，他可以购买得起的消费束</p>
+<p>预算线的斜率衡量的是消费者用一种商品交换另一种商品的比率</p>
+<h3 id="预算约束线的移动"><a href="#预算约束线的移动" class="headerlink" title="预算约束线的移动"></a>预算约束线的移动</h3><ul>
+<li>收入减少使预算约束线向下移动</li>
+<li>一种物品价格的上升使预算约束线向内转动</li>
+</ul>
+<h2 id="消费者的偏好"><a href="#消费者的偏好" class="headerlink" title="消费者的偏好"></a>消费者的偏好</h2><h3 id="无差异曲线"><a href="#无差异曲线" class="headerlink" title="无差异曲线"></a>无差异曲线</h3><p>给消费者相同满足程度的消费组合的曲线。</p>
+<h4 id="四个特征"><a href="#四个特征" class="headerlink" title="四个特征"></a>四个特征</h4><ul>
+<li>无差异曲线向右下方倾斜</li>
+<li>消费者对较高无差异曲线的偏好大于较低无差异曲线</li>
+<li>无差异曲线不相交</li>
+<li>无差异曲线凸向原点</li>
+</ul>
+<h4 id="边际替代率（MRS）"><a href="#边际替代率（MRS）" class="headerlink" title="边际替代率（MRS）"></a>边际替代率（MRS）</h4><p>消费者愿意以一种物品交换另一种物品的比率</p>
+<p>通常，沿着无差异曲线向右下方移动，边际替代率不断减少。因为人们更愿意放弃他们已经拥有的数量较多的物品，而不愿意放弃不多的物品。</p>
+<ul>
+<li>完全替代品：无差异曲线为直线的两种物品，有不变的 MRS。</li>
+<li>完全互补品：无差异曲线为直角形的两种物品。</li>
+<li>近替代品：无差异曲线不是很弯曲，相对平坦</li>
+<li>近互补品：无差异曲线非常弯曲</li>
+</ul>
+<h2 id="最优选择"><a href="#最优选择" class="headerlink" title="最优选择"></a>最优选择</h2><p>消费者负担得起的所有消费束中最偏好的消费束</p>
+<p>最优点：预算约束线与能相交的最高一条无差异曲线上的交点</p>
+<p>在最优点，无差异曲线的斜率等于预算约束线的斜率，即无差异曲线与预算约束线相切</p>
+<h3 id="效用"><a href="#效用" class="headerlink" title="效用"></a>效用</h3><p>效用是从消费某种物品中所得到的满足程度，是一种心理感觉，来源于消费者对物品的偏好</p>
+<ul>
+<li>总效用：消费一定量某种物品中所得到的总满足程度</li>
+<li>边际效用：某种物品的消费量增加一单位所增加的满足程度</li>
+</ul>
+<p>=&gt; </p>
+<p><strong>边际效用递减规律</strong>：随着消费者对某种物品消费量的增加，他（她）从该物品连续增加的消费单位中所得到的边际效用递减。</p>
+<p>=&gt; </p>
+<p>每元钱产生的边际效用相等时总效用最大</p>
+<blockquote>
+<p>消费者均衡：消费者以使总效用最大化的方式来配置其收入的状态。</p>
+</blockquote>
+<h2 id="外部环境变动对消费者选择的影响"><a href="#外部环境变动对消费者选择的影响" class="headerlink" title="外部环境变动对消费者选择的影响"></a>外部环境变动对消费者选择的影响</h2><ul>
+<li>收入增加使预算约束线向外移动<blockquote>
+<p>收入增加会使正常物品的需求量增加，收入增加会使低档物品的需求量减少 </p>
+</blockquote>
+</li>
+<li>某种商品售价降低会产生以下两种效应<ul>
+<li>替代效应：某种商品价格下降会使消费者相对购买更多该商品而更少的另一商品B（预算约束线向外转动）</li>
+<li>收入效应：售价降低相当于提升了消费者收入对该商品的实际购买能力</li>
+</ul>
+</li>
+</ul>
+<h2 id="劳动供给量"><a href="#劳动供给量" class="headerlink" title="劳动供给量"></a>劳动供给量</h2><ul>
+<li>替代效应：高工资使闲暇相对于消费更昂贵。因此会减少闲暇时间 那就是说，会增加劳动供给量</li>
+<li>收入效应：高工资使她能负担得起更多的两种物品（闲暇和消费），会增加闲暇时间</li>
+</ul>
+<p>收入效应举例：</p>
+<ul>
+<li>历史趋势：在过去的100多年间，技术进步增加了劳动需求和实际工资，而平均工作日却从每周6天减少为每周5天  </li>
+<li>彩票赢家：当一个人获得巨额彩票奖金的同时，他的工资并没有改变—因此没有替代效应</li>
+<li>获得遗产：卡内基—给儿子留下巨额财产的父母会使他们儿子的才能和热情大大丧失，而且使他的生活不如没有遗产时那样有用和有价值。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>收入效应是由于价格降低使消费者状况变好而引起的消费变动，它反映在从较低无差异曲线向较高无差异曲线的移动上。价格增加时的收入效应与之相反。</li>
+<li>替代效应是由于价格变动鼓励更多地消费变得相对便宜的物品而引起的消费变动，它表现为沿着一条无差异曲线向有不同斜率的点的变动上。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;明天考选修，贴个[哭]&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第六讲——宏观经济学数据和国民收入决定</title>
+    <link href="https://jasonyan2015.github.io/2017/05/07/%E7%AC%AC%E5%85%AD%E8%AE%B2%E2%80%94%E2%80%94%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%92%8C%E5%9B%BD%E6%B0%91%E6%94%B6%E5%85%A5%E5%86%B3%E5%AE%9A/"/>
+    <id>https://jasonyan2015.github.io/2017/05/07/第六讲——宏观经济学数据和国民收入决定/</id>
+    <published>2017-05-07T12:33:37.692Z</published>
+    <updated>2017-05-07T12:32:30.854Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>明天考选修，贴个[哭]</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="国民收入核算"><a href="#国民收入核算" class="headerlink" title="国民收入核算"></a>国民收入核算</h2><ul>
+<li>GDP:国内生产总值</li>
+<li>GNP:国民生产总值</li>
+</ul>
+<blockquote>
+<p>中国诺基亚公司归芬兰人所有，该公司在中国经营得到的利润，虽是中国GDP一部分，但不被统计为中国GNP，而应归入芬兰GNP。中国海尔在美国工厂的利润，应作为美国GDP一部分，但应被统计为中国的GNP。</p>
+</blockquote>
+<ul>
+<li>NNP：国内生产净值（国内生产总值减去固定资产折旧）</li>
+<li>NI：国民收入（国民收入要加上折旧、间接税等才形成GDP）</li>
+<li>其他：<ul>
+<li>PI：个人收入</li>
+<li>PDI：个人可支配收入（PI扣除税收、养老保险等）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>地下经济</strong>：所有合法但却未申报的经济活动。</p>
+<p><strong>非市场活动</strong>：居民在家庭内生产和消费，而没有进入市场的产品与劳务的价值。</p>
+<hr>
+<p>核算方法：</p>
+<ul>
+<li>支出法<ul>
+<li>使用 消费（C），投资（I），政府购买（G），净出口（NX）<blockquote>
+<p><strong>净出口</strong>：出口减去进口得到的差额，表示本国最终产品有多少通过外国人支出而实现其市场价值。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>收入法<ul>
+<li>使用 劳动者报酬、生产税净额、固定资产折旧、营业盈余<blockquote>
+<p><strong>生产税净额</strong>：生产税费（因为从事生产活动使用生产要素如固定资产、土地、劳动力向政府缴纳的各种税金、附加费和规费）减去生产补贴后的差额。<br><strong>固定资产折旧</strong>：为了弥补固定资产在生产过程中的价值损耗而提取的价值。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>部门法（生产法）<ul>
+<li>依据提供产品与劳务各部门增加值计算GDP，从生产角度反映了GDP来源。政府部门劳务按其收入计算。</li>
+<li>我国现行统计制度，把国民经济分为农业，采掘业，化学工业，金融保险业等17个部门进行生产或部门法统计。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>实际GDP（Real GDP): 按基期不变价格评价的物品与劳务的产值。</li>
+<li>名义GDP（Nominal  GDP）：按现期价格计算的物品与劳务的产值。</li>
+</ul>
+<blockquote>
+<p>实际GDP排除通货膨胀等的影响</p>
+</blockquote>
+<p><strong>GDP消胀指数</strong>：用名义GDP与实际GDP的比值计算的物价水平衡量指标。</p>
+<hr>
+<p><strong>总需求</strong>（AD）：整个社会对产品与劳务需求的总和，包括</p>
+<ul>
+<li>消费：居民对产品或服务的需求或支出</li>
+<li>投资：厂商对投资品的需求或支出</li>
+<li>政府支出：政府对各种产品与服务的需求或支出</li>
+<li>净出口：外国居民对本国产品或服务的需求</li>
+</ul>
+<p><strong>总供给</strong>（AS）：全部产品与服务供给/销售的总和（用货币衡量）</p>
+<hr>
+<p><strong>物价指数</strong>：现期某些物品的价值与基期同样物品价值的比率</p>
+<p><strong>通货膨胀率</strong>：现期物价指数较前期变动的百分比。</p>
+<p><strong>消费物价指数</strong>（CPI）：是衡量消费者购买的物品与劳务的平均物价水平的物价指数。</p>
+<p>计算：</p>
+<ol>
+<li><p>固定篮子，确定选择哪些物品与劳务计算CPI，以及各种物品的权重。</p>
+<p> 4个热狗，2 个烤地瓜</p>
+</li>
+<li><p>找出各年每种物品的价格。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">年份</th>
+<th style="text-align:center">热狗的价格（￥）</th>
+<th style="text-align:center">烤地瓜的价格（￥）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2001</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">2002</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">2003</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>计算一篮子物品的支出</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">年份</th>
+<th style="text-align:center">一篮子物品的费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2001</td>
+<td style="text-align:center">（每个热狗1￥<em>4个热狗）+ （每个烤地瓜2￥</em>2个烤地瓜）= 8￥</td>
+</tr>
+<tr>
+<td style="text-align:center">2002</td>
+<td style="text-align:center">（每个热狗2￥<em>4个热狗）+ （每个烤地瓜3￥</em>2个烤地瓜）=14￥</td>
+</tr>
+<tr>
+<td style="text-align:center">2003</td>
+<td style="text-align:center">（每个热狗3￥<em>4个热狗）+ （每个烤地瓜4￥</em>2个烤地瓜）=20￥</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>选择某一年为基年，计算各年的CPI（以2001年为基年）</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">年份</th>
+<th style="text-align:center">消费物价指数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2001</td>
+<td style="text-align:center">（8/ 8）*100 = 100</td>
+</tr>
+<tr>
+<td style="text-align:center">2002</td>
+<td style="text-align:center">（14/ 8）*100 = 175</td>
+</tr>
+<tr>
+<td style="text-align:center">2003</td>
+<td style="text-align:center">（20/8）*100 = 250</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>用消费物价指数计算自上一年来的通货膨胀率</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">年份</th>
+<th style="text-align:center">通货膨胀率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2002</td>
+<td style="text-align:center">（175-100）/100= 75%</td>
+</tr>
+<tr>
+<td style="text-align:center">2003</td>
+<td style="text-align:center">（250-175）/175=43%</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;明天考选修，贴个[哭]&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第四讲——生产者决策</title>
+    <link href="https://jasonyan2015.github.io/2017/05/07/%E7%AC%AC%E5%9B%9B%E8%AE%B2%E2%80%94%E2%80%94%E7%94%9F%E4%BA%A7%E8%80%85%E5%86%B3%E7%AD%96/"/>
+    <id>https://jasonyan2015.github.io/2017/05/07/第四讲——生产者决策/</id>
+    <published>2017-05-07T12:33:37.690Z</published>
+    <updated>2017-05-07T12:33:28.099Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>明天考选修，贴个[哭]</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="第七章-生产成本"><a href="#第七章-生产成本" class="headerlink" title="第七章 生产成本"></a>第七章 生产成本</h1><h2 id="机会成本"><a href="#机会成本" class="headerlink" title="机会成本"></a>机会成本</h2><p>会计：显性成本<br>经济学家：隐性成本 +显性成本</p>
+<p>例子</p>
+<p>办公室的均衡租金上涨了$500/每月<br>在以下情形下，比较对会计利润与经济利润的影响：<br>a.    你租用办公室<br>b.  你自己拥有办公室</p>
+<blockquote>
+<p>办公室的均衡租金上涨了$500/每月 </p>
+<p>a. 你租用办公室<br>   显性成本增加了$500/每月。会计利润与经济利润都减少了$500/每月 </p>
+<p>b. 你自己拥有办公室<br>   显性成本没有变化，因此会计利润也不会变。隐性成本增加了$500/每月（使用你办公室的机会成本是租用它的价格），因此经济利润减少了$500/每月</p>
+</blockquote>
+<h2 id="生产函数"><a href="#生产函数" class="headerlink" title="生产函数"></a>生产函数</h2><p>在一定技术水平下，生产要素的数量和某种组合与它所能生产出来的最大产量之间依存关系的函数。</p>
+<ul>
+<li>总产量（TP）</li>
+<li>平均产量（AP）</li>
+<li>边际产量（MP）</li>
+<li>实际生产量（Q）</li>
+</ul>
+<p>=&gt; </p>
+<p>边际常量递减规律（边际收益递减规律）</p>
+<blockquote>
+<p>在技术不变情况下， 其他生产要素投入不变，某种生产要素的增加最初使产量增加，但增加超过一定限度时，增加的产量将要递减，最终还会使产量绝对降低。</p>
+</blockquote>
+<h2 id="成本函数"><a href="#成本函数" class="headerlink" title="成本函数"></a>成本函数</h2><ul>
+<li>总成本（TC）<ul>
+<li>固定成本（FC）：不随着产量变动而变动的成本（如设备成本，租金成本）</li>
+<li>可变成本（VC）：随着产量变动而变动的成本（如劳动力成本，原材料成本）</li>
+</ul>
+</li>
+<li>边际成本（MC）</li>
+<li>平均总成本（ATC）：<code>TC / Q</code></li>
+<li>平均固定成本（AFC）：<code>FC / Q</code></li>
+<li>平均可变成本（AVC）：<code>VC / Q</code></li>
+</ul>
+<h3 id="有效规模"><a href="#有效规模" class="headerlink" title="有效规模"></a>有效规模</h3><p>使平均总成本最小的产量</p>
+<p>边际成本曲线与平均总成本曲线相交于有效规模点</p>
+<h3 id="生产规模"><a href="#生产规模" class="headerlink" title="生产规模"></a>生产规模</h3><ul>
+<li>规模经济：长期平均总成本随产量增加而减少</li>
+<li>规模不经济：长期平均总成本随产量增加而增加</li>
+</ul>
+<h1 id="第八章-完全竞争市场"><a href="#第八章-完全竞争市场" class="headerlink" title="第八章 完全竞争市场"></a>第八章 完全竞争市场</h1><h2 id="竞争企业的收益"><a href="#竞争企业的收益" class="headerlink" title="竞争企业的收益"></a>竞争企业的收益</h2><ul>
+<li>总收益（TR）：<code>P * Q</code></li>
+<li>平均收益（AR）：<code>AR = TR / Q = P</code></li>
+<li>边际收益（MR）</li>
+</ul>
+<blockquote>
+<p>完全竞争市场中，对于一个竞争企业而言： <code>MR = P</code><br>作为价格接受者，一个竞争企业能够增加它的产量，而不影响市场价格</p>
+</blockquote>
+<h2 id="利润最大化与竞争企业的供给曲线"><a href="#利润最大化与竞争企业的供给曲线" class="headerlink" title="利润最大化与竞争企业的供给曲线"></a>利润最大化与竞争企业的供给曲线</h2><h3 id="利润最大化"><a href="#利润最大化" class="headerlink" title="利润最大化"></a>利润最大化</h3><p>考虑MR与MC的关系，二者相等时为利润最大化的产量</p>
+<blockquote>
+<p><code>MR = P</code>为一条水平线，MC为一条斜率为正的线</p>
+</blockquote>
+<h3 id="停止营业与退出市场"><a href="#停止营业与退出市场" class="headerlink" title="停止营业与退出市场"></a>停止营业与退出市场</h3><ul>
+<li>停止营业：仍支付固定成本</li>
+<li>退出市场：没有任何成本</li>
+</ul>
+<h4 id="沉没成本"><a href="#沉没成本" class="headerlink" title="沉没成本"></a>沉没成本</h4><p>已经发生而且无法收回的成本</p>
+<blockquote>
+<p>固定成本是一种沉没成本：无论企业决定生产或停止营业，都必须支付固定成本<br>沉没成本应该与决策无关：无论做怎样的决策，都必须支付它们</p>
+</blockquote>
+<h4 id="停止营业"><a href="#停止营业" class="headerlink" title="停止营业"></a>停止营业</h4><ul>
+<li>成本：收益损失（TR）</li>
+<li>收益：节约成本（VC）</li>
+</ul>
+<p>若<code>TR &lt; VC</code>，则企业应停止营业</p>
+<p>上式两边除以产量Q得：<code>P &lt; AVC</code></p>
+<h4 id="退出市场"><a href="#退出市场" class="headerlink" title="退出市场"></a>退出市场</h4><ul>
+<li>成本：收益损失（TR）</li>
+<li>收益：节约成本（TC）</li>
+</ul>
+<p>若<code>TR &lt; TC</code>（<code>P &lt; ATC</code>），则企业应退出市场<br>若<code>TR &gt; TC</code>（<code>P &gt; ATC</code>）, 则一个新企业将进入市场</p>
+<h2 id="竞争市场的供应曲线"><a href="#竞争市场的供应曲线" class="headerlink" title="竞争市场的供应曲线"></a>竞争市场的供应曲线</h2><p>长期中，由于企业可自由进入与退出市场，因而市场中企业的数量会发生变化。</p>
+<ul>
+<li>如果市场上的企业获得正的经济利润：<ul>
+<li>新企业会进入，短期市场供给向右移动</li>
+<li>价格下降，利润降低，企业进入速度减慢</li>
+</ul>
+</li>
+<li>如果市场上的企业有亏损（经济利润&lt;0）：<ul>
+<li>一些企业会退出市场，短期市场供给向左移动</li>
+<li>价格上升，减少仍在市场上企业的损失</li>
+</ul>
+</li>
+</ul>
+<h3 id="长期均衡："><a href="#长期均衡：" class="headerlink" title="长期均衡："></a>长期均衡：</h3><p>在进入和退出过程结束时，仍然留在市场中的企业的经济利润必定为零</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>利润最大化：<code>MC = MR</code></li>
+<li>完全竞争：<code>P = MR</code></li>
+<li>所以完全竞争均衡：<code>P = MC</code></li>
+</ul>
+<h1 id="第九章-完全垄断市场"><a href="#第九章-完全垄断市场" class="headerlink" title="第九章 完全垄断市场"></a>第九章 完全垄断市场</h1><ul>
+<li><p>完全垄断企业：唯一卖者且产品无相近替代品</p>
+</li>
+<li><p>市场势力：垄断企业能影响市场的能力（竞争性企业则没有市场势力）</p>
+</li>
+</ul>
+<h2 id="为什么产生垄断"><a href="#为什么产生垄断" class="headerlink" title="为什么产生垄断"></a>为什么产生垄断</h2><p>基本原因：存在进入壁垒</p>
+<blockquote>
+<p>进入壁垒的形成原因</p>
+<ul>
+<li>垄断资源</li>
+<li>政府造成的垄断</li>
+<li>自然垄断  </li>
+</ul>
+</blockquote>
+<h2 id="垄断决策"><a href="#垄断决策" class="headerlink" title="垄断决策"></a>垄断决策</h2><p>市场需求曲线向下倾斜</p>
+<p>于是在竞争市场中各竞争企业共同面对，在市场价格上，各企业的需求曲线时水平的</p>
+<p>而对于垄断企业需要独自面对整个市场的需求曲线，因此其需求曲线向右下方倾斜</p>
+<p>垄断者特点</p>
+<ul>
+<li><code>MR &lt; P</code></li>
+<li>没有供给曲线（因为产量不由价格决定，由其自身的MC、MR与需求曲线决定）</li>
+</ul>
+<h2 id="垄断的福利代价"><a href="#垄断的福利代价" class="headerlink" title="垄断的福利代价"></a>垄断的福利代价</h2><ul>
+<li>垄断者生产的产量小于社会有效率的产量</li>
+<li>垄断会导致无谓损失</li>
+</ul>
+<h2 id="价格歧视"><a href="#价格歧视" class="headerlink" title="价格歧视"></a>价格歧视</h2><p>企业以不同价格向不同顾客出售同一种物品的经营做法，尽管生产成本都是相同的。</p>
+<ul>
+<li>价格歧视是利润最大化垄断者的一种理性策略</li>
+<li>价格歧视要求能根据支付意愿划分顾客</li>
+<li>价格歧视可以消除垄断定价中固有的无效率，从而增进经济福利。</li>
+</ul>
+<h2 id="对垄断的公共政策"><a href="#对垄断的公共政策" class="headerlink" title="对垄断的公共政策"></a>对垄断的公共政策</h2><ul>
+<li>用反托拉斯法（遏制垄断权力）增强竞争：</li>
+<li>管制垄断者的行为（针对私人经营的自然垄断）</li>
+<li>公有制</li>
+<li>无作为（以上反垄断和垄断都有自己的缺点）</li>
+</ul>
+<h2 id="垄断是普遍的"><a href="#垄断是普遍的" class="headerlink" title="垄断是普遍的"></a>垄断是普遍的</h2><p>许多企业都有市场势力，即垄断是普遍的</p>
+<blockquote>
+<p>垄断力量是一个程度问题</p>
+</blockquote>
+<h1 id="垄断竞争市场"><a href="#垄断竞争市场" class="headerlink" title="垄断竞争市场"></a>垄断竞争市场</h1><ul>
+<li>寡头竞争</li>
+<li>垄断竞争</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">竞争类型</th>
+<th style="text-align:center">完全竞争</th>
+<th style="text-align:center">垄断竞争</th>
+<th style="text-align:center">完全垄断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">卖者的数量</td>
+<td style="text-align:center">许多</td>
+<td style="text-align:center">许多</td>
+<td style="text-align:center">一个</td>
+</tr>
+<tr>
+<td style="text-align:center">自由进入/退出市场</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">不是</td>
+</tr>
+<tr>
+<td style="text-align:center">长期经济利润</td>
+<td style="text-align:center">零利润</td>
+<td style="text-align:center">零利润</td>
+<td style="text-align:center">正利润</td>
+</tr>
+<tr>
+<td style="text-align:center">企业出售的产品</td>
+<td style="text-align:center">完全相同</td>
+<td style="text-align:center">不同(有相似替代品)</td>
+<td style="text-align:center">完全不同(无相似替代品)</td>
+</tr>
+<tr>
+<td style="text-align:center">市场势力</td>
+<td style="text-align:center">没有，价格接收者</td>
+<td style="text-align:center">有</td>
+<td style="text-align:center">有</td>
+</tr>
+<tr>
+<td style="text-align:center">企业面临的需求曲线</td>
+<td style="text-align:center">水平</td>
+<td style="text-align:center">向右下方倾斜</td>
+<td style="text-align:center">向右下方倾斜</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;明天考选修，贴个[哭]&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>第二讲——市场</title>
     <link href="https://jasonyan2015.github.io/2017/05/06/%E7%AC%AC%E4%BA%8C%E8%AE%B2%E2%80%94%E2%80%94%E5%B8%82%E5%9C%BA/"/>
     <id>https://jasonyan2015.github.io/2017/05/06/第二讲——市场/</id>
     <published>2017-05-06T02:16:21.367Z</published>
-    <updated>2017-05-06T07:40:04.418Z</updated>
+    <updated>2017-05-07T12:33:05.497Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>后天考选修，贴个[哭]</p>
@@ -369,9 +858,9 @@
     </summary>
     
     
-      <category term="html" scheme="https://jasonyan2015.github.io/tags/html/"/>
-    
       <category term="node" scheme="https://jasonyan2015.github.io/tags/node/"/>
+    
+      <category term="html" scheme="https://jasonyan2015.github.io/tags/html/"/>
     
       <category term="pug" scheme="https://jasonyan2015.github.io/tags/pug/"/>
     
