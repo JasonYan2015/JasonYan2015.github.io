@@ -1,0 +1,1034 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js,jquery,源码分析," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ajun" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="神库jQuery的内心世界 选用1.9.0版本jQuery">
+<meta name="keywords" content="js,jquery,源码分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery源码剖析·第一弹">
+<meta property="og:url" content="https://jasonyan2015.github.io/2017/04/22/jQuery源码分析第一弹/index.html">
+<meta property="og:site_name" content="Ajun">
+<meta property="og:description" content="神库jQuery的内心世界 选用1.9.0版本jQuery">
+<meta property="og:updated_time" content="2017-04-22T08:26:51.484Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery源码剖析·第一弹">
+<meta name="twitter:description" content="神库jQuery的内心世界 选用1.9.0版本jQuery">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jasonyan2015.github.io/2017/04/22/jQuery源码分析第一弹/"/>
+
+
+
+
+
+  <title> jQuery源码剖析·第一弹 | Ajun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?97e4fd3e134c7f0035f9be5d66f03cf2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ajun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">听说悟净已经植发治好了秃头，有了论及婚嫁的女友。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jasonyan2015.github.io/2017/04/22/jQuery源码分析第一弹/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ajun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ajun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jQuery源码剖析·第一弹
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-22T16:24:45+08:00">
+                2017-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>神库jQuery的内心世界</p>
+<p>选用1.9.0版本jQuery</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><strong>沙箱封装</strong></li>
+<li><strong>core工具方法</strong>：jquery的核心组成部分，包括<ul>
+<li>$.trim()去除字符串两端的空格。（内部调用7次）</li>
+<li>$.each()遍历数组或对象（内部调用59次）</li>
+<li>$.inArray()返回一个值在数组中的索引位置。如果该值不在数组中，则返回-1。（内部调用9次）</li>
+<li>$.grep()返回数组中符合某种标准的元素。（内部调用6次）</li>
+<li>$.merge()合并两个数组。（内部调用11次）</li>
+<li>$.map()将一个数组中的元素转换到另一个数组中。（内部调用12次）</li>
+<li>$.makeArray()将对象转化为数组。（内部调用6次）</li>
+<li>$.globalEval() 在全局作用域下执行一段js脚本。（内部调用2次）</li>
+<li>$.proxy()接受一个函数，然后返回一个新函数，并且这个新函数始终保持了特定的上下文(context)语境。（内部调用0次）</li>
+<li>$.nodeName()返回DOM节点的节点名字，或者判断DOM节点名是否为某某名字。（内部调用51次）</li>
+<li>$.extend()将多个对象，合并到第一个对象。（内部调用42次）</li>
+</ul>
+</li>
+<li><strong>$.type类型判断</strong>：判断对象的类别（函数对象、日期对象、数组对象、正则对象等等（内部调用65次）,并以调用此方法来实现：<ul>
+<li>$.isArray()判断某个参数是否为数组。（内部调用12次）</li>
+<li>$.isEmptyObject()判断某个对象是否为空（不含有任何属性）。（内部调用4次）</li>
+<li>$.isFunction()判断某个参数是否为函数。（内部调用32次）</li>
+<li>$.isPlainObject()判断某个参数是否为用”{}”或”new Object”建立的对象。（内部调用4次）</li>
+<li>$.isWindow()判断是否为window对象。（内部调用6次）</li>
+</ul>
+</li>
+<li><strong>处理ajax返回数据</strong>：主要包括<ul>
+<li>$.parseHTML() 解析HTML（内部调用2次）</li>
+<li>$.parseJSON() 解析JSON（内部调用2次）</li>
+<li>$.parseXML() 解析XML（内部调用1次）</li>
+</ul>
+</li>
+<li><strong>几个简单的函数</strong>：不在之后的文章中分析<ul>
+<li>$.noop() 一个空函数，个人觉得是用来作为一个默认的回调函数，无需每次去定义一个空的function消耗资源。（内部调用2次）</li>
+<li>$.now() 获取当前时间戳，代码很简单：return (new Date()).getTime();。（内部调用4次）</li>
+<li>$.error() 报错，对外抛出一个异常，代码很简单：throw new Error(msg);。（内部调用2次）</li>
+</ul>
+</li>
+</ol>
+<h2 id="沙箱封装"><a href="#沙箱封装" class="headerlink" title="沙箱封装"></a>沙箱封装</h2><pre><code>(function( window, undefined ) {
+     //用一个函数域把整个库包起来，就是所谓的沙箱
+     //在这里边var定义的变量，属于这个函数域内的局部变量，避免污染全局
+     //把当前沙箱需要的外部变量通过函数参数引入进来
+     //只要保证参数对内提供的接口的一致性，你还可以随意替换传进来的这个参数
+    &quot;use strict&quot;;
+    window.jQuery = window.$ = jQuery;
+})( window );
+</code></pre><p>至于为什么第二个参数<code>undefined</code>，这是一个针对压缩的小trick，同时也是为了防止因ES5之前能对<code>undefined</code>赋值而使用者编程不规范引发错误。</p>
+<p>压缩前</p>
+<pre><code>(function( window, undefined ) {
+  var a = undefined;
+  if (a == undefined){......}
+
+  ......
+  if (c == undefined) return;
+})( window );
+</code></pre><p>压缩后</p>
+<pre><code>(function(w, u) {
+  var a = u;
+  if (a == u){......}
+
+  ......
+  if (c == u) return;
+})(w);
+</code></pre><p>内部全局的<code>undefined</code>被缩成一个<code>u</code>，缩小了整个库的压缩包的体积。</p>
+<h2 id="core工具方法"><a href="#core工具方法" class="headerlink" title="core工具方法"></a>core工具方法</h2><h3 id="引用类型公有方法的存储"><a href="#引用类型公有方法的存储" class="headerlink" title="引用类型公有方法的存储"></a>引用类型公有方法的存储</h3><h4 id="源码："><a href="#源码：" class="headerlink" title="源码："></a>源码：</h4><pre><code>class2type = {},
+core_deletedIds = [],
+core_version = &quot;1.9.0&quot;,
+
+// Save a reference to some core methods
+core_concat = core_deletedIds.concat,
+core_push = core_deletedIds.push,
+core_slice = core_deletedIds.slice,
+core_indexOf = core_deletedIds.indexOf,
+core_toString = class2type.toString,
+core_hasOwn = class2type.hasOwnProperty,
+core_trim = core_version.trim,
+</code></pre><h4 id="等同于："><a href="#等同于：" class="headerlink" title="等同于："></a>等同于：</h4><pre><code>core_concat = Array.prototype.concat, 
+......
+</code></pre><h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><p>这里把js的几个引用类型的原生方法存储下来。本身这些方法的调用方式就有这3种：</p>
+<pre><code>var arr = [];
+
+1. arr.concat();
+2. core_concat.call(arr);
+3. core_concat.apply(arr);
+</code></pre><p>这里就有两个问题</p>
+<ol>
+<li>jQuery为什么要先把这些方法存储起来？</li>
+<li>jQuery为什么要采用方式二或者三，而不直接使用方式一的做法？ </li>
+</ol>
+<p>其实第二个问题就回答了第一个问题。<br>而关于第二个问题有两个回答：</p>
+<ol>
+<li>按第一种方式调用时，首先需要辨别当前实例<code>arr</code>的类型是<code>Array</code>，在内存空间中寻找<code>Array</code>的<code>concat</code>内存入口，把当前对象<code>arr</code>的指针和其他参数压入栈，跳转到<code>concat</code>地址开始执行。而当保存了<code>concat</code>方法的入口<code>core_concat</code>时，完全就可以省去前面两个步骤，从而提升一些性能。</li>
+<li><code>var obj = {};</code>此时调用<code>obj.concat</code>会报错。但是如果采用后两种方式调用的话，能够解决这个问题。 也即是让类数组也能用到数组的方法（这就是<code>call</code>跟<code>apply</code>带来的另一种用法），尤其在jQuery里边引用一些DOM对象时，也能完美的用这个方法去解决。</li>
+</ol>
+<h3 id="trim"><a href="#trim" class="headerlink" title="$.trim()"></a>$.trim()</h3><h4 id="源码：-1"><a href="#源码：-1" class="headerlink" title="源码："></a>源码：</h4><pre><code>core_version = &quot;1.9.0&quot;,
+core_trim = core_version.trim,
+rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
+
+trim: core_trim &amp;&amp; !core_trim.call(&quot;\uFEFF\xA0&quot;) ?
+  function( text ) {
+    return text == null ?
+      &quot;&quot; :
+      core_trim.call( text );
+  } :
+
+  // Otherwise use our own trimming functionality
+  function( text ) {
+    return text == null ?
+      &quot;&quot; :
+      ( text + &quot;&quot; ).replace( rtrim, &quot;&quot; );
+  }
+</code></pre><h4 id="等同于：-1"><a href="#等同于：-1" class="headerlink" title="等同于："></a>等同于：</h4><pre><code>trim: if (String.prototype.trim &amp;&amp; &quot;\uFEFF\xA0&quot;.trim() !== &quot;&quot;) {
+    //直接调用原生String的trim方法
+} else {
+    //使用正则表达式和replace方法替换前尾的空格
+}
+</code></pre><h4 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h4><p>如果浏览器原生支持<code>String</code>的<code>trim</code>方法，并且能够解析全角空格，那么就直接使用原生的<code>trim</code>方法</p>
+<blockquote>
+<p><code>\uFEFF</code>是utf8的字节序标记，<code>\xA0</code>是全角空格</p>
+</blockquote>
+<p>如果以上条件成立，那就直接用原生的trim函数:</p>
+<pre><code>$.trim = function( text ) {
+    return text == null ?
+        &quot;&quot; :
+        text.trim();
+}
+</code></pre><p>如果上述条件不成立，那就自己实现一个<code>trim</code>方法：</p>
+<pre><code>$.trim = function( text ) {
+    return text == null ?
+        &quot;&quot; :
+        ( text + &quot;&quot; ).replace( rtrim, &quot;&quot; );
+}
+</code></pre><h3 id="each"><a href="#each" class="headerlink" title="$.each()"></a>$.each()</h3><h4 id="源码：-2"><a href="#源码：-2" class="headerlink" title="源码："></a>源码：</h4><pre><code>$.each = function( obj, callback, args ) {
+  //obj 是需要遍历的数组或者对象
+  //callback是处理数组或对象的每个元素的回调函数，它的返回值实际会中断循环的过程
+
+  var value,
+    i = 0,
+    length = obj.length,
+    //判断是不是数组
+    isArray = isArraylike( obj );
+
+  if ( args ) {
+    if ( isArray ) {
+      for ( ; i &lt; length; i++ ) {
+        value = callback.apply( obj[ i ], args );
+        //相当于: args = [arg1, arg2, arg3];
+        //callback(args1, args2, args3)。然后callback里边的this指向了obj[i]
+
+        if ( value === false ) {
+          //注意到，当callback函数返回值会false的时候，注意是全等！循环结束
+          break;
+        }
+      }
+    } else {
+      for ( i in obj ) {
+        value = callback.apply( obj[ i ], args );
+
+        if ( value === false ) {
+          break;
+        }
+      }
+    }
+
+  // A special, fast, case for the most common use of each
+  } else {
+    if ( isArray ) {
+      for ( ; i &lt; length; i++ ) {
+        value = callback.call( obj[ i ], i, obj[ i ] );
+        //相当于callback(i, obj[i])。然后callback里边的this指向了obj[i]
+
+        if ( value === false ) {
+            break;
+          }
+        }
+      } else {
+        for ( i in obj ) {
+          value = callback.call( obj[ i ], i, obj[ i ] );
+
+          if ( value === false ) {
+            break;
+          }
+        }
+      }
+    }
+
+  return obj;
+}
+</code></pre><h4 id="等同于：-2"><a href="#等同于：-2" class="headerlink" title="等同于："></a>等同于：</h4><pre><code>//for in对于数组来说性能比较低而且存在某些bug
+//这里只是希望用更简洁的代码来减少原先代码的重复性
+$.each = function( obj, callback, args ) {
+  var value,
+    i = 0,
+    length = obj.length;
+
+  for ( i in obj ) {
+    value =
+      args ?
+      callback.apply( obj[ i ], args ) :
+      callback.call( obj[ i ], i, obj[ i ] );
+
+    if ( value === false ) {
+      break;
+    }
+  }
+  return obj;
+}
+</code></pre><h4 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h4><p>看这两个例子</p>
+<pre><code>$.each([1,2,3], function(key, value){
+  console.log(&quot;[&quot; + key + &quot;]=&quot; + value);
+  return false;
+});
+//输出：
+[0]=1
+//原数组结果：
+[1,2,3]
+</code></pre><p><code>$.each()</code>接受2个参数， 数组[1,2,3],回调函数<br>可以看到回调函数具有两个参数，<code>key</code>是数组的索引，<code>value</code>是对应的元素</p>
+<pre><code>$.each([1,2,3], function(arg1, arg2){
+  console.log(this + &quot;,&quot; + arg1 + &quot;,&quot; + arg2);
+  return ;
+}, [4, 5]);
+//输出：
+1,4,5
+2,4,5
+3,4,5
+//原数组结果：
+[1,2,3]
+</code></pre><p><code>$.each()</code>接受3个参数， 数组[1,2,3],回调函数，一个额外的参数数组<code>args</code>=[4,5]<br>可以看到回调函数的两个参数就是<code>$.each()</code>的第三个参数<code>args</code>，在函数里边的<code>this</code>就是遍历元素自己</p>
+<p>对比上述二者也可以看到，当回调函数<code>return false</code>后就跳出循环，遍历不再执行</p>
+<h3 id="inArray"><a href="#inArray" class="headerlink" title="$.inArray()"></a>$.inArray()</h3><h4 id="源码：-3"><a href="#源码：-3" class="headerlink" title="源码："></a>源码：</h4><pre><code>core_deletedIds = [],
+core_indexOf = core_deletedIds.indexOf,
+
+//elem 规定需检索的值。
+//arr 数组
+//i 可选的整数参数。规定在数组中开始检索的位置。它的合法取值是 0 到 arr.length - 1。如省略该参数，则将从数组首元素开始检索。
+inArray: function( elem, arr, i ) {
+  var len;
+
+  if ( arr ) {
+    //原生的Array对象支持indexOf方法，直接调用
+    if ( core_indexOf ) {
+      return core_indexOf.call( arr, elem, i );
+    }
+
+    len = arr.length;
+    i = i ? i &lt; 0 ? Math.max( 0, len + i ) : i : 0;
+
+    for ( ; i &lt; len; i++ ) {
+      if ( i in arr &amp;&amp; arr[ i ] === elem ) {
+        return i;
+      }
+    }
+  }
+
+  //全部都不符合，返回-1
+  return -1;
+},
+</code></pre><h4 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h4><pre><code>i = i ? i &lt; 0 ? Math.max( 0, len + i ) : i : 0;
+</code></pre><p>当i为负数时，从数组后边len+i的位置开始索引</p>
+<pre><code>for ( ; i &lt; len; i++ ) {
+    if ( i in arr &amp;&amp; arr[ i ] === elem ) {
+    return i;
+    }
+}
+</code></pre><p>这里的<code>(i in arr)</code>判断是为了跳过稀疏数组中的元素<br>例如 <code>var arr = []; arr[2] = 1;</code><br>此时 <code>arr == [undefined, undefined, 1]</code><br>结果是 =&gt; </p>
+<ul>
+<li><code>(0 in arr == false)</code> </li>
+<li><code>(1 in arr == false)</code> </li>
+<li><code>(2 in arr == true)</code></li>
+</ul>
+<p>另外（在火狐下）测试得：</p>
+<pre><code>var arr = [undefined, 1]; 
+</code></pre><p>输出是： </p>
+<pre><code>arr == [undefined, 1] 
+0 in arr == true; 
+arr.indexOf(undefined) == 0; 
+arr[0] == undefined; 
+</code></pre><p>但是如果是以下代码： </p>
+<pre><code>var arr = []; 
+a[1] = 1; 
+</code></pre><p>输出是： </p>
+<pre><code>arr == [undefined, 1] 
+0 in arr == false; 
+arr.indexOf(undefined) == -1; 
+arr[0] == undefined;
+</code></pre><p>所以<code>(i in arr)</code>也是必要的。</p>
+<h3 id="grep"><a href="#grep" class="headerlink" title="$.grep()"></a>$.grep()</h3><h4 id="源码：-4"><a href="#源码：-4" class="headerlink" title="源码："></a>源码：</h4><pre><code>grep: function( elems, callback, inv ) {
+    var retVal,
+    ret = [],
+    i = 0,
+    length = elems.length;
+    //转成布尔型
+    inv = !!inv;
+
+    // Go through the array, only saving the items that pass the validator function
+    for ( ; i &lt; length; i++ ) {
+        retVal = !!callback( elems[ i ], i );
+        //注意这里的callback参数是先value,后key
+        if ( inv !== retVal ) {
+            ret.push( elems[ i ] );
+        }
+    }
+
+    return ret;
+}
+</code></pre><p>用例：</p>
+<pre><code>$.grep( [0,1,2], function(n,i){
+  return n &lt;= 0;
+});
+//结果是：[0] 
+
+$.grep( [0,1,2], function(n,i){
+  return n &lt;= 0;
+}, true);
+//结果是：[1, 2]
+</code></pre><hr>
+<p>参考链接</p>
+<ul>
+<li><a href="https://www.w3ctech.com/topic/256" target="_blank" rel="external">jQuery源码剖析（一）——概览&amp;工具方法</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/jquery/" rel="tag"># jquery</a>
+          
+            <a href="/tags/源码分析/" rel="tag"># 源码分析</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/22/模拟select/" rel="next" title="第一次面向对象，把对象Po出来吧">
+                <i class="fa fa-chevron-left"></i> 第一次面向对象，把对象Po出来吧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/22/webpack+es6+react+babel热更新环境搭建/" rel="prev" title="新时代使用react框架的环境搭建">
+                新时代使用react框架的环境搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ajun" />
+          <p class="site-author-name" itemprop="name">Ajun</p>
+           
+              <p class="site-description motion-element" itemprop="description">Ajun的前端学习笔记</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沙箱封装"><span class="nav-number">2.</span> <span class="nav-text">沙箱封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#core工具方法"><span class="nav-number">3.</span> <span class="nav-text">core工具方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型公有方法的存储"><span class="nav-number">3.1.</span> <span class="nav-text">引用类型公有方法的存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码："><span class="nav-number">3.1.1.</span> <span class="nav-text">源码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#等同于："><span class="nav-number">3.1.2.</span> <span class="nav-text">等同于：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析："><span class="nav-number">3.1.3.</span> <span class="nav-text">分析：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trim"><span class="nav-number">3.2.</span> <span class="nav-text">$.trim()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码：-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">源码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#等同于：-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">等同于：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析：-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">分析：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#each"><span class="nav-number">3.3.</span> <span class="nav-text">$.each()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码：-2"><span class="nav-number">3.3.1.</span> <span class="nav-text">源码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#等同于：-2"><span class="nav-number">3.3.2.</span> <span class="nav-text">等同于：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析：-2"><span class="nav-number">3.3.3.</span> <span class="nav-text">分析：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inArray"><span class="nav-number">3.4.</span> <span class="nav-text">$.inArray()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码：-3"><span class="nav-number">3.4.1.</span> <span class="nav-text">源码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析：-3"><span class="nav-number">3.4.2.</span> <span class="nav-text">分析：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">3.5.</span> <span class="nav-text">$.grep()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码：-4"><span class="nav-number">3.5.1.</span> <span class="nav-text">源码：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ajun</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
