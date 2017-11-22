@@ -1,0 +1,886 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ajun" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="明天考选修，贴个[哭]">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第四讲——生产者决策">
+<meta property="og:url" content="https://jasonyan2015.github.io/2017/05/07/第四讲——生产者决策/index.html">
+<meta property="og:site_name" content="Ajun">
+<meta property="og:description" content="明天考选修，贴个[哭]">
+<meta property="og:updated_time" content="2017-05-07T12:33:28.099Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第四讲——生产者决策">
+<meta name="twitter:description" content="明天考选修，贴个[哭]">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jasonyan2015.github.io/2017/05/07/第四讲——生产者决策/"/>
+
+
+
+
+
+  <title> 第四讲——生产者决策 | Ajun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?97e4fd3e134c7f0035f9be5d66f03cf2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ajun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">听说悟净已经植发治好了秃头，有了论及婚嫁的女友。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jasonyan2015.github.io/2017/05/07/第四讲——生产者决策/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ajun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ajun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第四讲——生产者决策
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-07T20:33:37+08:00">
+                2017-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>明天考选修，贴个[哭]</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="第七章-生产成本"><a href="#第七章-生产成本" class="headerlink" title="第七章 生产成本"></a>第七章 生产成本</h1><h2 id="机会成本"><a href="#机会成本" class="headerlink" title="机会成本"></a>机会成本</h2><p>会计：显性成本<br>经济学家：隐性成本 +显性成本</p>
+<p>例子</p>
+<p>办公室的均衡租金上涨了$500/每月<br>在以下情形下，比较对会计利润与经济利润的影响：<br>a.    你租用办公室<br>b.  你自己拥有办公室</p>
+<blockquote>
+<p>办公室的均衡租金上涨了$500/每月 </p>
+<p>a. 你租用办公室<br>   显性成本增加了$500/每月。会计利润与经济利润都减少了$500/每月 </p>
+<p>b. 你自己拥有办公室<br>   显性成本没有变化，因此会计利润也不会变。隐性成本增加了$500/每月（使用你办公室的机会成本是租用它的价格），因此经济利润减少了$500/每月</p>
+</blockquote>
+<h2 id="生产函数"><a href="#生产函数" class="headerlink" title="生产函数"></a>生产函数</h2><p>在一定技术水平下，生产要素的数量和某种组合与它所能生产出来的最大产量之间依存关系的函数。</p>
+<ul>
+<li>总产量（TP）</li>
+<li>平均产量（AP）</li>
+<li>边际产量（MP）</li>
+<li>实际生产量（Q）</li>
+</ul>
+<p>=&gt; </p>
+<p>边际常量递减规律（边际收益递减规律）</p>
+<blockquote>
+<p>在技术不变情况下， 其他生产要素投入不变，某种生产要素的增加最初使产量增加，但增加超过一定限度时，增加的产量将要递减，最终还会使产量绝对降低。</p>
+</blockquote>
+<h2 id="成本函数"><a href="#成本函数" class="headerlink" title="成本函数"></a>成本函数</h2><ul>
+<li>总成本（TC）<ul>
+<li>固定成本（FC）：不随着产量变动而变动的成本（如设备成本，租金成本）</li>
+<li>可变成本（VC）：随着产量变动而变动的成本（如劳动力成本，原材料成本）</li>
+</ul>
+</li>
+<li>边际成本（MC）</li>
+<li>平均总成本（ATC）：<code>TC / Q</code></li>
+<li>平均固定成本（AFC）：<code>FC / Q</code></li>
+<li>平均可变成本（AVC）：<code>VC / Q</code></li>
+</ul>
+<h3 id="有效规模"><a href="#有效规模" class="headerlink" title="有效规模"></a>有效规模</h3><p>使平均总成本最小的产量</p>
+<p>边际成本曲线与平均总成本曲线相交于有效规模点</p>
+<h3 id="生产规模"><a href="#生产规模" class="headerlink" title="生产规模"></a>生产规模</h3><ul>
+<li>规模经济：长期平均总成本随产量增加而减少</li>
+<li>规模不经济：长期平均总成本随产量增加而增加</li>
+</ul>
+<h1 id="第八章-完全竞争市场"><a href="#第八章-完全竞争市场" class="headerlink" title="第八章 完全竞争市场"></a>第八章 完全竞争市场</h1><h2 id="竞争企业的收益"><a href="#竞争企业的收益" class="headerlink" title="竞争企业的收益"></a>竞争企业的收益</h2><ul>
+<li>总收益（TR）：<code>P * Q</code></li>
+<li>平均收益（AR）：<code>AR = TR / Q = P</code></li>
+<li>边际收益（MR）</li>
+</ul>
+<blockquote>
+<p>完全竞争市场中，对于一个竞争企业而言： <code>MR = P</code><br>作为价格接受者，一个竞争企业能够增加它的产量，而不影响市场价格</p>
+</blockquote>
+<h2 id="利润最大化与竞争企业的供给曲线"><a href="#利润最大化与竞争企业的供给曲线" class="headerlink" title="利润最大化与竞争企业的供给曲线"></a>利润最大化与竞争企业的供给曲线</h2><h3 id="利润最大化"><a href="#利润最大化" class="headerlink" title="利润最大化"></a>利润最大化</h3><p>考虑MR与MC的关系，二者相等时为利润最大化的产量</p>
+<blockquote>
+<p><code>MR = P</code>为一条水平线，MC为一条斜率为正的线</p>
+</blockquote>
+<h3 id="停止营业与退出市场"><a href="#停止营业与退出市场" class="headerlink" title="停止营业与退出市场"></a>停止营业与退出市场</h3><ul>
+<li>停止营业：仍支付固定成本</li>
+<li>退出市场：没有任何成本</li>
+</ul>
+<h4 id="沉没成本"><a href="#沉没成本" class="headerlink" title="沉没成本"></a>沉没成本</h4><p>已经发生而且无法收回的成本</p>
+<blockquote>
+<p>固定成本是一种沉没成本：无论企业决定生产或停止营业，都必须支付固定成本<br>沉没成本应该与决策无关：无论做怎样的决策，都必须支付它们</p>
+</blockquote>
+<h4 id="停止营业"><a href="#停止营业" class="headerlink" title="停止营业"></a>停止营业</h4><ul>
+<li>成本：收益损失（TR）</li>
+<li>收益：节约成本（VC）</li>
+</ul>
+<p>若<code>TR &lt; VC</code>，则企业应停止营业</p>
+<p>上式两边除以产量Q得：<code>P &lt; AVC</code></p>
+<h4 id="退出市场"><a href="#退出市场" class="headerlink" title="退出市场"></a>退出市场</h4><ul>
+<li>成本：收益损失（TR）</li>
+<li>收益：节约成本（TC）</li>
+</ul>
+<p>若<code>TR &lt; TC</code>（<code>P &lt; ATC</code>），则企业应退出市场<br>若<code>TR &gt; TC</code>（<code>P &gt; ATC</code>）, 则一个新企业将进入市场</p>
+<h2 id="竞争市场的供应曲线"><a href="#竞争市场的供应曲线" class="headerlink" title="竞争市场的供应曲线"></a>竞争市场的供应曲线</h2><p>长期中，由于企业可自由进入与退出市场，因而市场中企业的数量会发生变化。</p>
+<ul>
+<li>如果市场上的企业获得正的经济利润：<ul>
+<li>新企业会进入，短期市场供给向右移动</li>
+<li>价格下降，利润降低，企业进入速度减慢</li>
+</ul>
+</li>
+<li>如果市场上的企业有亏损（经济利润&lt;0）：<ul>
+<li>一些企业会退出市场，短期市场供给向左移动</li>
+<li>价格上升，减少仍在市场上企业的损失</li>
+</ul>
+</li>
+</ul>
+<h3 id="长期均衡："><a href="#长期均衡：" class="headerlink" title="长期均衡："></a>长期均衡：</h3><p>在进入和退出过程结束时，仍然留在市场中的企业的经济利润必定为零</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>利润最大化：<code>MC = MR</code></li>
+<li>完全竞争：<code>P = MR</code></li>
+<li>所以完全竞争均衡：<code>P = MC</code></li>
+</ul>
+<h1 id="第九章-完全垄断市场"><a href="#第九章-完全垄断市场" class="headerlink" title="第九章 完全垄断市场"></a>第九章 完全垄断市场</h1><ul>
+<li><p>完全垄断企业：唯一卖者且产品无相近替代品</p>
+</li>
+<li><p>市场势力：垄断企业能影响市场的能力（竞争性企业则没有市场势力）</p>
+</li>
+</ul>
+<h2 id="为什么产生垄断"><a href="#为什么产生垄断" class="headerlink" title="为什么产生垄断"></a>为什么产生垄断</h2><p>基本原因：存在进入壁垒</p>
+<blockquote>
+<p>进入壁垒的形成原因</p>
+<ul>
+<li>垄断资源</li>
+<li>政府造成的垄断</li>
+<li>自然垄断  </li>
+</ul>
+</blockquote>
+<h2 id="垄断决策"><a href="#垄断决策" class="headerlink" title="垄断决策"></a>垄断决策</h2><p>市场需求曲线向下倾斜</p>
+<p>于是在竞争市场中各竞争企业共同面对，在市场价格上，各企业的需求曲线时水平的</p>
+<p>而对于垄断企业需要独自面对整个市场的需求曲线，因此其需求曲线向右下方倾斜</p>
+<p>垄断者特点</p>
+<ul>
+<li><code>MR &lt; P</code></li>
+<li>没有供给曲线（因为产量不由价格决定，由其自身的MC、MR与需求曲线决定）</li>
+</ul>
+<h2 id="垄断的福利代价"><a href="#垄断的福利代价" class="headerlink" title="垄断的福利代价"></a>垄断的福利代价</h2><ul>
+<li>垄断者生产的产量小于社会有效率的产量</li>
+<li>垄断会导致无谓损失</li>
+</ul>
+<h2 id="价格歧视"><a href="#价格歧视" class="headerlink" title="价格歧视"></a>价格歧视</h2><p>企业以不同价格向不同顾客出售同一种物品的经营做法，尽管生产成本都是相同的。</p>
+<ul>
+<li>价格歧视是利润最大化垄断者的一种理性策略</li>
+<li>价格歧视要求能根据支付意愿划分顾客</li>
+<li>价格歧视可以消除垄断定价中固有的无效率，从而增进经济福利。</li>
+</ul>
+<h2 id="对垄断的公共政策"><a href="#对垄断的公共政策" class="headerlink" title="对垄断的公共政策"></a>对垄断的公共政策</h2><ul>
+<li>用反托拉斯法（遏制垄断权力）增强竞争：</li>
+<li>管制垄断者的行为（针对私人经营的自然垄断）</li>
+<li>公有制</li>
+<li>无作为（以上反垄断和垄断都有自己的缺点）</li>
+</ul>
+<h2 id="垄断是普遍的"><a href="#垄断是普遍的" class="headerlink" title="垄断是普遍的"></a>垄断是普遍的</h2><p>许多企业都有市场势力，即垄断是普遍的</p>
+<blockquote>
+<p>垄断力量是一个程度问题</p>
+</blockquote>
+<h1 id="垄断竞争市场"><a href="#垄断竞争市场" class="headerlink" title="垄断竞争市场"></a>垄断竞争市场</h1><ul>
+<li>寡头竞争</li>
+<li>垄断竞争</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">竞争类型</th>
+<th style="text-align:center">完全竞争</th>
+<th style="text-align:center">垄断竞争</th>
+<th style="text-align:center">完全垄断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">卖者的数量</td>
+<td style="text-align:center">许多</td>
+<td style="text-align:center">许多</td>
+<td style="text-align:center">一个</td>
+</tr>
+<tr>
+<td style="text-align:center">自由进入/退出市场</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">不是</td>
+</tr>
+<tr>
+<td style="text-align:center">长期经济利润</td>
+<td style="text-align:center">零利润</td>
+<td style="text-align:center">零利润</td>
+<td style="text-align:center">正利润</td>
+</tr>
+<tr>
+<td style="text-align:center">企业出售的产品</td>
+<td style="text-align:center">完全相同</td>
+<td style="text-align:center">不同(有相似替代品)</td>
+<td style="text-align:center">完全不同(无相似替代品)</td>
+</tr>
+<tr>
+<td style="text-align:center">市场势力</td>
+<td style="text-align:center">没有，价格接收者</td>
+<td style="text-align:center">有</td>
+<td style="text-align:center">有</td>
+</tr>
+<tr>
+<td style="text-align:center">企业面临的需求曲线</td>
+<td style="text-align:center">水平</td>
+<td style="text-align:center">向右下方倾斜</td>
+<td style="text-align:center">向右下方倾斜</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/07/第六讲——宏观经济学数据和国民收入决定/" rel="next" title="第六讲——宏观经济学数据和国民收入决定">
+                <i class="fa fa-chevron-left"></i> 第六讲——宏观经济学数据和国民收入决定
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/06/第二讲——市场/" rel="prev" title="第二讲——市场">
+                第二讲——市场 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ajun" />
+          <p class="site-author-name" itemprop="name">Ajun</p>
+           
+              <p class="site-description motion-element" itemprop="description">Ajun的前端学习笔记</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第七章-生产成本"><span class="nav-number">1.</span> <span class="nav-text">第七章 生产成本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#机会成本"><span class="nav-number">1.1.</span> <span class="nav-text">机会成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生产函数"><span class="nav-number">1.2.</span> <span class="nav-text">生产函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成本函数"><span class="nav-number">1.3.</span> <span class="nav-text">成本函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有效规模"><span class="nav-number">1.3.1.</span> <span class="nav-text">有效规模</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生产规模"><span class="nav-number">1.3.2.</span> <span class="nav-text">生产规模</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第八章-完全竞争市场"><span class="nav-number">2.</span> <span class="nav-text">第八章 完全竞争市场</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#竞争企业的收益"><span class="nav-number">2.1.</span> <span class="nav-text">竞争企业的收益</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利润最大化与竞争企业的供给曲线"><span class="nav-number">2.2.</span> <span class="nav-text">利润最大化与竞争企业的供给曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利润最大化"><span class="nav-number">2.2.1.</span> <span class="nav-text">利润最大化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止营业与退出市场"><span class="nav-number">2.2.2.</span> <span class="nav-text">停止营业与退出市场</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#沉没成本"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">沉没成本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#停止营业"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">停止营业</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#退出市场"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">退出市场</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#竞争市场的供应曲线"><span class="nav-number">2.3.</span> <span class="nav-text">竞争市场的供应曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#长期均衡："><span class="nav-number">2.3.1.</span> <span class="nav-text">长期均衡：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">2.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第九章-完全垄断市场"><span class="nav-number">3.</span> <span class="nav-text">第九章 完全垄断市场</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么产生垄断"><span class="nav-number">3.1.</span> <span class="nav-text">为什么产生垄断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垄断决策"><span class="nav-number">3.2.</span> <span class="nav-text">垄断决策</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垄断的福利代价"><span class="nav-number">3.3.</span> <span class="nav-text">垄断的福利代价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#价格歧视"><span class="nav-number">3.4.</span> <span class="nav-text">价格歧视</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对垄断的公共政策"><span class="nav-number">3.5.</span> <span class="nav-text">对垄断的公共政策</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垄断是普遍的"><span class="nav-number">3.6.</span> <span class="nav-text">垄断是普遍的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垄断竞争市场"><span class="nav-number">4.</span> <span class="nav-text">垄断竞争市场</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ajun</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

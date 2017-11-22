@@ -1,0 +1,854 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="模块化,js," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ajun" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Asynchronous Module Definition——异步模块定义 它是一个在浏览器端模块化开发的规范。由于不是Javascript原生支持，使用AMD规范进行页面开发需要用到对应的库函数——RequireJS  RequireJS主要解决两个问题 多个js文件之间可能存在依赖关系时需要被依赖文件先备加载到浏览器 js文件加载时，加载文件越多，页面失去响应时间越久">
+<meta name="keywords" content="模块化,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【模块化JS】AMD规范">
+<meta property="og:url" content="https://jasonyan2015.github.io/2017/04/04/AMD规范/index.html">
+<meta property="og:site_name" content="Ajun">
+<meta property="og:description" content="Asynchronous Module Definition——异步模块定义 它是一个在浏览器端模块化开发的规范。由于不是Javascript原生支持，使用AMD规范进行页面开发需要用到对应的库函数——RequireJS  RequireJS主要解决两个问题 多个js文件之间可能存在依赖关系时需要被依赖文件先备加载到浏览器 js文件加载时，加载文件越多，页面失去响应时间越久">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1485016792251&di=e0445002cd2ccabd9c130a8e12d4d1d2&imgtype=0&src=http%3A%2F%2Fwww.uedsc.com%2Fwp-content%2Fuploads%2F2015%2F08%2Frequirejs.jpg">
+<meta property="og:updated_time" content="2017-04-22T08:16:41.150Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【模块化JS】AMD规范">
+<meta name="twitter:description" content="Asynchronous Module Definition——异步模块定义 它是一个在浏览器端模块化开发的规范。由于不是Javascript原生支持，使用AMD规范进行页面开发需要用到对应的库函数——RequireJS  RequireJS主要解决两个问题 多个js文件之间可能存在依赖关系时需要被依赖文件先备加载到浏览器 js文件加载时，加载文件越多，页面失去响应时间越久">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1485016792251&di=e0445002cd2ccabd9c130a8e12d4d1d2&imgtype=0&src=http%3A%2F%2Fwww.uedsc.com%2Fwp-content%2Fuploads%2F2015%2F08%2Frequirejs.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jasonyan2015.github.io/2017/04/04/AMD规范/"/>
+
+
+
+
+
+  <title> 【模块化JS】AMD规范 | Ajun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?97e4fd3e134c7f0035f9be5d66f03cf2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ajun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">听说悟净已经植发治好了秃头，有了论及婚嫁的女友。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jasonyan2015.github.io/2017/04/04/AMD规范/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ajun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ajun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【模块化JS】AMD规范
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T15:08:59+08:00">
+                2017-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Asynchronous Module Definition——异步模块定义</p>
+<p>它是一个在浏览器端模块化开发的规范。由于不是Javascript原生支持，使用AMD规范进行页面开发需要用到对应的库函数——<strong>RequireJS</strong></p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1485016792251&amp;di=e0445002cd2ccabd9c130a8e12d4d1d2&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.uedsc.com%2Fwp-content%2Fuploads%2F2015%2F08%2Frequirejs.jpg" alt="RequireJS图标"></p>
+<h4 id="RequireJS主要解决两个问题"><a href="#RequireJS主要解决两个问题" class="headerlink" title="RequireJS主要解决两个问题"></a>RequireJS主要解决两个问题</h4><ol>
+<li>多个js文件之间可能存在依赖关系时需要被依赖文件先备加载到浏览器</li>
+<li>js文件加载时，加载文件越多，页面失去响应时间越久</li>
+</ol>
+<a id="more"></a>
+<h4 id="语法简介"><a href="#语法简介" class="headerlink" title="语法简介"></a>语法简介</h4><p><em>定义模块</em>——define([id], [dependencies], factory);</p>
+<p>它是全局变量，用于定义模块。</p>
+<ul>
+<li>id：可选，用于定义模块标识。若没有提供该参数，则标识为脚本文件名</li>
+<li>dependencies：可选，所依赖的模块</li>
+<li>factory：模块初始化要执行的函数或对象。若为函数，则只被执行一次，若为对象，则此对象应为模块的输出值。</li>
+</ul>
+<p><em>加载模块</em>——require([dependencies], callback);</p>
+<ul>
+<li>dependencies：数组，表示所依赖的模块</li>
+<li>callback：回调函数，当前面指定的模块都加载成功后，它将被调用。加载的模块会以参数形式传入该函数，从而在回调函数内部就可以使用这些模块。</li>
+</ul>
+<blockquote>
+<p>补充：require()函数在加载依赖的函数时是异步加载的，这样浏览器就不会失去响应，它指定的回调函数只有在前面的模块都加载成功后才会运行。由此解决依赖性问题。</p>
+</blockquote>
+<h3 id="使用RequireJS"><a href="#使用RequireJS" class="headerlink" title="使用RequireJS"></a>使用RequireJS</h3><h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p><a href="http://www.requirejs.cn/docs/download.html" target="_blank" rel="external">下载链接</a></p>
+<h4 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h4><p>假定现在项目中所有js文件都放在一个”scripts”目录下，并添加上require.js。</p>
+<pre><code>* 项目目录/
+  * project.html
+  * scripts/
+     * main.js
+     * *require.js*
+     * helper/
+         * util.js
+</code></pre><p>为了充分利用require.js建议只在HTML中引入require.js，然后通过它来请求加载其他的scripts：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My Sample Project&lt;/title&gt;
+        &lt;!-- data-main attribute tells require.js to load scripts/main.js after require.js loads. --&gt;
+        &lt;script data-main=&quot;scripts/main&quot; src=&quot;scripts/require.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;My Sample Project&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><ul>
+<li>data-main属性：require.js使用它来启动脚本加载过程。</li>
+</ul>
+<blockquote>
+<p>RequireJS以一个相对于baseUrl的地址来加载所有的代码。而baseUrl有三种方式可以设置。</p>
+<ol>
+<li>使用上述data-main属性，可设置baseUrl为该属性相一致的目录。上例中为scripts文件夹</li>
+<li>使用RequireJS 的config手动设置。比如在main.js头部添加<pre><code> require.config({
+    paths: {
+            jsFileName: &apos;FileAddress&apos;
+    }
+});
+</code></pre></li>
+<li>如果没有显式指定上述二者，则默认为包含RequireJS的那个HTML页面所属目录。</li>
+</ol>
+</blockquote>
+<p>然后在main.js中使用require()来加载所有需要运行的scripts。</p>
+<pre><code>require([&quot;helper/util&quot;], function(util) {
+    //This function is called when scripts/helper/util.js is loaded.
+    //If util.js calls define(), then this function is not fired until
+    //util&apos;s dependencies have loaded, and the util argument will hold
+    //the module value for &quot;helper/util&quot;.
+});
+</code></pre><h4 id="加载文件"><a href="#加载文件" class="headerlink" title="加载文件"></a>加载文件</h4><p>以加载一个jQuery库为例。之前都是加载本地js模块，若是需要加载来自本地服务器、其他网站或CDN的js，那么可以用如下方式：</p>
+<pre><code>require.config({
+    paths : {
+        &quot;jquery&quot; : [&quot;http://libs.baidu.com/jquery/2.0.3/jquery&quot;]   
+    }
+})
+require([&quot;jquery&quot;,&quot;js/a&quot;],function($){
+    $(function(){
+        alert(&quot;load finished&quot;);  
+    })
+})
+</code></pre><p>require.config用来配置模块加载位置。简单点说就是给模块起一个更短更好记的名字，比如将百度的jquery库地址标记为jquery，这样在require时只需要写[“jquery”]就可以加载该js。当然，本地的js也可以这样配置。</p>
+<p>通过paths的配置会使我们的模块名字更精炼，paths还有一个重要的功能，就是可以配置多个路径，如果远程cdn库没有加载成功，可以加载本地的库，如：</p>
+<pre><code>require.config({
+    paths : {
+        &quot;jquery&quot; : [&quot;http://libs.baidu.com/jquery/2.0.3/jquery&quot;, &quot;js/jquery&quot;],
+        &quot;a&quot; : &quot;js/a&quot;   
+    }
+})
+require([&quot;jquery&quot;,&quot;a&quot;],function($){
+    $(function(){
+        alert(&quot;load finished&quot;);  
+    })
+})
+</code></pre><p>这样配置后，当百度的jquery没有加载成功后，会加载本地js目录下的jquery。</p>
+<ol>
+<li>在使用requirejs时，加载模块时不用写.js后缀的，当然也是不能写后缀</li>
+<li>上面例子中的callback函数中发现有$参数，这个就是依赖的jquery模块的输出变量，如果你依赖多个模块，可以依次写入多个参数来使用。</li>
+</ol>
+<p>事实上，一般把require.config配置放到data-main中配置，这样就可以使每一个页面都使用这个配置，然后页面中就可以直接使用require来加载所有的短模块名。</p>
+<p><em>main.js</em></p>
+<pre><code>require.config({
+    paths : {
+        &quot;jquery&quot; : [&quot;http://libs.baidu.com/jquery/2.0.3/jquery&quot;, &quot;js/jquery&quot;],
+        &quot;a&quot; : &quot;js/a&quot;   
+    }
+})
+</code></pre><p><em>project.html</em></p>
+<pre><code>&lt;script data-main=&quot;js/main&quot; src=&quot;js/require.js&quot;&gt;&lt;/script&gt;
+</code></pre><h5 id="加载第三方模块"><a href="#加载第三方模块" class="headerlink" title="加载第三方模块"></a>加载第三方模块</h5><p>通过require加载的模块一般都需要符合AMD规范即使用define来申明模块，但是部分时候需要加载非AMD规范的js，这时候就需要用到另一个功能——shim</p>
+<p>主要用在两个地方</p>
+<ol>
+<li><p>非AMD模块输出，将非标准的AMD模块”垫”成可用的模块，例如：老版本的jquery，并没有继承AMD规范，所以不能直接require[“jquery”],这时候就需要shim。比如我要是用underscore类库，但是他并没有实现AMD规范，那么可以这样配置：</p>
+<pre><code>require.config({
+    shim: {
+        &quot;underscore&quot; : {
+            exports : &quot;_&quot;;
+        }
+    }
+})
+</code></pre><p> 这样配置后，就可以在其他模块中引用underscore模块：</p>
+<pre><code>require([&quot;underscore&quot;], function(_){
+    _.each([1,2,3], alert);
+})
+</code></pre></li>
+<li><p>插件形式的非AMD模块。我们经常会用到jquery插件，而这些插件基本都不符合AMD规范，比如jquery.form插件，这时候就需要将form插件shim到jquery中：</p>
+<pre><code>require.config({
+    shim: {
+        &quot;underscore&quot; : {
+            exports : &quot;_&quot;;
+        },
+        &quot;jquery.form&quot; : {
+            deps : [&quot;jquery&quot;]
+        }
+    }
+})
+</code></pre><p> 这样配置之后我们就可以使用加载插件后的jquery了</p>
+<pre><code>require.config([&quot;jquery&quot;, &quot;jquery.form&quot;], function($){
+    $(function(){
+        $(&quot;#form&quot;).ajaxSubmit({...});
+    })
+})
+</code></pre></li>
+</ol>
+<hr>
+<p><a href="http://www.runoob.com/w3cnote/requirejs-tutorial-1.html" target="_blank" rel="external">RequireJS简单教程</a></p>
+<p><a href="http://www.requirejs.cn/" target="_blank" rel="external">RequireJS中文网</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模块化/" rel="tag"># 模块化</a>
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/09/CSS3媒体查询/" rel="next" title="CSS3媒体查询">
+                <i class="fa fa-chevron-left"></i> CSS3媒体查询
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/04/自定义浏览器滚动条/" rel="prev" title="自定义浏览器滚动条">
+                自定义浏览器滚动条 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ajun" />
+          <p class="site-author-name" itemprop="name">Ajun</p>
+           
+              <p class="site-description motion-element" itemprop="description">Ajun的前端学习笔记</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#RequireJS主要解决两个问题"><span class="nav-number">1.</span> <span class="nav-text">RequireJS主要解决两个问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语法简介"><span class="nav-number">2.</span> <span class="nav-text">语法简介</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用RequireJS"><span class="nav-number"></span> <span class="nav-text">使用RequireJS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加"><span class="nav-number">2.</span> <span class="nav-text">添加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载文件"><span class="nav-number">3.</span> <span class="nav-text">加载文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#加载第三方模块"><span class="nav-number">3.1.</span> <span class="nav-text">加载第三方模块</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ajun</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
