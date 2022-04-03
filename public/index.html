@@ -1,89 +1,43 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<style type="text/css">
-    #div1, #div2, #div3, #div4{
-        float:left; 
-        width:100px;
-        height:100px;
-        margin:10px;
-        padding:10px;
-        border:1px solid #aaaaaa;
-    }
-    *{
-        transition:all 0.5s;
-    }
-    #dragDiv{
-        background-color: #369;
-        width:100px;
-        height:100px;
-    }
-    #mouseLocation{
-        clear: both;
-        width: 265px;
-        margin-left: 10px;
-        text-align: center;
-    }
-    #crossDiv{
-        clear: both;
-        display: inline-block;
-        height: 200px;
-        width: 10px;
-        background-color: #333;
-    }
-    #dragElement{
-        float: left;
-        width: 120px;
-        height: 120px;
-        background-color: #369;
-        margin-left: -99999px;
-        opacity: 1;
-    }
-</style>
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
-    <div id="dragDiv" draggable="true" ondragstart="drag(event)" ondrag="draging(event)" ></div>
-</div>
-<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)"></div>
-<div id="mouseLocation">X坐标：0，Y坐标：0</div>
-<div id="dragElement"></div>
-<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-<div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-<script type="text/javascript">
-    var mouseLocation = document.getElementById("mouseLocation");
-    var dragElement = document.getElementById("dragElement");
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-    function draging(ev) {
-        mouseLocation.innerHTML = "X坐标：" + ev.clientX + "，Y坐标：" + ev.clientY;
-    }
-
-    function allowDrop(ev){
-        ev.preventDefault();
-        mouseLocation.style.backgroundColor = "#333";
-        mouseLocation.style.color = "#fff";
-        ev.dataTransfer.dropEffect = "copy";
-    }
-
-    function dragLeave(ev) {
-        mouseLocation.style.backgroundColor = "#fff";
-        mouseLocation.style.color = "#000";
-    }
-
-    function drag(ev){
-        ev.dataTransfer.setData("Text",ev.target.id);
-        ev.dataTransfer.setDragImage(dragElement, 60, 60);
-        ev.dataTransfer.effectAllowed = "copy";
-    }
-
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("Text");
-        ev.target.appendChild(document.getElementById(data));
-    }
-</script>
-
-</body>
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
 </html>
