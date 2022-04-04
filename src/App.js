@@ -24,7 +24,6 @@ function App() {
       method: 'eth_chainId'
     });
 
-    console.log('🚧 getInfo || account, chainId', account, chainId);
     setInfo({
       account, chainId
     })
@@ -60,14 +59,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <p> Your Account: {info.account} {info.chainId} </p>
+        <p> currentValue: {remoteValue} </p>
         <p>
-          Your Account: {info.account} {info.chainId}
-        </p>
-        <p>
-          currentValue: {remoteValue}
-        </p>
-        <p>
-          set <input value={input} onChange={e => setInput(e.target.value)} />
+          <input value={input} onChange={e => setInput(e.target.value)} />
           <button onClick={handleSet}>Set</button>
         </p>
       </header>
